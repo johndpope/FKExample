@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import FormationKit
+import Particleboard
 
 class GameScene: SKScene {
     
@@ -30,7 +31,7 @@ class GameScene: SKScene {
                 name:"Melee1",
                 position: CGPoint(x:1024, y:768),
                 heading: -1,
-                currentUnits: 9,
+                currentUnits: 15,
                 maxUnits: 15,
                 controller: .Player,
                 scene: self,
@@ -47,8 +48,10 @@ class GameScene: SKScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            let instructions = FKMovementInstructions(position: location, path: nil, trackingAgent: nil, type: FKMovementType.Towards)
-            self.squads[0].navigationComponent.executeMovementInstructions(instructions)
+            
+            //self.moveOnTouch(location)
+            
+            self.killRandomUnitOnTouch()
         }
     }
    
@@ -76,6 +79,19 @@ class GameScene: SKScene {
             componentSystem.updateWithDeltaTime(deltaTime)
         }
         
+    }
+    
+    // MARK: Different Tests
+    
+    func moveOnTouch(location:CGPoint) {
+        let instructions = FKMovementInstructions(position: location, path: nil, trackingAgent: nil, type: FKMovementType.Towards)
+        self.squads[0].navigationComponent.executeMovementInstructions(instructions)
+    }
+    
+    func killRandomUnitOnTouch() {
+        let rand = Int.random(min: 0, max: self.squads[0].units.count - 1)
+        let unit = self.squads[0].units[rand]
+        unit.componentForClass(FKDeathComponent)?.beginDeath()
     }
 
 }
