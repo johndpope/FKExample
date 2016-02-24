@@ -29,8 +29,23 @@ class GameScene: SKScene {
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
                 name:"Melee1",
+                position: CGPoint(x:500, y:768),
+                heading: 0,
+                currentUnits: 15,
+                maxUnits: 15,
+                controller: .Player,
+                scene: self,
+                layer: world,
+                formation:FKFormationComponent.Arrangement.Grid,
+                columns: 5,
+                spacing: 64))
+        
+        /// Create a squad
+        let squad2 = FKSquadFactory.sharedInstance.createSquad(
+            FKSquadFactory.FKSquadConstruction(
+                name:"Melee1",
                 position: CGPoint(x:1024, y:768),
-                heading: -1,
+                heading: 3.14,
                 currentUnits: 15,
                 maxUnits: 15,
                 controller: .Player,
@@ -42,6 +57,10 @@ class GameScene: SKScene {
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
+        self.squads.append(squad2)
+        
+        /// Notify squad 1 that 2 exists
+        squad.navigationComponent.agentsToAvoid.append(squad2.agent)
 
     }
     
@@ -49,9 +68,9 @@ class GameScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             
-            //self.moveOnTouch(location)
+            self.moveOnTouch(location)
             
-            self.killRandomUnitOnTouch()
+            //self.killRandomUnitOnTouch()
         }
     }
    
