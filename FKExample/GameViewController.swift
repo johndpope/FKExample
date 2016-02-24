@@ -8,25 +8,33 @@
 
 import UIKit
 import SpriteKit
+import SwitchBoard
 
 class GameViewController: UIViewController {
+    
+    var sceneManager : SBSceneManager?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let skView = self.view as? SKView {
 
-        if let scene = GameScene(fileNamed:"GameScene") {
-            // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            self.sceneManager = SBSceneManager(view: skView)
+        
+            self.sceneManager?.registerScene("GameScene",
+                scene: SBSceneContainer(
+                    classType: GameScene.self,
+                    name: "GameScene",
+                    transition: nil,
+                    preloadable: true,
+                    category: SBSceneContainer.SceneGroup.Battle,
+                    atlases: ["Melee1"]))
             
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
+            if let initialScene = self.sceneManager?.scenes["GameScene"] {
+                self.sceneManager?.sceneDidFinish(initialScene)
+            }
             
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
-            skView.presentScene(scene)
         }
     }
 

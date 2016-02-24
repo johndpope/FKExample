@@ -9,15 +9,17 @@
 import SpriteKit
 import GameplayKit
 import FormationKit
-import Particleboard
+import SwitchBoard
 
-class GameScene: SKScene {
+class GameScene: SBGameScene {
     
     var lastUpdateTimeInterval: NSTimeInterval = 0
     
     let maximumUpdateDeltaTime: NSTimeInterval = 1.0 / 60.0
     
     var squads = [FKSquadEntity]()
+    
+    var textureAtlases = [SKTextureAtlas]()
 
     override func didMoveToView(view: SKView) {
         
@@ -113,4 +115,6 @@ class GameScene: SKScene {
         unit.componentForClass(FKDeathComponent)?.beginDeath()
     }
 
+    
+    
 }
