@@ -30,7 +30,7 @@ class GameScene: SBGameScene {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
-                name:"Melee1",
+                name:"Bomur",
                 position: CGPoint(x:500, y:768),
                 heading: 0,
                 currentUnits: 15,

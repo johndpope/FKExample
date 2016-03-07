@@ -18,6 +18,7 @@
 		E74CD1371C77C747002CFCEC /* FKExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74CD1361C77C747002CFCEC /* FKExampleUITests.swift */; };
 		E74CD1461C77C776002CFCEC /* FormationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74CD1441C77C771002CFCEC /* FormationKit.framework */; };
 		E74CD1471C77C776002CFCEC /* FormationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E74CD1441C77C771002CFCEC /* FormationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E74F1B521C8D26020061F104 /* BomurInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E74F1B511C8D26020061F104 /* BomurInfo.plist */; };
 		E7B394071C7813E700B9A7DA /* Particleboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B394051C78139200B9A7DA /* Particleboard.framework */; };
 		E7B394081C7813E700B9A7DA /* Particleboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7B394051C78139200B9A7DA /* Particleboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7B3943D1C7E33EE00B9A7DA /* Melee1Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */; };
@@ -76,6 +77,7 @@
 		E74CD1361C77C747002CFCEC /* FKExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKExampleUITests.swift; sourceTree = "<group>"; };
 		E74CD1381C77C747002CFCEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74CD1441C77C771002CFCEC /* FormationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FormationKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/FormationKit-bpqssleqnwcbiubogrrthdulwrdb/Build/Products/Debug-iphoneos/FormationKit.framework"; sourceTree = "<group>"; };
+		E74F1B511C8D26020061F104 /* BomurInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BomurInfo.plist; sourceTree = "<group>"; };
 		E7B394051C78139200B9A7DA /* Particleboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Particleboard.framework; path = "../../../Library/Developer/Xcode/DerivedData/Particleboard-evhemslkpnponvhfactqjnukksgb/Build/Products/Debug-iphoneos/Particleboard.framework"; sourceTree = "<group>"; };
 		E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Melee1Info.plist; sourceTree = "<group>"; };
 		E7B3943E1C7E354800B9A7DA /* SwitchBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwitchBoard.framework; path = "../../../Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/SwitchBoard.framework"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				E74CD11F1C77C747002CFCEC /* LaunchScreen.storyboard */,
 				E74CD1221C77C747002CFCEC /* Info.plist */,
 				E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */,
+				E74F1B511C8D26020061F104 /* BomurInfo.plist */,
 				E74CD1441C77C771002CFCEC /* FormationKit.framework */,
 				E7B394421C7E37B900B9A7DA /* Loading.sks */,
 			);
@@ -279,6 +282,7 @@
 				E74CD1211C77C747002CFCEC /* LaunchScreen.storyboard in Resources */,
 				E74CD11E1C77C747002CFCEC /* Assets.xcassets in Resources */,
 				E74CD11C1C77C747002CFCEC /* Main.storyboard in Resources */,
+				E74F1B521C8D26020061F104 /* BomurInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
