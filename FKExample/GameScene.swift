@@ -33,16 +33,29 @@ class GameScene: SBGameScene {
                 name:"Melee1",
                 position: CGPoint(x:500, y:768),
                 heading: 0,
-                currentUnits: 14,
-                maxUnits: 15,
+                currentUnits: 20,
+                maxUnits: 20,
                 controller: .Player,
                 scene: self,
                 layer: world,
                 formation:FKFormationComponent.Arrangement.Grid,
-                columns: 5,
+                columns: 4,
                 spacing: 64,
                 hero:"Bomur"))
         
+        /// Store it so it doesn't disappear when this function finishes
+        self.squads.append(squad)
+        
+        /// Notify squad 1 that 2 exists
+        //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
+        
+        self.runAction(SKAction.waitForDuration(5)) {
+            //self.createNextSquad()
+        }
+
+    }
+    
+    func createNextSquad() {
         /// Create a squad
         let squad2 = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -53,17 +66,12 @@ class GameScene: SBGameScene {
                 maxUnits: 15,
                 controller: .Player,
                 scene: self,
-                layer: world,
+                layer: self.childNodeWithName("World")!,
                 formation:FKFormationComponent.Arrangement.Grid,
                 columns: 5,
                 spacing: 64))
         
-        /// Store it so it doesn't disappear when this function finishes
-        self.squads.append(squad)
         self.squads.append(squad2)
-        
-        /// Notify squad 1 that 2 exists
-        squad.navigationComponent.agentsToAvoid.append(squad2.agent)
 
     }
     
@@ -93,7 +101,7 @@ class GameScene: SBGameScene {
             
         /// Update the squad component system
         for componentSystem in FKSquadFactory.sharedInstance.componentSystems {
-            componentSystem.updateWithDeltaTime(deltaTime)
+            //componentSystem.updateWithDeltaTime(deltaTime)
         }
         
         /// Update the unit component system
