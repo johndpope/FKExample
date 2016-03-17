@@ -19,9 +19,21 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         if let skView = self.view as? SKView {
+            
+            // NOTE: Uncommenting these causes a memory leak, so don't be alarmed.
+            /*skView.showsFPS = true
+            skView.showsNodeCount = true
+            skView.showsPhysics = true
+            skView.showsDrawCount = true*/
+            
+            /* Sprite Kit applies additional optimizations to improve rendering performance */
+            skView.ignoresSiblingOrder = true
+            
+            /// Cut the framerate down to 30 FPS
+            skView.frameInterval = 2
 
             self.sceneManager = SBSceneManager(view: skView)
-        
+            
             self.sceneManager?.registerScene("GameScene",
                 scene: SBSceneContainer(
                     classType: GameScene.self,

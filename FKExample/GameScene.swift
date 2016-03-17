@@ -15,44 +15,42 @@ class GameScene: SBGameScene {
     
     var lastUpdateTimeInterval: NSTimeInterval = 0
     
-    let maximumUpdateDeltaTime: NSTimeInterval = 1.0 / 60.0
+    let maximumUpdateDeltaTime: NSTimeInterval = 2.0 / 60.0
     
     var squads = [FKSquadEntity]()
     
-    var textureAtlases = [SKTextureAtlas]()
-
     override func didMoveToView(view: SKView) {
         
         let world = SKNode()
         world.name = "World"
         self.addChild(world)
         
+        /// Notify squad 1 that 2 exists
+        //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
+        
+        self.createSquad()
+
+    }
+    
+    func createSquad() {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
                 name:"Melee1",
                 position: CGPoint(x:500, y:768),
-                heading: 0,
-                currentUnits: 20,
-                maxUnits: 20,
+                heading: -1,
+                currentUnits: 40,
+                maxUnits: 40,
                 controller: .Player,
                 scene: self,
-                layer: world,
+                layer: self.childNodeWithName("World")!,
                 formation:FKFormationComponent.Arrangement.Grid,
-                columns: 4,
+                columns: 6,
                 spacing: 64,
                 hero:"Bomur"))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
-        
-        /// Notify squad 1 that 2 exists
-        //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
-        
-        self.runAction(SKAction.waitForDuration(5)) {
-            //self.createNextSquad()
-        }
-
     }
     
     func createNextSquad() {
@@ -79,9 +77,9 @@ class GameScene: SBGameScene {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             
-            self.moveOnTouch(location)
+            //self.moveOnTouch(location)
             
-            //self.killRandomUnitOnTouch()
+            self.killRandomUnitOnTouch()
         }
     }
    
@@ -101,7 +99,7 @@ class GameScene: SBGameScene {
             
         /// Update the squad component system
         for componentSystem in FKSquadFactory.sharedInstance.componentSystems {
-            //componentSystem.updateWithDeltaTime(deltaTime)
+            componentSystem.updateWithDeltaTime(deltaTime)
         }
         
         /// Update the unit component system
@@ -114,7 +112,7 @@ class GameScene: SBGameScene {
     // MARK: Different Tests
     
     func moveOnTouch(location:CGPoint) {
-        let instructions = FKMovementInstructions(position: location, path: nil, trackingAgent: nil, type: FKMovementType.Towards)
+        let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.Towards)
         self.squads[0].navigationComponent.executeMovementInstructions(instructions)
     }
     

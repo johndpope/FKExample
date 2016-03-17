@@ -6,7 +6,7 @@
 //  Copyright © 2016 Phalanx Studios. All rights reserved.
 //
 
-import XCTest
+/*import XCTest
 @testable import FKExample
 
 class FKExampleTests: XCTestCase {
@@ -33,4 +33,4 @@ class FKExampleTests: XCTestCase {
         }
     }
     
-}
+}*/
