@@ -35,10 +35,11 @@ class GameScene: SBGameScene {
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
         
-        //self.setupMovementTest()
+        self.setupMovementTest()
         //self.setupReformOnDeathTest()
         //self.setupReformTest()
-        self.setupAddHeroToEqxistingSquadTest()
+        //self.setupAddHeroToEqxistingSquadTest()
+        //self.setupTriangleTest()
 
     }
     
@@ -53,7 +54,7 @@ class GameScene: SBGameScene {
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:FKFormationComponent.Arrangement.Grid,
+                formation:FKFormationComponent.Arrangement.Triangle,
                 columns: 6,
                 spacing: 64))
         
@@ -69,12 +70,12 @@ class GameScene: SBGameScene {
                 name:"Melee1",
                 position: CGPoint(x:1100, y:768),
                 heading: -1,
-                currentUnits: 40,
-                maxUnits: 40,
+                currentUnits: 14,
+                maxUnits: 15,
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:FKFormationComponent.Arrangement.Grid,
+                formation:FKFormationComponent.Arrangement.Triangle,
                 columns: 6,
                 spacing: 64,
                 hero:"Bomur"))
@@ -220,6 +221,27 @@ class GameScene: SBGameScene {
         self.heros[0].addUnitToSquad(self.squads[0])
     }
 
+    // MARK: Triangle Formation Test
+    
+    func setupTriangleTest() {
+        let squad = FKSquadFactory.sharedInstance.createSquad(
+            FKSquadFactory.FKSquadConstruction(
+                name:"Melee1",
+                position: CGPoint(x:1100, y:768),
+                heading: 1.57,
+                currentUnits: 6,
+                maxUnits: 6,
+                controller: .Player,
+                scene: self,
+                layer: self.childNodeWithName("World")!,
+                formation:FKFormationComponent.Arrangement.Triangle,
+                columns: 6,
+                spacing: 64,
+                hero:"Bomur"))
+        
+        /// Store it so it doesn't disappear when this function finishes
+        self.squads.append(squad)
+    }
     
     
 }
