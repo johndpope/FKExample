@@ -20,6 +20,10 @@ class GameScene: SBGameScene {
     
     var squads = [FKSquadEntity]()
     
+    var units = [FKUnitEntity]()
+    
+    var heros = [FKHeroEntity]()
+    
     var touchCallback : ((location:CGPoint)->())? = nil
     
     override func didMoveToView(view: SKView) {
@@ -33,7 +37,8 @@ class GameScene: SBGameScene {
         
         //self.setupMovementTest()
         //self.setupReformOnDeathTest()
-        self.setupReformTest()
+        //self.setupReformTest()
+        self.setupAddHeroToEqxistingSquadTest()
 
     }
     
@@ -96,6 +101,28 @@ class GameScene: SBGameScene {
         
         self.squads.append(squad2)
 
+    }
+    
+    func createHero() -> FKHeroEntity? {
+        if let hero = FKUnitFactory.sharedInstance.createHero(FKSquadFactory.FKSquadConstruction(
+            name:"Bomur",
+            position: CGPoint(x:200, y:200),
+            heading: 3.14,
+            currentUnits: 1,
+            maxUnits: 1,
+            controller: .Player,
+            scene: self,
+            layer: self.childNodeWithName("World")!,
+            formation:FKFormationComponent.Arrangement.Grid,
+            columns: 1,
+            spacing: 64,
+            hero:"Bomur")) {
+                hero.renderComponent.node.position = CGPoint(x:200, y:200)
+                FKUnitFactory.sharedInstance.addUnitToScene(hero)
+                self.heros.append(hero)
+                return hero
+        }
+        return nil
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -179,6 +206,18 @@ class GameScene: SBGameScene {
     
     func reformUnits(location:CGPoint) {
         self.squads[0].formationComponent.reassignStandingPositionsByDistance()
+    }
+    
+    // MARK: Add hero to existing squad test
+    
+    func setupAddHeroToEqxistingSquadTest() {
+        self.createSquad()
+        self.createHero()
+        self.touchCallback = self.addHeroToSquad
+    }
+    
+    func addHeroToSquad(location:CGPoint) {
+        self.heros[0].addUnitToSquad(self.squads[0])
     }
 
     
