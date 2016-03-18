@@ -10,6 +10,7 @@ import SpriteKit
 import GameplayKit
 import FormationKit
 import SwitchBoard
+import Particleboard
 
 class GameScene: SBGameScene {
     
@@ -18,6 +19,8 @@ class GameScene: SBGameScene {
     let maximumUpdateDeltaTime: NSTimeInterval = 2.0 / 60.0
     
     var squads = [FKSquadEntity]()
+    
+    var touchCallback : ((location:CGPoint)->())? = nil
     
     override func didMoveToView(view: SKView) {
         
@@ -28,16 +31,38 @@ class GameScene: SBGameScene {
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
         
-        self.createSquad()
+        //self.setupMovementTest()
+        //self.setupReformOnDeathTest()
+        self.setupReformTest()
 
     }
     
     func createSquad() {
+        let squad = FKSquadFactory.sharedInstance.createSquad(
+            FKSquadFactory.FKSquadConstruction(
+                name:"Melee1",
+                position: CGPoint(x:1100, y:768),
+                heading: -1,
+                currentUnits: 40,
+                maxUnits: 40,
+                controller: .Player,
+                scene: self,
+                layer: self.childNodeWithName("World")!,
+                formation:FKFormationComponent.Arrangement.Grid,
+                columns: 6,
+                spacing: 64))
+        
+        /// Store it so it doesn't disappear when this function finishes
+        self.squads.append(squad)
+
+    }
+    
+    func createSquadWithHero() {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
                 name:"Melee1",
-                position: CGPoint(x:500, y:768),
+                position: CGPoint(x:1100, y:768),
                 heading: -1,
                 currentUnits: 40,
                 maxUnits: 40,
@@ -76,10 +101,7 @@ class GameScene: SBGameScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            
-            //self.moveOnTouch(location)
-            
-            self.killRandomUnitOnTouch()
+            self.touchCallback?(location: location)
         }
     }
    
@@ -109,17 +131,54 @@ class GameScene: SBGameScene {
         
     }
     
-    // MARK: Different Tests
+    // MARK: Movement Test
+    
+    func setupMovementTest() {
+        self.createSquadWithHero()
+        self.touchCallback = self.moveOnTouch
+    }
     
     func moveOnTouch(location:CGPoint) {
         let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.Towards)
         self.squads[0].navigationComponent.executeMovementInstructions(instructions)
     }
     
-    func killRandomUnitOnTouch() {
+    // MARK: Reform on Unit Death Test
+
+    func setupReformOnDeathTest() {
+        self.createSquadWithHero()
+        self.touchCallback = self.killRandomUnitOnTouch
+    }
+    
+    func killRandomUnitOnTouch(location:CGPoint) {
         let rand = Int.random(min: 0, max: self.squads[0].units.count - 1)
         let unit = self.squads[0].units[rand]
         unit.componentForClass(FKDeathComponent)?.beginDeath()
+    }
+    
+    // MARK: Reform after random positioning test
+    
+    func setupReformTest() {
+        self.createSquadWithHero()
+        self.scrambleUnits()
+        self.touchCallback = self.reformUnits
+    }
+    
+    func scrambleUnits() {
+        for unit in self.squads[0].units {
+            unit.componentForClass(FKRankComponent)?.standingPosition?.occupiedBy = nil
+            unit.componentForClass(FKRankComponent)?.standingPosition = nil
+            let randomX = CGFloat.random(min: -300, max: 300)
+            let randomY = CGFloat.random(min: -300, max: 300)
+            let base = unit.componentForClass(FKRenderComponent)?.basePosition
+            let location = CGPoint(x: base!.x + randomX, y: base!.y + randomY)
+            let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.Towards)
+            unit.movementComponent.executeMovementInstructions(instructions)
+        }
+    }
+    
+    func reformUnits(location:CGPoint) {
+        self.squads[0].formationComponent.reassignStandingPositionsByDistance()
     }
 
     
