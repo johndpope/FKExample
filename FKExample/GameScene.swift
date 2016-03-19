@@ -18,6 +18,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
     
     let maximumUpdateDeltaTime: NSTimeInterval = 2.0 / 60.0
     
+    var navmesh : Navmesh?
+    
     var squads = [FKSquadEntity]()
     
     var units = [FKUnitEntity]()
@@ -28,13 +30,13 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
-        let world = SKNode()
-        world.name = "World"
-        self.addChild(world)
+        self.camera = self.childNodeWithName("camera") as! SKCameraNode
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
+        
+        self.configureNavmesh()
         
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
@@ -55,6 +57,12 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
     
     func didEndContact(contact: SKPhysicsContact) {
         FKPhysicsService.sharedInstance.didEndContact(contact)
+    }
+    
+    // MARK: Navmesh
+    
+    func configureNavmesh() {
+        self.navmesh = Navmesh(file: "TestLevel", scene: self, bufferRadius: 140)
     }
     
     // MARK: Utility
@@ -86,13 +94,13 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
                 name:"Melee1",
                 position: CGPoint(x:1100, y:768),
                 heading: -1,
-                currentUnits: 249,
-                maxUnits: 250,
+                currentUnits: 19,
+                maxUnits: 20,
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
                 formation:FKFormationComponent.Arrangement.Grid,
-                columns: 30,
+                columns: 5,
                 spacing: 64,
                 hero:"Bomur"))
         
@@ -145,7 +153,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            self.touchCallback?(location: location)
+            let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
+            self.touchCallback?(location: realLocation)
         }
     }
    
