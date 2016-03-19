@@ -12,7 +12,7 @@ import FormationKit
 import SwitchBoard
 import Particleboard
 
-class GameScene: SBGameScene {
+class GameScene: SBGameScene, SKPhysicsContactDelegate {
     
     var lastUpdateTimeInterval: NSTimeInterval = 0
     
@@ -32,6 +32,10 @@ class GameScene: SBGameScene {
         world.name = "World"
         self.addChild(world)
         
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
+        self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
+        
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
         
@@ -42,6 +46,18 @@ class GameScene: SBGameScene {
         //self.setupTriangleTest()
 
     }
+    
+    // MARK: SKPhysicsContactDelegate
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        FKPhysicsService.sharedInstance.didBeginContact(contact)
+    }
+    
+    func didEndContact(contact: SKPhysicsContact) {
+        FKPhysicsService.sharedInstance.didEndContact(contact)
+    }
+    
+    // MARK: Utility
     
     func createSquad() {
         let squad = FKSquadFactory.sharedInstance.createSquad(
@@ -70,13 +86,13 @@ class GameScene: SBGameScene {
                 name:"Melee1",
                 position: CGPoint(x:1100, y:768),
                 heading: -1,
-                currentUnits: 14,
-                maxUnits: 15,
+                currentUnits: 249,
+                maxUnits: 250,
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:FKFormationComponent.Arrangement.Triangle,
-                columns: 6,
+                formation:FKFormationComponent.Arrangement.Grid,
+                columns: 30,
                 spacing: 64,
                 hero:"Bomur"))
         
