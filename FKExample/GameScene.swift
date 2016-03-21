@@ -12,7 +12,7 @@ import FormationKit
 import SwitchBoard
 import Particleboard
 
-class GameScene: SBGameScene, SKPhysicsContactDelegate {
+class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var lastUpdateTimeInterval: NSTimeInterval = 0
     
@@ -80,7 +80,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
                 layer: self.childNodeWithName("World")!,
                 formation:FKFormationComponent.Arrangement.Triangle,
                 columns: 6,
-                spacing: 64))
+                spacing: 64,
+                pathfinder : self))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
@@ -102,7 +103,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
                 formation:FKFormationComponent.Arrangement.Grid,
                 columns: 5,
                 spacing: 64,
-                hero:"Bomur"))
+                hero:"Bomur",
+                pathfinder : self))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
@@ -122,7 +124,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
                 layer: self.childNodeWithName("World")!,
                 formation:FKFormationComponent.Arrangement.Grid,
                 columns: 5,
-                spacing: 64))
+                spacing: 64,
+                pathfinder : self))
         
         self.squads.append(squad2)
 
@@ -141,7 +144,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
             formation:FKFormationComponent.Arrangement.Grid,
             columns: 1,
             spacing: 64,
-            hero:"Bomur")) {
+            hero:"Bomur",
+            pathfinder : self)) {
                 hero.renderComponent.node.position = CGPoint(x:200, y:200)
                 FKUnitFactory.sharedInstance.addUnitToScene(hero)
                 self.heros.append(hero)
@@ -184,16 +188,31 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
         
     }
     
+    // MARK: Pathfinding Protocol
+    
+    func getPathToPoint(start: CGPoint, end: CGPoint) -> (path: GKPath, nodes: [GKGraphNode2D])? {
+        return self.navmesh?.findPathIngoringBuffer(start, end: end, radius: 50, scene: self)
+    }
+    
     // MARK: Movement Test
     
     func setupMovementTest() {
         self.createSquadWithHero()
-        self.touchCallback = self.moveOnTouch
+        //self.touchCallback = self.moveOnTouch
+        self.touchCallback = self.followPathOnTouch
     }
     
     func moveOnTouch(location:CGPoint) {
         let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.Towards)
         self.squads[0].navigationComponent.executeMovementInstructions(instructions)
+    }
+    
+    func followPathOnTouch(location:CGPoint) {
+        let end = self.convertPoint(location, fromNode: self.childNodeWithName("World")!)
+        if let pathfinding = self.getPathToPoint(self.squads[0].agent.actualPosition, end: end) {
+            let instructions = FKMovementInstructions(position: location, path: pathfinding.path, type: FKMovementType.Path)
+            self.squads[0].navigationComponent.executeMovementInstructions(instructions)
+        }
     }
     
     // MARK: Reform on Unit Death Test
@@ -262,7 +281,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate {
                 formation:FKFormationComponent.Arrangement.Triangle,
                 columns: 6,
                 spacing: 64,
-                hero:"Bomur"))
+                hero:"Bomur",
+                pathfinder : self))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)

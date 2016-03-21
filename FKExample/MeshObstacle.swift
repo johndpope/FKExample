@@ -85,7 +85,7 @@ class MeshObstacle {
     /// Used to check if the current unit / hit check is already within the buffered polygon. Coordinates are based on World layer
     func containsPointInBuffer(point:CGPoint) -> Bool {
         if let scene = self.sprite.scene as? GameScene {
-            let localPoint = scene.layers[SBGameScene.WorldLayer.World.rawValue].convertPoint(point, fromNode: scene)
+            let localPoint = scene.childNodeWithName("World")!.convertPoint(point, fromNode: scene)
             return CGPathContainsPoint(self.bufferedPath, nil, localPoint, false)
         }
         return false
