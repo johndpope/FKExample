@@ -28,6 +28,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var currentTest : Testable!
     
+    var formationToTest = FKFormationComponent.Arrangement.Grid
+    
     var touchCallback : ((location:CGPoint)->())? = nil
     
     override func didMoveToView(view: SKView) {
@@ -38,16 +40,14 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
         
-        self.configureNavmesh()
-        
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
         
         //self.currentTest = MovementTest(scene:self)
         //self.currentTest = ReformOnUnitDeathTest(scene: self)
         //self.currentTest = ReformTest(scene: self)
-        //self.currentTest = AddHeroTest(scene: self)
-        self.currentTest = TriangleFormationTest(scene: self)
+        self.currentTest = AddHeroTest(scene: self)
+        //self.currentTest = TriangleFormationTest(scene: self)
 
         self.currentTest.setupTest()
     }
@@ -68,9 +68,26 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         self.navmesh = Navmesh(file: "TestLevel", scene: self, bufferRadius: 140)
     }
     
+    func configureNavmeshWithObstacles(names:[String]) {
+        var obstacleSpriteNodes = [SKSpriteNode]()
+        self.enumerateChildNodesWithName("World/obstacles/*") { node, stop in
+            let realNode = node as! SKSpriteNode
+            if names.contains(realNode.name!) {
+                obstacleSpriteNodes.append(realNode)
+            }
+            else {
+                node.removeFromParent()
+            }
+        }
+        
+        let polygonObstacles: [GKPolygonObstacle] = SKNode.obstaclesFromNodePhysicsBodies(obstacleSpriteNodes)
+        
+        self.navmesh = Navmesh(obstacles: polygonObstacles, bufferRadius: 140)
+    }
+    
     // MARK: Utility
     
-    func createSquad(formation:FKFormationComponent.Arrangement = .Grid) {
+    func createSquad() {
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
                 name:"Melee1",
@@ -81,7 +98,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:formation,
+                formation:formationToTest,
                 columns: 6,
                 spacing: 64,
                 pathfinder : self))
@@ -91,7 +108,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
 
     }
     
-    func createSquadWithHero(formation:FKFormationComponent.Arrangement = .Grid) {
+    func createSquadWithHero() {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -103,7 +120,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:formation,
+                formation:formationToTest,
                 columns: 5,
                 spacing: 64,
                 hero:"Bomur",
@@ -125,7 +142,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:FKFormationComponent.Arrangement.Grid,
+                formation:formationToTest,
                 columns: 5,
                 spacing: 64,
                 pathfinder : self))

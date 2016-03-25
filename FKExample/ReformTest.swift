@@ -21,6 +21,7 @@ class ReformTest : Testable {
     }
     
     func setupTest() {
+        self.scene?.configureNavmeshWithObstacles([])
         self.scene?.createSquadWithHero()
         self.scrambleUnits()
     }

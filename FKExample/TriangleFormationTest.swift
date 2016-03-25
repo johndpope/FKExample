@@ -21,7 +21,9 @@ class TriangleFormationTest : Testable {
     }
     
     func setupTest() {
-        self.scene?.createSquadWithHero(.Triangle)
+        self.scene?.configureNavmeshWithObstacles(["obstacle_square_1"])
+        self.scene?.formationToTest = .Triangle
+        self.scene?.createSquadWithHero()
     }
     
     func tapped(location: CGPoint) {

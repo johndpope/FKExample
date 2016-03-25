@@ -21,6 +21,7 @@ class AddHeroTest : Testable {
     }
     
     func setupTest() {
+        self.scene?.configureNavmeshWithObstacles(["obstacle_square_1"])
         self.scene?.createSquad()
         self.scene?.createHero()
     }

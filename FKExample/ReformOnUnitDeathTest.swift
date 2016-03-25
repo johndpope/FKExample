@@ -21,6 +21,7 @@ class ReformOnUnitDeathTest : Testable {
     }
     
     func setupTest() {
+        self.scene?.configureNavmeshWithObstacles([])
         self.scene?.createSquadWithHero()
     }
     
