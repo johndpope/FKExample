@@ -21,10 +21,10 @@ class GameViewController: UIViewController {
         if let skView = self.view as? SKView {
             
             // NOTE: Uncommenting these causes a memory leak, so don't be alarmed.
-            skView.showsFPS = true
+            /*skView.showsFPS = true
             skView.showsNodeCount = true
             skView.showsPhysics = true
-            skView.showsDrawCount = true
+            skView.showsDrawCount = true*/
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true

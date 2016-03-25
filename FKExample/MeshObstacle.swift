@@ -49,7 +49,7 @@ class MeshObstacle {
         let obstacleLayer = scene.childNodeWithName("World/obstacles")
         
         /// Build each sprite and physics body based off of polygon shape
-        for var i = 0; i < polygon.count; i++ {
+        for i in 0 ..< polygon.count {
             let points = polygon[i].componentsSeparatedByString(",")
             let x = points[0].stringByReplacingOccurrencesOfString("{ ", withString: "")
             let y = points[1].stringByReplacingOccurrencesOfString(" }", withString: "")
@@ -94,7 +94,7 @@ class MeshObstacle {
     /// Loops over each side of the polygon, and checks which side a point **within** the polygon lies closest to.
     func closestSideToPoint(point:float2) -> (start:float2, end:float2) {
         var sorted = [float2]()
-        for var i = 0; i < self.obstacle.vertexCount; i++ {
+        for i in 0 ..< self.obstacle.vertexCount {
             sorted.append(self.obstacle.vertexAtIndex(i))
         }
         sorted.sortInPlace({ distance($0, point) < distance($1, point) })

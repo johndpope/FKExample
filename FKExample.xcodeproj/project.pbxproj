@@ -33,6 +33,12 @@
 		E7C4D3A91C9CFE2800D1B7D8 /* MeshObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */; };
 		E7C4D3AB1C9CFF1200D1B7D8 /* Test.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */; };
 		E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */; };
+		E7F3450C1CA4E09500525966 /* Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450B1CA4E09500525966 /* Testable.swift */; };
+		E7F3450E1CA4E0FC00525966 /* MovementTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450D1CA4E0FC00525966 /* MovementTest.swift */; };
+		E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */; };
+		E7F345121CA4E1BD00525966 /* ReformTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345111CA4E1BD00525966 /* ReformTest.swift */; };
+		E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345131CA4E20900525966 /* AddHeroTest.swift */; };
+		E7F345161CA4E29600525966 /* TriangleFormationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345151CA4E29600525966 /* TriangleFormationTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,10 +97,16 @@
 		E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Melee1Info.plist; sourceTree = "<group>"; };
 		E7B3943E1C7E354800B9A7DA /* SwitchBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwitchBoard.framework; path = "../../../Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/SwitchBoard.framework"; sourceTree = "<group>"; };
 		E7B394421C7E37B900B9A7DA /* Loading.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Loading.sks; sourceTree = "<group>"; };
-		E7C4D3A61C9CFE2800D1B7D8 /* Navmesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navmesh.swift; sourceTree = "<group>"; };
-		E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshObstacle.swift; sourceTree = "<group>"; };
+		E7C4D3A61C9CFE2800D1B7D8 /* Navmesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Navmesh.swift; path = FKExample/Navmesh.swift; sourceTree = "<group>"; };
+		E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeshObstacle.swift; path = FKExample/MeshObstacle.swift; sourceTree = "<group>"; };
 		E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Test.atlas; sourceTree = "<group>"; };
 		E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestLevel_obstacles.plist; sourceTree = "<group>"; };
+		E7F3450B1CA4E09500525966 /* Testable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testable.swift; sourceTree = "<group>"; };
+		E7F3450D1CA4E0FC00525966 /* MovementTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementTest.swift; sourceTree = "<group>"; };
+		E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReformOnUnitDeathTest.swift; sourceTree = "<group>"; };
+		E7F345111CA4E1BD00525966 /* ReformTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReformTest.swift; sourceTree = "<group>"; };
+		E7F345131CA4E20900525966 /* AddHeroTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHeroTest.swift; sourceTree = "<group>"; };
+		E7F345151CA4E29600525966 /* TriangleFormationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleFormationTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,22 +166,20 @@
 		E74CD1111C77C747002CFCEC /* FKExample */ = {
 			isa = PBXGroup;
 			children = (
+				E7F345091CA4DFEE00525966 /* Units */,
+				E7F345071CA4DFC100525966 /* Tests */,
+				E7F345081CA4DFD700525966 /* Pathfinding */,
+				E7F3450A1CA4DFFB00525966 /* Obstacles */,
 				E74CD1121C77C747002CFCEC /* AppDelegate.swift */,
 				E74CD1141C77C747002CFCEC /* GameScene.sks */,
 				E74CD1161C77C747002CFCEC /* GameScene.swift */,
 				E74CD1181C77C747002CFCEC /* GameViewController.swift */,
-				E7C4D3A61C9CFE2800D1B7D8 /* Navmesh.swift */,
-				E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */,
 				E74CD11A1C77C747002CFCEC /* Main.storyboard */,
 				E74CD11D1C77C747002CFCEC /* Assets.xcassets */,
 				E74CD11F1C77C747002CFCEC /* LaunchScreen.storyboard */,
 				E74CD1221C77C747002CFCEC /* Info.plist */,
-				E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */,
-				E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */,
-				E74F1B511C8D26020061F104 /* BomurInfo.plist */,
 				E7B394421C7E37B900B9A7DA /* Loading.sks */,
-				E722D4741C97AEF500AAA43B /* Melee1.atlas */,
-				E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */,
+				E7F3450B1CA4E09500525966 /* Testable.swift */,
 			);
 			path = FKExample;
 			sourceTree = "<group>";
@@ -190,6 +200,47 @@
 				E74CD1381C77C747002CFCEC /* Info.plist */,
 			);
 			path = FKExampleUITests;
+			sourceTree = "<group>";
+		};
+		E7F345071CA4DFC100525966 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E7F3450D1CA4E0FC00525966 /* MovementTest.swift */,
+				E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */,
+				E7F345111CA4E1BD00525966 /* ReformTest.swift */,
+				E7F345131CA4E20900525966 /* AddHeroTest.swift */,
+				E7F345151CA4E29600525966 /* TriangleFormationTest.swift */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		E7F345081CA4DFD700525966 /* Pathfinding */ = {
+			isa = PBXGroup;
+			children = (
+				E7C4D3A61C9CFE2800D1B7D8 /* Navmesh.swift */,
+				E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */,
+			);
+			name = Pathfinding;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E7F345091CA4DFEE00525966 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				E722D4741C97AEF500AAA43B /* Melee1.atlas */,
+				E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */,
+				E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */,
+				E74F1B511C8D26020061F104 /* BomurInfo.plist */,
+			);
+			name = Units;
+			sourceTree = "<group>";
+		};
+		E7F3450A1CA4DFFB00525966 /* Obstacles */ = {
+			isa = PBXGroup;
+			children = (
+				E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */,
+			);
+			name = Obstacles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,11 +382,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7F3450E1CA4E0FC00525966 /* MovementTest.swift in Sources */,
 				E7C4D3A91C9CFE2800D1B7D8 /* MeshObstacle.swift in Sources */,
 				E74CD1171C77C747002CFCEC /* GameScene.swift in Sources */,
 				E74CD1191C77C747002CFCEC /* GameViewController.swift in Sources */,
+				E7F345121CA4E1BD00525966 /* ReformTest.swift in Sources */,
+				E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */,
+				E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */,
+				E7F345161CA4E29600525966 /* TriangleFormationTest.swift in Sources */,
 				E7C4D3A81C9CFE2800D1B7D8 /* Navmesh.swift in Sources */,
 				E74CD1131C77C747002CFCEC /* AppDelegate.swift in Sources */,
+				E7F3450C1CA4E09500525966 /* Testable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

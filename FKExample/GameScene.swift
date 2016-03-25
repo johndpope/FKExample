@@ -26,6 +26,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var heros = [FKHeroEntity]()
     
+    var currentTest : Testable!
+    
     var touchCallback : ((location:CGPoint)->())? = nil
     
     override func didMoveToView(view: SKView) {
@@ -41,12 +43,13 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
         
-        self.setupMovementTest()
-        //self.setupReformOnDeathTest()
-        //self.setupReformTest()
-        //self.setupAddHeroToEqxistingSquadTest()
-        //self.setupTriangleTest()
+        //self.currentTest = MovementTest(scene:self)
+        //self.currentTest = ReformOnUnitDeathTest(scene: self)
+        //self.currentTest = ReformTest(scene: self)
+        //self.currentTest = AddHeroTest(scene: self)
+        self.currentTest = TriangleFormationTest(scene: self)
 
+        self.currentTest.setupTest()
     }
     
     // MARK: SKPhysicsContactDelegate
@@ -67,7 +70,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     // MARK: Utility
     
-    func createSquad() {
+    func createSquad(formation:FKFormationComponent.Arrangement = .Grid) {
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
                 name:"Melee1",
@@ -78,7 +81,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:FKFormationComponent.Arrangement.Triangle,
+                formation:formation,
                 columns: 6,
                 spacing: 64,
                 pathfinder : self))
@@ -88,7 +91,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
 
     }
     
-    func createSquadWithHero() {
+    func createSquadWithHero(formation:FKFormationComponent.Arrangement = .Grid) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -100,7 +103,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:FKFormationComponent.Arrangement.Grid,
+                formation:formation,
                 columns: 5,
                 spacing: 64,
                 hero:"Bomur",
@@ -158,7 +161,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
-            self.touchCallback?(location: realLocation)
+            self.currentTest.tapped(realLocation)
         }
     }
    
@@ -192,100 +195,6 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     func getPathToPoint(start: CGPoint, end: CGPoint) -> (path: GKPath, nodes: [GKGraphNode2D])? {
         return self.navmesh?.findPathIngoringBuffer(start, end: end, radius: 50, scene: self)
-    }
-    
-    // MARK: Movement Test
-    
-    func setupMovementTest() {
-        self.createSquadWithHero()
-        //self.touchCallback = self.moveOnTouch
-        self.touchCallback = self.followPathOnTouch
-    }
-    
-    func moveOnTouch(location:CGPoint) {
-        let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.Towards)
-        self.squads[0].navigationComponent.executeMovementInstructions(instructions)
-    }
-    
-    func followPathOnTouch(location:CGPoint) {
-        let end = self.convertPoint(location, fromNode: self.childNodeWithName("World")!)
-        if let pathfinding = self.getPathToPoint(self.squads[0].agent.actualPosition, end: end) {
-            let instructions = FKMovementInstructions(position: location, path: pathfinding.path, type: FKMovementType.Path)
-            self.squads[0].navigationComponent.executeMovementInstructions(instructions)
-        }
-    }
-    
-    // MARK: Reform on Unit Death Test
-
-    func setupReformOnDeathTest() {
-        self.createSquadWithHero()
-        self.touchCallback = self.killRandomUnitOnTouch
-    }
-    
-    func killRandomUnitOnTouch(location:CGPoint) {
-        let rand = Int.random(min: 0, max: self.squads[0].units.count - 1)
-        let unit = self.squads[0].units[rand]
-        unit.componentForClass(FKDeathComponent)?.beginDeath()
-    }
-    
-    // MARK: Reform after random positioning test
-    
-    func setupReformTest() {
-        self.createSquadWithHero()
-        self.scrambleUnits()
-        self.touchCallback = self.reformUnits
-    }
-    
-    func scrambleUnits() {
-        for unit in self.squads[0].units {
-            unit.componentForClass(FKRankComponent)?.standingPosition?.occupiedBy = nil
-            unit.componentForClass(FKRankComponent)?.standingPosition = nil
-            let randomX = CGFloat.random(min: -300, max: 300)
-            let randomY = CGFloat.random(min: -300, max: 300)
-            let base = unit.componentForClass(FKRenderComponent)?.basePosition
-            let location = CGPoint(x: base!.x + randomX, y: base!.y + randomY)
-            let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.Towards)
-            unit.movementComponent.executeMovementInstructions(instructions)
-        }
-    }
-    
-    func reformUnits(location:CGPoint) {
-        self.squads[0].formationComponent.reassignStandingPositionsByDistance()
-    }
-    
-    // MARK: Add hero to existing squad test
-    
-    func setupAddHeroToEqxistingSquadTest() {
-        self.createSquad()
-        self.createHero()
-        self.touchCallback = self.addHeroToSquad
-    }
-    
-    func addHeroToSquad(location:CGPoint) {
-        self.heros[0].addUnitToSquad(self.squads[0])
-    }
-
-    // MARK: Triangle Formation Test
-    
-    func setupTriangleTest() {
-        let squad = FKSquadFactory.sharedInstance.createSquad(
-            FKSquadFactory.FKSquadConstruction(
-                name:"Melee1",
-                position: CGPoint(x:1100, y:768),
-                heading: 1.57,
-                currentUnits: 6,
-                maxUnits: 6,
-                controller: .Player,
-                scene: self,
-                layer: self.childNodeWithName("World")!,
-                formation:FKFormationComponent.Arrangement.Triangle,
-                columns: 6,
-                spacing: 64,
-                hero:"Bomur",
-                pathfinder : self))
-        
-        /// Store it so it doesn't disappear when this function finishes
-        self.squads.append(squad)
     }
     
     
