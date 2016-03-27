@@ -131,13 +131,13 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
 
     }
     
-    func createSquadWithHero() {
+    func createSquadWithHero(position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
                 name:"Melee1",
-                position: CGPoint(x:1100, y:768),
-                heading: -1,
+                position: position,
+                heading: heading,
                 currentUnits: 19,
                 maxUnits: 20,
                 controller: .Player,
