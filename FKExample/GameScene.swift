@@ -28,17 +28,17 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var currentTest : Testable!
     
-    var formationToTest = FKFormationComponent.Arrangement.Grid
+    var formationToTest = FKFormationComponent.Arrangement.Triangle
     
     var touchCallback : ((location:CGPoint)->())? = nil
     
     override func didMoveToView(view: SKView) {
         
-        self.camera = self.childNodeWithName("camera") as! SKCameraNode
-        
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
+        self.buildWorldLayers()
+        self.registerGestures()
         
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
@@ -46,10 +46,31 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         //self.currentTest = MovementTest(scene:self)
         //self.currentTest = ReformOnUnitDeathTest(scene: self)
         //self.currentTest = ReformTest(scene: self)
-        self.currentTest = AddHeroTest(scene: self)
+        //self.currentTest = AddHeroTest(scene: self)
         //self.currentTest = TriangleFormationTest(scene: self)
+        self.currentTest = InvalidMovePositionTest(scene: self)
 
         self.currentTest.setupTest()
+    }
+    
+    // MARK: WORLD LAYERS AND NODES
+    
+    /// Setup an array of child SKNodes to hold different visual elements
+    override func buildWorldLayers() {
+        
+        self.cameraBounds = CameraBounds(lower: 100, left: 0, upper: 0, right: 0)
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.size = CGSize(width: 2048, height: 1536)
+        }
+        
+        super.buildWorldLayers()
+        
+        // Set the camera as the scenes camera. Some scenes work without this lines, others don't.
+        // For example, LevelScene worked without it, but Camp scene did not
+        self.camera = self.childNodeWithName("Camera") as? SKCameraNode
+        
+        self.setCameraBounds(self.cameraBounds)
     }
     
     // MARK: SKPhysicsContactDelegate
@@ -65,6 +86,9 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     // MARK: Navmesh
     
     func configureNavmesh() {
+        self.enumerateChildNodesWithName("World/obstacles/*") { node, stop in
+            node.removeFromParent()
+        }
         self.navmesh = Navmesh(file: "TestLevel", scene: self, bufferRadius: 140)
     }
     
@@ -81,7 +105,6 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         }
         
         let polygonObstacles: [GKPolygonObstacle] = SKNode.obstaclesFromNodePhysicsBodies(obstacleSpriteNodes)
-        
         self.navmesh = Navmesh(obstacles: polygonObstacles, bufferRadius: 140)
     }
     
@@ -212,6 +235,10 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     func getPathToPoint(start: CGPoint, end: CGPoint) -> (path: GKPath, nodes: [GKGraphNode2D])? {
         return self.navmesh?.findPathIngoringBuffer(start, end: end, radius: 50, scene: self)
+    }
+    
+    func isPointValid(desired: float2) -> Bool {
+        return self.navmesh!.pointIsValid(desired)
     }
     
     

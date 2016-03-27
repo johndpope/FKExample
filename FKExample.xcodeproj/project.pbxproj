@@ -39,6 +39,7 @@
 		E7F345121CA4E1BD00525966 /* ReformTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345111CA4E1BD00525966 /* ReformTest.swift */; };
 		E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345131CA4E20900525966 /* AddHeroTest.swift */; };
 		E7F345161CA4E29600525966 /* TriangleFormationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345151CA4E29600525966 /* TriangleFormationTest.swift */; };
+		E7F3451D1CA7852B00525966 /* InvalidMovePositionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		E7F345111CA4E1BD00525966 /* ReformTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReformTest.swift; sourceTree = "<group>"; };
 		E7F345131CA4E20900525966 /* AddHeroTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHeroTest.swift; sourceTree = "<group>"; };
 		E7F345151CA4E29600525966 /* TriangleFormationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleFormationTest.swift; sourceTree = "<group>"; };
+		E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidMovePositionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,11 +207,9 @@
 		E7F345071CA4DFC100525966 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E7F3450D1CA4E0FC00525966 /* MovementTest.swift */,
-				E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */,
-				E7F345111CA4E1BD00525966 /* ReformTest.swift */,
-				E7F345131CA4E20900525966 /* AddHeroTest.swift */,
-				E7F345151CA4E29600525966 /* TriangleFormationTest.swift */,
+				E7F3451B1CA7851500525966 /* Misc */,
+				E7F3451A1CA7850800525966 /* Reform */,
+				E7F345191CA784FA00525966 /* Movement */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -241,6 +241,33 @@
 				E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */,
 			);
 			name = Obstacles;
+			sourceTree = "<group>";
+		};
+		E7F345191CA784FA00525966 /* Movement */ = {
+			isa = PBXGroup;
+			children = (
+				E7F3450D1CA4E0FC00525966 /* MovementTest.swift */,
+				E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */,
+			);
+			name = Movement;
+			sourceTree = "<group>";
+		};
+		E7F3451A1CA7850800525966 /* Reform */ = {
+			isa = PBXGroup;
+			children = (
+				E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */,
+				E7F345111CA4E1BD00525966 /* ReformTest.swift */,
+				E7F345131CA4E20900525966 /* AddHeroTest.swift */,
+			);
+			name = Reform;
+			sourceTree = "<group>";
+		};
+		E7F3451B1CA7851500525966 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				E7F345151CA4E29600525966 /* TriangleFormationTest.swift */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +416,7 @@
 				E7F345121CA4E1BD00525966 /* ReformTest.swift in Sources */,
 				E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */,
 				E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */,
+				E7F3451D1CA7852B00525966 /* InvalidMovePositionTest.swift in Sources */,
 				E7F345161CA4E29600525966 /* TriangleFormationTest.swift in Sources */,
 				E7C4D3A81C9CFE2800D1B7D8 /* Navmesh.swift in Sources */,
 				E74CD1131C77C747002CFCEC /* AppDelegate.swift in Sources */,
