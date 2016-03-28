@@ -41,14 +41,14 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
         
-        //self.currentTest = MovementTest(scene:self)
+        self.currentTest = MovementTest(scene:self)
         //self.currentTest = ReformOnUnitDeathTest(scene: self)
         //self.currentTest = ReformTest(scene: self)
         //self.currentTest = AddHeroTest(scene: self)
         //self.currentTest = TriangleFormationTest(scene: self)
         //self.currentTest = InvalidMovePositionTest(scene: self)
         //self.currentTest = CatchingUpTest(scene: self)
-        self.currentTest = PerformanceTest(scene: self)
+        //self.currentTest = PerformanceTest(scene: self)
 
 
         self.currentTest.setupTest()
@@ -196,6 +196,14 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 return hero
         }
         return nil
+    }
+    
+    // MARK: Common Abilities
+    
+    func addMoveToSquad(squad:FKSquadEntity) {
+        let ability = Ability.factoryInit("Move")
+        let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Move", ability:ability, actionBarPosition:1, actionBarPriority:1)
+        squad.abilitiesComponent.abilities.append(activeAbility)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

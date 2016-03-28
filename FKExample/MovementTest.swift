@@ -21,16 +21,18 @@ class MovementTest : Testable {
     }
     
     func setupTest() {
-        self.scene?.configureNavmeshWithObstacles(["obstacle_square_1"])
+        self.scene?.configureNavmesh()
         self.scene?.createSquadWithHero()
+        self.scene?.addMoveToSquad(self.scene!.squads[0])
     }
     
     func tapped(location: CGPoint) {
-        let end = self.scene?.convertPoint(location, fromNode: (self.scene?.childNodeWithName("World")!)!)
-        if let pathfinding = self.scene?.getPathToPoint((self.scene?.squads[0].agent.actualPosition)!, end: end!) {
-            let instructions = FKMovementInstructions(position: location, path: pathfinding.path, type: FKMovementType.Path)
-            self.scene?.squads[0].navigationComponent.executeMovementInstructions(instructions)
-        }
+    
+        let moveAbility = self.scene?.squads[0].abilitiesComponent.abilities.filter({$0.name == "Move"}).first
+        var instructions = CommandInstructions()
+        instructions.desiredPosition = location
+        self.scene?.squads[0].abilitiesComponent.runAbility(moveAbility!.ability, instructions: instructions)
+            
     }
     
     func teardownTest() {
