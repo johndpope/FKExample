@@ -28,9 +28,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var currentTest : Testable!
     
-    var formationToTest = FKFormationComponent.Arrangement.Triangle
-    
-    var touchCallback : ((location:CGPoint)->())? = nil
+    var formationToTest = FKFormationComponent.Arrangement.Grid
     
     override func didMoveToView(view: SKView) {
         
@@ -48,7 +46,10 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         //self.currentTest = ReformTest(scene: self)
         //self.currentTest = AddHeroTest(scene: self)
         //self.currentTest = TriangleFormationTest(scene: self)
-        self.currentTest = InvalidMovePositionTest(scene: self)
+        //self.currentTest = InvalidMovePositionTest(scene: self)
+        //self.currentTest = CatchingUpTest(scene: self)
+        self.currentTest = PerformanceTest(scene: self)
+
 
         self.currentTest.setupTest()
     }
@@ -131,21 +132,21 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
 
     }
     
-    func createSquadWithHero(position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1) {
+    func createSquadWithHero(position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, columns : Int = 5, spacing: Int = 64) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
                 name:"Melee1",
                 position: position,
                 heading: heading,
-                currentUnits: 19,
-                maxUnits: 20,
+                currentUnits: currentUnits,
+                maxUnits: maxUnits,
                 controller: .Player,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
                 formation:formationToTest,
-                columns: 5,
-                spacing: 64,
+                columns: columns,
+                spacing: spacing,
                 hero:"Bomur",
                 pathfinder : self))
         
