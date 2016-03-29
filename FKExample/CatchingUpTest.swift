@@ -23,7 +23,7 @@ class CatchingUpTest : Testable {
     
     func setupTest() {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero(CGPoint(x:-1200, y:-1200), heading: -0.1)
+        self.scene?.createSquadWithHero(position:CGPoint(x:-1200, y:-1200), heading: -0.1)
         self.scene?.camera?.panToPoint(CGPoint(x:-1200, y:-1200))
     }
     

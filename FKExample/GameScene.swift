@@ -41,7 +41,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         /// Notify squad 1 that 2 exists
         //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
         
-        self.currentTest = MovementTest(scene:self)
+        //self.currentTest = MovementTest(scene:self)
         //self.currentTest = ReformOnUnitDeathTest(scene: self)
         //self.currentTest = ReformTest(scene: self)
         //self.currentTest = AddHeroTest(scene: self)
@@ -49,6 +49,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         //self.currentTest = InvalidMovePositionTest(scene: self)
         //self.currentTest = CatchingUpTest(scene: self)
         //self.currentTest = PerformanceTest(scene: self)
+        self.currentTest = SingleFightTest(scene: self)
 
 
         self.currentTest.setupTest()
@@ -111,68 +112,47 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     // MARK: Utility
     
-    func createSquad() {
-        let squad = FKSquadFactory.sharedInstance.createSquad(
-            FKSquadFactory.FKSquadConstruction(
-                name:"Melee1",
-                position: CGPoint(x:1100, y:768),
-                heading: -1,
-                currentUnits: 40,
-                maxUnits: 40,
-                controller: .Player,
-                scene: self,
-                layer: self.childNodeWithName("World")!,
-                formation:formationToTest,
-                columns: 6,
-                spacing: 64,
-                pathfinder : self))
-        
-        /// Store it so it doesn't disappear when this function finishes
-        self.squads.append(squad)
-
-    }
-    
-    func createSquadWithHero(position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, columns : Int = 5, spacing: Int = 64) {
+    func createSquad(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
-                name:"Melee1",
+                name:name,
                 position: position,
                 heading: heading,
                 currentUnits: currentUnits,
                 maxUnits: maxUnits,
-                controller: .Player,
+                controller: controller,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
                 formation:formationToTest,
                 columns: columns,
                 spacing: spacing,
-                hero:"Bomur",
                 pathfinder : self))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
     }
     
-    func createNextSquad() {
+    func createSquadWithHero(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, hero:String = "Bomur") {
         /// Create a squad
-        let squad2 = FKSquadFactory.sharedInstance.createSquad(
+        let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
-                name:"Melee1",
-                position: CGPoint(x:1024, y:768),
-                heading: 3.14,
-                currentUnits: 15,
-                maxUnits: 15,
-                controller: .Player,
+                name:name,
+                position: position,
+                heading: heading,
+                currentUnits: currentUnits,
+                maxUnits: maxUnits,
+                controller: controller,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
                 formation:formationToTest,
-                columns: 5,
-                spacing: 64,
+                columns: columns,
+                spacing: spacing,
+                hero:hero,
                 pathfinder : self))
         
-        self.squads.append(squad2)
-
+        /// Store it so it doesn't disappear when this function finishes
+        self.squads.append(squad)
     }
     
     func createHero() -> FKHeroEntity? {
@@ -203,6 +183,12 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     func addMoveToSquad(squad:FKSquadEntity) {
         let ability = Ability.factoryInit("Move")
         let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Move", ability:ability, actionBarPosition:1, actionBarPriority:1)
+        squad.abilitiesComponent.abilities.append(activeAbility)
+    }
+    
+    func addMeleeToSquad(squad:FKSquadEntity) {
+        let ability = Ability.factoryInit("Attack")
+        let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Attack", ability:ability, actionBarPosition:1, actionBarPriority:1)
         squad.abilitiesComponent.abilities.append(activeAbility)
     }
     

@@ -13,6 +13,7 @@
 		E722D4751C97AEF500AAA43B /* Melee1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E722D4741C97AEF500AAA43B /* Melee1.atlas */; };
 		E7433DDA1CA9A41200AAA23E /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */; };
 		E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7433DE31CA9BDDD00AAA23E /* Abilities.plist */; };
+		E7433DED1CAAF56700AAA23E /* 1v1FightTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */; };
 		E74CD1131C77C747002CFCEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74CD1121C77C747002CFCEC /* AppDelegate.swift */; };
 		E74CD1151C77C747002CFCEC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E74CD1141C77C747002CFCEC /* GameScene.sks */; };
 		E74CD1171C77C747002CFCEC /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74CD1161C77C747002CFCEC /* GameScene.swift */; };
@@ -82,6 +83,7 @@
 		E722D4741C97AEF500AAA43B /* Melee1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Melee1.atlas; sourceTree = "<group>"; };
 		E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		E7433DE31CA9BDDD00AAA23E /* Abilities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Abilities.plist; sourceTree = "<group>"; };
+		E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 1v1FightTest.swift; sourceTree = "<group>"; };
 		E74CD10F1C77C747002CFCEC /* FKExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74CD1121C77C747002CFCEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E74CD1141C77C747002CFCEC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -148,6 +150,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E7433DEB1CAAF55500AAA23E /* Combat */ = {
+			isa = PBXGroup;
+			children = (
+				E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */,
+			);
+			name = Combat;
+			sourceTree = "<group>";
+		};
 		E74CD1061C77C747002CFCEC = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +224,7 @@
 		E7F345071CA4DFC100525966 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E7433DEB1CAAF55500AAA23E /* Combat */,
 				E7F3451B1CA7851500525966 /* Misc */,
 				E7F3451A1CA7850800525966 /* Reform */,
 				E7F345191CA784FA00525966 /* Movement */,
@@ -429,6 +440,7 @@
 				E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */,
 				E7F3451D1CA7852B00525966 /* InvalidMovePositionTest.swift in Sources */,
 				E7F345161CA4E29600525966 /* TriangleFormationTest.swift in Sources */,
+				E7433DED1CAAF56700AAA23E /* 1v1FightTest.swift in Sources */,
 				E7C4D3A81C9CFE2800D1B7D8 /* Navmesh.swift in Sources */,
 				E74CD1131C77C747002CFCEC /* AppDelegate.swift in Sources */,
 				E7433DDA1CA9A41200AAA23E /* PerformanceTest.swift in Sources */,
