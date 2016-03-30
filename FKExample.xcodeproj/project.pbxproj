@@ -26,6 +26,7 @@
 		E74CD1461C77C776002CFCEC /* FormationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74CD1441C77C771002CFCEC /* FormationKit.framework */; };
 		E74CD1471C77C776002CFCEC /* FormationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E74CD1441C77C771002CFCEC /* FormationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E74F1B521C8D26020061F104 /* BomurInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E74F1B511C8D26020061F104 /* BomurInfo.plist */; };
+		E7735B1A1CAB7D2600B684CF /* EngageMovingTargetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */; };
 		E77DE25D1CA997C800771803 /* CatchingUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DE25C1CA997C800771803 /* CatchingUpTest.swift */; };
 		E7B394071C7813E700B9A7DA /* Particleboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B394051C78139200B9A7DA /* Particleboard.framework */; };
 		E7B394081C7813E700B9A7DA /* Particleboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7B394051C78139200B9A7DA /* Particleboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -101,6 +102,7 @@
 		E74CD1381C77C747002CFCEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74CD1441C77C771002CFCEC /* FormationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FormationKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/FormationKit-bpqssleqnwcbiubogrrthdulwrdb/Build/Products/Debug-iphoneos/FormationKit.framework"; sourceTree = "<group>"; };
 		E74F1B511C8D26020061F104 /* BomurInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BomurInfo.plist; sourceTree = "<group>"; };
+		E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngageMovingTargetTest.swift; sourceTree = "<group>"; };
 		E77DE25C1CA997C800771803 /* CatchingUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchingUpTest.swift; sourceTree = "<group>"; };
 		E7B394051C78139200B9A7DA /* Particleboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Particleboard.framework; path = "../../../Library/Developer/Xcode/DerivedData/Particleboard-evhemslkpnponvhfactqjnukksgb/Build/Products/Debug-iphoneos/Particleboard.framework"; sourceTree = "<group>"; };
 		E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Melee1Info.plist; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */,
+				E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */,
 			);
 			name = Combat;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				E74CD1171C77C747002CFCEC /* GameScene.swift in Sources */,
 				E74CD1191C77C747002CFCEC /* GameViewController.swift in Sources */,
 				E77DE25D1CA997C800771803 /* CatchingUpTest.swift in Sources */,
+				E7735B1A1CAB7D2600B684CF /* EngageMovingTargetTest.swift in Sources */,
 				E7F345121CA4E1BD00525966 /* ReformTest.swift in Sources */,
 				E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */,
 				E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */,

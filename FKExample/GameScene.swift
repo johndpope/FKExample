@@ -49,7 +49,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         //self.currentTest = InvalidMovePositionTest(scene: self)
         //self.currentTest = CatchingUpTest(scene: self)
         //self.currentTest = PerformanceTest(scene: self)
-        self.currentTest = SingleFightTest(scene: self)
+        //self.currentTest = SingleFightTest(scene: self)
+        self.currentTest = EngageMovingTargetTest(scene: self)
 
 
         self.currentTest.setupTest()
