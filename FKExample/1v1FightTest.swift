@@ -22,8 +22,8 @@ class SingleFightTest : Testable {
     
     func setupTest() {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero()
-        self.scene?.createSquad(position:CGPoint(x:1600, y:68), controller:.EnemyNPC, heading:3)
+        self.scene?.createSquadWithHero(currentUnits:39, maxUnits:40, columns:10)
+        self.scene?.createSquad(position:CGPoint(x:1600, y:68), controller:.EnemyNPC, heading:2.4, currentUnits:40, maxUnits:40, columns:6)
         self.scene?.addMeleeToSquad(self.scene!.squads[0])
         self.scene?.addMeleeToSquad(self.scene!.squads[1])
     }
