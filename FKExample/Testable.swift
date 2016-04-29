@@ -10,6 +10,8 @@ import SpriteKit
 
 protocol Testable {
     
+    var desc : String { get }
+    
     func setupTest()
     
     func tapped(location:CGPoint)

@@ -16,6 +16,8 @@ class ReformOnUnitDeathTest : Testable {
     
     weak var scene : GameScene?
     
+    var desc = "Tap to kill random unit in squad."
+    
     init(scene:GameScene) {
         self.scene = scene
     }

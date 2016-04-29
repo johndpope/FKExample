@@ -16,6 +16,8 @@ class SingleFightTest : Testable {
     
     weak var scene : GameScene?
     
+    var desc = "Tap to engage 1 versus 1."
+    
     init(scene:GameScene) {
         self.scene = scene
     }

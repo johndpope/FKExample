@@ -54,6 +54,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
 
 
         self.currentTest.setupTest()
+        self.addDescriptionToScene()
     }
     
     // MARK: WORLD LAYERS AND NODES
@@ -198,6 +199,14 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
             let location = touch.locationInNode(self)
             let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
             self.currentTest.tapped(realLocation)
+        }
+    }
+    
+    // MARK: Test Specific
+    
+    func addDescriptionToScene() {
+        if let testLabel = self.childNodeWithName("Camera/TestDescription") as? SKLabelNode {
+            testLabel.text = self.currentTest.desc
         }
     }
    

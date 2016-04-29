@@ -17,6 +17,8 @@ class CatchingUpTest : Testable {
     
     weak var scene : GameScene?
     
+    var desc = "Tap to move. Try t get stuck in corners."
+    
     init(scene:GameScene) {
         self.scene = scene
     }

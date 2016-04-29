@@ -16,6 +16,8 @@ class EngageMovingTargetTest : Testable {
     
     weak var scene : GameScene?
     
+    var desc = "Tap to engage a moving target."
+    
     init(scene:GameScene) {
         self.scene = scene
     }

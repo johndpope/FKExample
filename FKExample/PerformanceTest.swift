@@ -16,6 +16,8 @@ class PerformanceTest : Testable {
     
     weak var scene : GameScene?
     
+    var desc = "Tap to move."
+    
     init(scene:GameScene) {
         self.scene = scene
     }

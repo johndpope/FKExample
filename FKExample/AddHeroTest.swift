@@ -16,6 +16,8 @@ class AddHeroTest : Testable {
     
     weak var scene : GameScene?
     
+    var desc = "Tap to add the hero to the squad."
+    
     init(scene:GameScene) {
         self.scene = scene
     }

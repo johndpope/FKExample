@@ -16,6 +16,8 @@ class ReformTest : Testable {
     
     weak var scene : GameScene?
     
+    var desc = "Tap to reform by distance."
+    
     init(scene:GameScene) {
         self.scene = scene
     }
