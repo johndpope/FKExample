@@ -197,8 +197,10 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
-            self.currentTest.tapped(realLocation)
+            if !self.refreshButtonTapped(location) {
+                let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
+                self.currentTest.tapped(realLocation)
+            }
         }
     }
     
@@ -208,6 +210,38 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         if let testLabel = self.childNodeWithName("Camera/TestDescription") as? SKLabelNode {
             testLabel.text = self.currentTest.desc
         }
+    }
+    
+    
+    func refreshButtonTapped(location:CGPoint) -> Bool {
+        let realLocation = self.camera!.convertPoint(location, fromNode: self)
+        if let refresh = self.camera?.nodeAtPoint(realLocation) as? SKSpriteNode {
+            if refresh.name == "refresh" {
+                
+                /// Kill squads
+                for squad in self.squads {
+                    squad.componentForClass(FKCasualtyComponent)?.manuallyDestorySquad()
+                }
+                
+                /// Clear local references
+                self.squads.removeAll()
+                self.units.removeAll()
+                self.heros.removeAll()
+                
+                /// Remove previous nodes
+                for node in self.childNodeWithName("World")!.children {
+                    if node.name != "obstacles" && node.name != "bg" {
+                        node.removeFromParent()
+                    }
+                }
+                
+                /// rerun test
+                self.currentTest.setupTest()
+                
+                return true
+            }
+        }
+        return false
     }
    
     // MARK: UPDATE
