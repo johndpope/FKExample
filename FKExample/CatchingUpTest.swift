@@ -41,5 +41,9 @@ class CatchingUpTest : Testable {
         
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }
 

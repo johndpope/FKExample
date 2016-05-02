@@ -18,4 +18,6 @@ protocol Testable {
     
     func teardownTest()
     
+    func setDebugFlags()
+    
 }

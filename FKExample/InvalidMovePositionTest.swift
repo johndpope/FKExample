@@ -40,5 +40,9 @@ class InvalidMovePositionTest : Testable {
         
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }
 

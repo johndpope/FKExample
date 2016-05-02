@@ -39,5 +39,9 @@ class PerformanceTest : Testable {
         
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }
 

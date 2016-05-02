@@ -41,4 +41,8 @@ class MovementTest : Testable {
   
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }

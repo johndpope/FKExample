@@ -51,5 +51,9 @@ class EngageMovingTargetTest : Testable {
         
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }
 

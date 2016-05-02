@@ -49,5 +49,9 @@ class ReformTest : Testable {
         }
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }
 

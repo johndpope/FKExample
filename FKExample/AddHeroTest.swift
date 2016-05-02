@@ -36,5 +36,9 @@ class AddHeroTest : Testable {
         
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }
 

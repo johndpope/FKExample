@@ -37,4 +37,8 @@ class ReformOnUnitDeathTest : Testable {
         
     }
     
+    func setDebugFlags() {
+        
+    }
+    
 }
