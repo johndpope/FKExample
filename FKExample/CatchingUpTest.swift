@@ -42,7 +42,9 @@ class CatchingUpTest : Testable {
     }
     
     func setDebugFlags() {
-        
+        DebugFlags.sharedInstance.DEBUG_ENABLED = true
+        DebugFlags.sharedInstance.SQUAD_POSITION = true
+        DebugFlags.sharedInstance.UNIT_STANDING_POSITIONS = true
     }
     
 }

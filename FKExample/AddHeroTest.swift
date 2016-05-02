@@ -37,7 +37,9 @@ class AddHeroTest : Testable {
     }
     
     func setDebugFlags() {
-        
+        DebugFlags.sharedInstance.DEBUG_ENABLED = true
+        DebugFlags.sharedInstance.SQUAD_STANDING_POSITIONS = true
+        DebugFlags.sharedInstance.UNIT_STANDING_POSITIONS = true
     }
     
 }
