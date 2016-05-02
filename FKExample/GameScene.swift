@@ -197,7 +197,7 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) {
+            if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) && !self.testButtonTapped(location) {
                 let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
                 self.currentTest.tapped(realLocation)
             }
@@ -259,6 +259,22 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                         squad.componentForClass(FKSquadDebugComponent)?.clearDebugLayer()
                     }
                 }
+                
+                return true
+            }
+        }
+        return false
+    }
+    
+    func testButtonTapped(location:CGPoint) -> Bool {
+        let realLocation = self.camera!.convertPoint(location, fromNode: self)
+        if let tests = self.camera?.nodeAtPoint(realLocation) as? SKSpriteNode {
+            if tests.name == "tests" {
+                
+                let testNode = TestSelect()
+                testNode.position = CGPoint(x:-1024, y:-768)
+                testNode.zPosition = 6000
+                self.camera?.addChild(testNode)
                 
                 return true
             }
