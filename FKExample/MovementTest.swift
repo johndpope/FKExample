@@ -18,6 +18,10 @@ class MovementTest : Testable {
     
     var desc = "Tap to move."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }
@@ -44,6 +48,7 @@ class MovementTest : Testable {
     func setDebugFlags() {
         DebugFlags.sharedInstance.DEBUG_ENABLED = true
         DebugFlags.sharedInstance.SQUAD_POSITION = true
+        DebugFlags.sharedInstance.SQUAD_HEADING = true
     }
     
 }

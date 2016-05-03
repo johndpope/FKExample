@@ -18,6 +18,10 @@ class InvalidMovePositionTest : Testable {
     
     var desc = "Tap to move. Try a position off of the map."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }
@@ -44,6 +48,8 @@ class InvalidMovePositionTest : Testable {
         DebugFlags.sharedInstance.DEBUG_ENABLED = true
         DebugFlags.sharedInstance.SQUAD_POSITION = true
         DebugFlags.sharedInstance.UNIT_STANDING_POSITIONS = true
+        DebugFlags.sharedInstance.SQUAD_HEADING = true
+
     }
     
 }

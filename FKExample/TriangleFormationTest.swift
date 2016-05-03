@@ -18,12 +18,16 @@ class TriangleFormationTest : Testable {
     
     var desc = "Tap to move."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }
     
     func setupTest() {
-        self.scene?.configureNavmeshWithObstacles(["obstacle_square_1"])
+        self.scene?.configureNavmesh()
         self.scene?.formationToTest = .Triangle
         self.scene?.createSquadWithHero()
     }

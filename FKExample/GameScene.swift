@@ -30,6 +30,19 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var formationToTest = FKFormationComponent.Arrangement.Grid
     
+    let classMap : Dictionary<String, ()->AnyObject> = [
+        "MovementTest" :  { return MovementTest() },
+        "ReformOnUnitDeathTest" :  { return ReformOnUnitDeathTest() },
+        "ReformTest" :  { return ReformTest() },
+        "AddHeroTest" :  { return AddHeroTest() },
+        "TriangleFormationTest" :  { return TriangleFormationTest() },
+        "InvalidMovePositionTest" :  { return InvalidMovePositionTest() },
+        "CatchingUpTest" :  { return CatchingUpTest() },
+        "PerformanceTest" :  { return PerformanceTest() },
+        "SingleFightTest" :  { return SingleFightTest() },
+        "EngageMovingTargetTest" :  { return EngageMovingTargetTest() }
+    ]
+    
     override func didMoveToView(view: SKView) {
         
         self.physicsWorld.contactDelegate = self
@@ -49,12 +62,26 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         //self.currentTest = InvalidMovePositionTest(scene: self)
         //self.currentTest = CatchingUpTest(scene: self)
         //self.currentTest = PerformanceTest(scene: self)
-        self.currentTest = SingleFightTest(scene: self)
+        //self.currentTest = SingleFightTest(scene: self)
         //self.currentTest = EngageMovingTargetTest(scene: self)
-
-
-        self.currentTest.setupTest()
-        self.addDescriptionToScene()
+        
+        self.setupNextTest("MovementTest")
+    }
+    
+    func setupNextTest(name : String)  {
+        self.camera?.childNodeWithName("SelectTests")?.removeFromParent()
+        let test = self.classMap[name]!()
+        if test is Testable {
+            
+            if self.currentTest != nil {
+                self.clearCurrentTest()
+            }
+            
+            self.currentTest = test as! Testable
+            self.currentTest.scene = self
+            self.currentTest.setupTest()
+            self.addDescriptionToScene()
+        }
     }
     
     // MARK: WORLD LAYERS AND NODES
@@ -218,31 +245,36 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         if let refresh = self.camera?.nodeAtPoint(realLocation) as? SKSpriteNode {
             if refresh.name == "refresh" {
                 
-                /// Kill squads
-                for squad in self.squads {
-                    squad.componentForClass(FKCasualtyComponent)?.manuallyDestorySquad()
-                }
-                
-                /// Clear local references
-                self.squads.removeAll()
-                self.units.removeAll()
-                self.heros.removeAll()
-                
-                /// Remove previous nodes
-                for node in self.childNodeWithName("World")!.children {
-                    if node.name != "obstacles" && node.name != "bg" {
-                        node.removeFromParent()
-                    }
-                }
-                
-                /// rerun test
-                self.currentTest.teardownTest()
+                self.clearCurrentTest()
                 self.currentTest.setupTest()
                 
                 return true
             }
         }
         return false
+    }
+    
+    func clearCurrentTest() {
+        /// Kill squads
+        for squad in self.squads {
+            squad.componentForClass(FKCasualtyComponent)?.manuallyDestorySquad()
+        }
+        
+        /// Clear local references
+        self.squads.removeAll()
+        self.units.removeAll()
+        self.heros.removeAll()
+        
+        /// Remove previous nodes
+        for node in self.childNodeWithName("World")!.children {
+            print(node.name)
+            if node.name != "obstacles" && node.name != "bg" {
+                node.removeFromParent()
+            }
+        }
+        
+        /// rerun test
+        self.currentTest.teardownTest()
     }
     
     func debugButtonTapped(location:CGPoint) -> Bool {
@@ -272,6 +304,8 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
             if tests.name == "tests" {
                 
                 let testNode = TestSelect()
+                testNode.name = "SelectTests"
+                testNode.callback = self.setupNextTest
                 testNode.position = CGPoint(x:-1024, y:-768)
                 testNode.zPosition = 6000
                 self.camera?.addChild(testNode)

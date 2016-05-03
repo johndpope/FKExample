@@ -9,8 +9,10 @@
 import SpriteKit
 
 protocol Testable {
-    
+        
     var desc : String { get }
+    
+    weak var scene : GameScene? { get set }
     
     func setupTest()
     

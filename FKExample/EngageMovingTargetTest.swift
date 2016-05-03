@@ -18,6 +18,10 @@ class EngageMovingTargetTest : Testable {
     
     var desc = "Tap to engage a moving target."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }

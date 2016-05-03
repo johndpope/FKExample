@@ -18,6 +18,10 @@ class PerformanceTest : Testable {
     
     var desc = "Tap to move."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }

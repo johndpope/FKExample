@@ -18,6 +18,10 @@ class SingleFightTest : Testable {
     
     var desc = "Tap to engage 1 versus 1."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }

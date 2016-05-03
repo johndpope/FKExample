@@ -18,12 +18,16 @@ class ReformOnUnitDeathTest : Testable {
     
     var desc = "Tap to kill random unit in squad."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }
     
     func setupTest() {
-        self.scene?.configureNavmeshWithObstacles([])
+        self.scene?.configureNavmesh()
         self.scene?.createSquadWithHero()
     }
     

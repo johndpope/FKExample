@@ -18,12 +18,16 @@ class AddHeroTest : Testable {
     
     var desc = "Tap to add the hero to the squad."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }
     
     func setupTest() {
-        self.scene?.configureNavmeshWithObstacles(["obstacle_square_1"])
+        self.scene?.configureNavmesh()
         self.scene?.createSquad()
         self.scene?.createHero()
     }

@@ -18,12 +18,16 @@ class ReformTest : Testable {
     
     var desc = "Tap to reform by distance."
     
+    init() {
+        
+    }
+    
     init(scene:GameScene) {
         self.scene = scene
     }
     
     func setupTest() {
-        self.scene?.configureNavmeshWithObstacles([])
+        self.scene?.configureNavmesh()
         self.scene?.createSquadWithHero()
         self.scrambleUnits()
     }
