@@ -8,13 +8,65 @@
 
 import SpriteKit
 
+
+/**
+    These are the test settings used in the map of all tests. This is used by the UI to know what must be selected before the continue button shows.
+*/
+struct TestSettings {
+    
+    var selectFriendly : Bool
+    
+    var selectFriendlyHero : Bool
+    
+    var selectFriendlyAbility : Bool
+    
+    var selectEnemy : Bool
+    
+    var selectEnemyHero : Bool
+    
+    var selectEnemyAbility : Bool
+    
+}
+
+/// A convienent list of predfined test settings
+let movementTestSetting = TestSettings(selectFriendly: true, selectFriendlyHero: true, selectFriendlyAbility: false, selectEnemy: false, selectEnemyHero: false, selectEnemyAbility: false)
+
+let combatTestSetting = TestSettings(selectFriendly: true, selectFriendlyHero: true, selectFriendlyAbility: true, selectEnemy: true, selectEnemyHero: true, selectEnemyAbility: true)
+
+/**
+    Use this class to pass to each test. Informs the test which settings to use.
+ */
+class TestInstructions {
+    
+    var settings : TestSettings
+    
+    var name : String?
+    
+    init(settings:TestSettings) {
+        self.settings = settings
+    }
+    
+    func testIsValid() -> Bool {
+        if self.name != nil {
+            return true
+        }
+        return false
+    }
+    
+}
+
+/**
+The UI and logic to select a test
+*/
 class TestSelect : SKNode {
     
     var root : SKNode
     
-    var callback : (name:String)->() = {_ in }
+    var callback : (instructions:TestInstructions)->() = {_ in }
     
     var selectedTest : String? = nil
+    
+    var instructions : TestInstructions?
     
     override init() {
         self.root = SKNode()
@@ -38,6 +90,8 @@ class TestSelect : SKNode {
         self.unhighlightTests()
         self.highlightSelectedTest(node)
         self.selectedTest = name
+        self.instructions = TestInstructions(settings: movementTestSetting)
+        self.instructions!.name = name
         self.allowContinueIfValidParameters()
     }
     
@@ -83,7 +137,7 @@ class TestSelect : SKNode {
     }
     
     func paramatersAreValid() -> Bool {
-        if self.selectedTest != nil {
+        if self.instructions?.testIsValid() == true {
             return true
         }
         return false
@@ -106,7 +160,7 @@ class TestSelect : SKNode {
     }
     
     func continuePressed() {
-        self.callback(name: self.selectedTest!)
+        self.callback(instructions: self.instructions!)
         self.root.removeFromParent()
     }
     

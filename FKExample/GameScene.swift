@@ -12,7 +12,7 @@ import FormationKit
 import SwitchBoard
 import Particleboard
 
-class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
+class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var lastUpdateTimeInterval: NSTimeInterval = 0
     
@@ -65,12 +65,14 @@ class GameScene: SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         //self.currentTest = SingleFightTest(scene: self)
         //self.currentTest = EngageMovingTargetTest(scene: self)
         
-        self.setupNextTest("MovementTest")
+        var instructions = TestInstructions(settings: movementTestSetting)
+        instructions.name = "MovementTest"
+        self.setupNextTest(instructions)
     }
     
-    func setupNextTest(name : String)  {
+    func setupNextTest(instructions : TestInstructions)  {
         self.camera?.childNodeWithName("SelectTests")?.removeFromParent()
-        let test = self.classMap[name]!()
+        let test = classMap[instructions.name!]!()
         if test is Testable {
             
             if self.currentTest != nil {
