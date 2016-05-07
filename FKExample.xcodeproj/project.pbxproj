@@ -42,6 +42,8 @@
 		E7C4D3A91C9CFE2800D1B7D8 /* MeshObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */; };
 		E7C4D3AB1C9CFF1200D1B7D8 /* Test.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */; };
 		E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */; };
+		E7CBE32F1CDD9AAE00AA4081 /* Melee2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */; };
+		E7CBE3311CDD9AB400AA4081 /* Melee2Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7CBE3301CDD9AB400AA4081 /* Melee2Info.plist */; };
 		E7F3450C1CA4E09500525966 /* Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450B1CA4E09500525966 /* Testable.swift */; };
 		E7F3450E1CA4E0FC00525966 /* MovementTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450D1CA4E0FC00525966 /* MovementTest.swift */; };
 		E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */; };
@@ -120,6 +122,8 @@
 		E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeshObstacle.swift; path = FKExample/MeshObstacle.swift; sourceTree = "<group>"; };
 		E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Test.atlas; sourceTree = "<group>"; };
 		E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestLevel_obstacles.plist; sourceTree = "<group>"; };
+		E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Melee2.atlas; sourceTree = "<group>"; };
+		E7CBE3301CDD9AB400AA4081 /* Melee2Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Melee2Info.plist; sourceTree = "<group>"; };
 		E7F3450B1CA4E09500525966 /* Testable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testable.swift; sourceTree = "<group>"; };
 		E7F3450D1CA4E0FC00525966 /* MovementTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementTest.swift; sourceTree = "<group>"; };
 		E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReformOnUnitDeathTest.swift; sourceTree = "<group>"; };
@@ -258,12 +262,14 @@
 		E7F345091CA4DFEE00525966 /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */,
 				E79401511CAF07F50076FC1C /* BadMelee1.atlas */,
 				E722D4741C97AEF500AAA43B /* Melee1.atlas */,
 				E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */,
 				E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */,
 				E79401531CAF08040076FC1C /* BadMelee1Info.plist */,
 				E74F1B511C8D26020061F104 /* BomurInfo.plist */,
+				E7CBE3301CDD9AB400AA4081 /* Melee2Info.plist */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -410,12 +416,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7CBE3311CDD9AB400AA4081 /* Melee2Info.plist in Resources */,
 				E722D4751C97AEF500AAA43B /* Melee1.atlas in Resources */,
 				E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */,
 				E74CD1151C77C747002CFCEC /* GameScene.sks in Resources */,
 				E79401541CAF08040076FC1C /* BadMelee1Info.plist in Resources */,
 				E7B3943D1C7E33EE00B9A7DA /* Melee1Info.plist in Resources */,
 				E7B394431C7E37B900B9A7DA /* Loading.sks in Resources */,
+				E7CBE32F1CDD9AAE00AA4081 /* Melee2.atlas in Resources */,
 				E7C4D3AB1C9CFF1200D1B7D8 /* Test.atlas in Resources */,
 				E74CD1211C77C747002CFCEC /* LaunchScreen.storyboard in Resources */,
 				E74CD11E1C77C747002CFCEC /* Assets.xcassets in Resources */,

@@ -26,9 +26,9 @@ class PerformanceTest : Testable {
         self.scene = scene
     }
     
-    func setupTest() {
+    func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero(position:CGPoint(x:500, y:0), heading: -1, currentUnits: 199, maxUnits: 200, columns: 15, spacing: 48)
+        self.scene?.createSquadWithHero(instructions.selectedFriendly!,position:CGPoint(x:500, y:0), heading: -1, currentUnits: 199, maxUnits: 200, columns: 15, spacing: 48)
     }
     
     func tapped(location: CGPoint) {

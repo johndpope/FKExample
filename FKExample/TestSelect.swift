@@ -42,15 +42,36 @@ class TestInstructions {
     
     var name : String?
     
+    var selectedFriendly : String?
+    
+    var selectedFriendlyHero : String?
+    
+    var selectedFriendlyAbility : String?
+    
+    var selectedEnemy : String?
+    
+    var selectedEnemyHero : String?
+    
+    var selectedEnemyAbility : String?
+    
     init(settings:TestSettings) {
         self.settings = settings
     }
     
     func testIsValid() -> Bool {
-        if self.name != nil {
-            return true
+        if self.name == nil {
+            return false
         }
-        return false
+        
+        if self.selectedFriendly == nil && self.settings.selectFriendly == true {
+            return false
+        }
+        
+        if self.selectedEnemy == nil && self.settings.selectEnemy == true {
+            return false
+        }
+        
+        return true
     }
     
 }
@@ -63,8 +84,6 @@ class TestSelect : SKNode {
     var root : SKNode
     
     var callback : (instructions:TestInstructions)->() = {_ in }
-    
-    var selectedTest : String? = nil
     
     var instructions : TestInstructions?
     
@@ -89,10 +108,11 @@ class TestSelect : SKNode {
     func testSelected(name:String, node:SKNode) {
         self.unhighlightTests()
         self.highlightSelectedTest(node)
-        self.selectedTest = name
-        self.instructions = TestInstructions(settings: movementTestSetting)
+        self.instructions = TestInstructions(settings: classMap[name]!.settings)
         self.instructions!.name = name
-        self.allowContinueIfValidParameters()
+        if !self.allowContinueIfValidParameters() {
+            self.showFriendlyUnitPanels()
+        }
     }
     
     func highlightSelectedTest(node:SKNode) {
@@ -115,6 +135,42 @@ class TestSelect : SKNode {
     
     // MARK: Friendly Unit
     
+    func showFriendlyUnitPanels() {
+        self.showPanel("Friendly")
+        self.showPanel("Ability")
+    }
+    
+    func hideFriendlyUnitPanels() {
+        self.hidePanel("Friendly")
+        self.hidePanel("Ability")
+    }
+    
+    func unhighlightFriendlyUnits() {
+        for child in self.root.childNodeWithName("Friendly")!.children {
+            if let label = child as? SKLabelNode {
+                label.fontColor = SKColor.blackColor()
+            }
+        }
+    }
+    
+    func highlightSelectedFriendlyUnit(node:SKNode) {
+        if let highlight = self.root.childNodeWithName("Friendly/Friendly_highlight") {
+            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
+            if let label = node as? SKLabelNode {
+                label.fontColor = SKColor.whiteColor()
+            }
+        }
+    }
+    
+    func friendlyUnitSelected(name:String, node:SKNode) {
+        self.unhighlightFriendlyUnits()
+        self.highlightSelectedFriendlyUnit(node)
+        self.instructions!.selectedFriendly = name
+        if !self.allowContinueIfValidParameters() {
+
+        }
+
+    }
     
     // MARK: Friendly Abilties
     
@@ -127,12 +183,14 @@ class TestSelect : SKNode {
     
     // MARK: Continue
     
-    func allowContinueIfValidParameters() {
+    func allowContinueIfValidParameters() -> Bool {
         if self.paramatersAreValid() {
             self.showContinueButton()
+            return true
         }
         else {
             self.hideContinueButton()
+            return false
         }
     }
     
@@ -196,6 +254,11 @@ class TestSelect : SKNode {
                 if(node.name?.rangeOfString("test_") != nil) {
                     let name = node.name!.replace("test_", withString: "")
                     self.testSelected(name, node: node)
+                }
+                
+                if(node.name?.rangeOfString("Friendly_") != nil) {
+                    let name = node.name!.replace("Friendly_", withString: "")
+                    self.friendlyUnitSelected(name, node: node)
                 }
                 
                 if(node.name?.rangeOfString("run") != nil) {

@@ -26,9 +26,9 @@ class ReformTest : Testable {
         self.scene = scene
     }
     
-    func setupTest() {
+    func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero()
+        self.scene?.createSquadWithHero(instructions.selectedFriendly!)
         self.scrambleUnits()
     }
     

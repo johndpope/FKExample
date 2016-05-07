@@ -12,6 +12,32 @@ import FormationKit
 import SwitchBoard
 import Particleboard
 
+struct TestDefinition {
+    
+    var classObj : ()->AnyObject
+    
+    var settings : TestSettings
+    
+    init(settings: TestSettings, classObj:()->AnyObject) {
+        self.classObj = classObj
+        self.settings = settings
+    }
+    
+}
+
+let classMap : Dictionary<String, TestDefinition> = [
+    "MovementTest" :  TestDefinition(settings:movementTestSetting, classObj: { return MovementTest() }),
+    "ReformOnUnitDeathTest" :  TestDefinition(settings:movementTestSetting, classObj: { return ReformOnUnitDeathTest() }),
+    "ReformTest" :  TestDefinition(settings:movementTestSetting, classObj: { return ReformTest() }),
+    "AddHeroTest" :  TestDefinition(settings:movementTestSetting, classObj: { return AddHeroTest() }),
+    "TriangleFormationTest" :  TestDefinition(settings:movementTestSetting, classObj: { return TriangleFormationTest() }),
+    "InvalidMovePositionTest" :  TestDefinition(settings:movementTestSetting, classObj: { return InvalidMovePositionTest() }),
+    "CatchingUpTest" :  TestDefinition(settings:movementTestSetting, classObj: { return CatchingUpTest() }),
+    "PerformanceTest" :  TestDefinition(settings:movementTestSetting, classObj: { return PerformanceTest() }),
+    "SingleFightTest" :  TestDefinition(settings:combatTestSetting, classObj: { return SingleFightTest() }),
+    "EngageMovingTargetTest" :  TestDefinition(settings:combatTestSetting, classObj: { return EngageMovingTargetTest() })
+]
+
 class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var lastUpdateTimeInterval: NSTimeInterval = 0
@@ -28,20 +54,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var currentTest : Testable!
     
-    var formationToTest = FKFormationComponent.Arrangement.Grid
+    var currentInstructions : TestInstructions!
     
-    let classMap : Dictionary<String, ()->AnyObject> = [
-        "MovementTest" :  { return MovementTest() },
-        "ReformOnUnitDeathTest" :  { return ReformOnUnitDeathTest() },
-        "ReformTest" :  { return ReformTest() },
-        "AddHeroTest" :  { return AddHeroTest() },
-        "TriangleFormationTest" :  { return TriangleFormationTest() },
-        "InvalidMovePositionTest" :  { return InvalidMovePositionTest() },
-        "CatchingUpTest" :  { return CatchingUpTest() },
-        "PerformanceTest" :  { return PerformanceTest() },
-        "SingleFightTest" :  { return SingleFightTest() },
-        "EngageMovingTargetTest" :  { return EngageMovingTargetTest() }
-    ]
+    var formationToTest = FKFormationComponent.Arrangement.Grid
     
     override func didMoveToView(view: SKView) {
         
@@ -50,38 +65,27 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
         self.buildWorldLayers()
         self.registerGestures()
-        
-        /// Notify squad 1 that 2 exists
-        //squad.navigationComponent.agentsToAvoid.append(squad2.agent)
-        
-        //self.currentTest = MovementTest(scene:self)
-        //self.currentTest = ReformOnUnitDeathTest(scene: self)
-        //self.currentTest = ReformTest(scene: self)
-        //self.currentTest = AddHeroTest(scene: self)
-        //self.currentTest = TriangleFormationTest(scene: self)
-        //self.currentTest = InvalidMovePositionTest(scene: self)
-        //self.currentTest = CatchingUpTest(scene: self)
-        //self.currentTest = PerformanceTest(scene: self)
-        //self.currentTest = SingleFightTest(scene: self)
-        //self.currentTest = EngageMovingTargetTest(scene: self)
+
         
         var instructions = TestInstructions(settings: movementTestSetting)
         instructions.name = "MovementTest"
+        instructions.selectedFriendly = "Melee1"
         self.setupNextTest(instructions)
     }
     
     func setupNextTest(instructions : TestInstructions)  {
         self.camera?.childNodeWithName("SelectTests")?.removeFromParent()
-        let test = classMap[instructions.name!]!()
+        let test = classMap[instructions.name!]!.classObj()
         if test is Testable {
             
             if self.currentTest != nil {
                 self.clearCurrentTest()
             }
             
+            self.currentInstructions = instructions
             self.currentTest = test as! Testable
             self.currentTest.scene = self
-            self.currentTest.setupTest()
+            self.currentTest.setupTest(instructions)
             self.addDescriptionToScene()
         }
     }
@@ -248,7 +252,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
             if refresh.name == "refresh" {
                 
                 self.clearCurrentTest()
-                self.currentTest.setupTest()
+                self.currentTest.setupTest(self.currentInstructions)
                 
                 return true
             }

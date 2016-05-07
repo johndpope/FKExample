@@ -26,9 +26,9 @@ class EngageMovingTargetTest : Testable {
         self.scene = scene
     }
     
-    func setupTest() {
+    func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero()
+        self.scene?.createSquadWithHero(instructions.selectedFriendly!)
         self.scene?.createSquad(position:CGPoint(x:1600, y:68), controller:.EnemyNPC, heading:3)
         self.scene?.addMeleeToSquad(self.scene!.squads[0])
         self.scene?.addMeleeToSquad(self.scene!.squads[1])

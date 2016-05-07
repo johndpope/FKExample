@@ -26,10 +26,10 @@ class TriangleFormationTest : Testable {
         self.scene = scene
     }
     
-    func setupTest() {
+    func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.formationToTest = .Triangle
-        self.scene?.createSquadWithHero()
+        self.scene?.createSquadWithHero(instructions.selectedFriendly!)
     }
     
     func tapped(location: CGPoint) {

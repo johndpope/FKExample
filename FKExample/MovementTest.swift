@@ -26,9 +26,9 @@ class MovementTest : Testable {
         self.scene = scene
     }
     
-    func setupTest() {
+    func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero()
+        self.scene?.createSquadWithHero(instructions.selectedFriendly!)
         self.scene?.addMoveToSquad(self.scene!.squads[0])
     }
     
