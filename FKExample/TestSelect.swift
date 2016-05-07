@@ -167,7 +167,7 @@ class TestSelect : SKNode {
         self.highlightSelectedFriendlyUnit(node)
         self.instructions!.selectedFriendly = name
         if !self.allowContinueIfValidParameters() {
-
+            self.showEnemyUnitPanels()
         }
 
     }
@@ -176,6 +176,40 @@ class TestSelect : SKNode {
     
     
     // MARK: Enemy Unit
+    
+    func showEnemyUnitPanels() {
+        self.showPanel("Enemy")
+        self.showPanel("EnemyAbility")
+    }
+    
+    func hideEnemyUnitPanels() {
+        self.hidePanel("Enemy")
+        self.hidePanel("EnemyAbility")
+    }
+    
+    func unhighlightEnemyUnits() {
+        for child in self.root.childNodeWithName("Enemy")!.children {
+            if let label = child as? SKLabelNode {
+                label.fontColor = SKColor.blackColor()
+            }
+        }
+    }
+    
+    func highlightSelectedEnemyUnit(node:SKNode) {
+        if let highlight = self.root.childNodeWithName("Enemy/Enemy_highlight") {
+            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
+        }
+    }
+    
+    func enemyUnitSelected(name:String, node:SKNode) {
+        self.unhighlightEnemyUnits()
+        self.highlightSelectedEnemyUnit(node)
+        self.instructions!.selectedEnemy = name
+        if !self.allowContinueIfValidParameters() {
+            
+        }
+        
+    }
     
     
     // MARK: Enemy Abilities
@@ -259,6 +293,11 @@ class TestSelect : SKNode {
                 if(node.name?.rangeOfString("Friendly_") != nil) {
                     let name = node.name!.replace("Friendly_", withString: "")
                     self.friendlyUnitSelected(name, node: node)
+                }
+                
+                if(node.name?.rangeOfString("Enemy_") != nil) {
+                    let name = node.name!.replace("Enemy_", withString: "")
+                    self.enemyUnitSelected(name, node: node)
                 }
                 
                 if(node.name?.rangeOfString("run") != nil) {
