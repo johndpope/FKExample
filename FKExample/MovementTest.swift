@@ -28,7 +28,27 @@ class MovementTest : Testable {
     
     func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero(instructions.selectedFriendly!)
+        
+        var formation = FKFormationComponent.Arrangement.Grid
+        if instructions.selectedFriendlyFormation == "Triangle" {
+            formation = FKFormationComponent.Arrangement.Triangle
+        }
+        
+        if instructions.selectedFriendlyHero != nil {
+            self.scene?.createSquadWithHero(
+                instructions.selectedFriendly!,
+                currentUnits:instructions.selectedFriendlySize,
+                maxUnits:instructions.selectedFriendlySize + 1,
+                formation: formation,
+                hero: instructions.selectedFriendlyHero!)
+        }
+        else {
+            self.scene?.createSquad(
+                instructions.selectedFriendly!,
+                currentUnits:instructions.selectedFriendlySize,
+                maxUnits:instructions.selectedFriendlySize + 1,
+                formation: formation)
+        }
         self.scene?.addMoveToSquad(self.scene!.squads[0])
     }
     

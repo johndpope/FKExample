@@ -44,9 +44,13 @@ class TestInstructions {
     
     var selectedFriendly : String?
     
-    var selectedFriendlyHero : String?
+    var selectedFriendlyHero : String? = "Bomur"
     
     var selectedFriendlyAbility : String?
+    
+    var selectedFriendlyFormation : String = "Square"
+    
+    var selectedFriendlySize : Int = 6
     
     var selectedEnemy : String?
     
@@ -117,10 +121,7 @@ class TestSelect : SKNode {
     
     func highlightSelectedTest(node:SKNode) {
         if let highlight = self.root.childNodeWithName("Test/test_highlight") {
-            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y + 1)
-            if let label = node as? SKLabelNode {
-                label.fontColor = SKColor.whiteColor()
-            }
+            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
         }
     }
     
@@ -174,6 +175,75 @@ class TestSelect : SKNode {
     
     // MARK: Friendly Abilties
     
+    
+    
+    // MARK: Friendly Hero
+    
+    func selectFriendlyHero(name:String, node:SKNode) {
+        print(name)
+        print(self.instructions?.selectedFriendlyHero)
+        if name != self.instructions!.selectedFriendlyHero {
+            self.highlightFriendlyHero(node)
+            self.instructions?.selectedFriendlyHero = name
+        }
+        else {
+            self.instructions?.selectedFriendlyHero = nil
+            self.unhighlightFriendlyHero()
+        }
+    }
+    
+    func highlightFriendlyHero(node:SKNode) {
+        if let highlight = self.root.childNodeWithName("Ability/FriendlyHeroUI_highlight") {
+            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
+        }
+    }
+    
+    func unhighlightFriendlyHero() {
+        if let highlight = self.root.childNodeWithName("Ability/FriendlyHeroUI_highlight") {
+            highlight.position = CGPoint(x:highlight.position.x, y:10000)
+        }
+    }
+    
+    
+    // MARK: Friendly Size
+    
+    func selectFriendlySize(size:Int, node:SKNode) {
+        self.highlightFriendlySize(node)
+        self.instructions?.selectedFriendlySize = size
+    }
+    
+    func highlightFriendlySize(node:SKNode) {
+        if let highlight = self.root.childNodeWithName("Ability/FriendlySizeUI_highlight") {
+            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
+            highlight.hidden = false
+        }
+    }
+    
+    func unhighlightFriendlySize() {
+        if let highlight = self.root.childNodeWithName("Ability/FriendlySizeUI_highlight") {
+            highlight.hidden = true
+        }
+    }
+    
+    // MARK: Friendly Formation
+    
+    func selectFriendlyFormation(name:String, node:SKNode) {
+        self.highlightFriendlyFormation(node)
+        self.instructions?.selectedFriendlyFormation = name
+    }
+    
+    func highlightFriendlyFormation(node:SKNode) {
+        if let highlight = self.root.childNodeWithName("Ability/FriendlyFormationUI_highlight") {
+            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
+            highlight.hidden = false
+        }
+    }
+    
+    func unhighlightFriendlyFormation() {
+        if let highlight = self.root.childNodeWithName("Ability/FriendlyFormationUI_highlight") {
+            highlight.hidden = true
+        }
+    }
     
     // MARK: Enemy Unit
     
@@ -293,6 +363,21 @@ class TestSelect : SKNode {
                 if(node.name?.rangeOfString("Friendly_") != nil) {
                     let name = node.name!.replace("Friendly_", withString: "")
                     self.friendlyUnitSelected(name, node: node)
+                }
+                
+                if(node.name?.rangeOfString("FriendlySize_") != nil) {
+                    let name = node.name!.replace("FriendlySize_", withString: "")
+                    self.selectFriendlySize(Int(name)!, node: node)
+                }
+                
+                if(node.name?.rangeOfString("FriendlyFormation_") != nil) {
+                    let name = node.name!.replace("FriendlyFormation_", withString: "")
+                    self.selectFriendlyFormation(name, node: node)
+                }
+                
+                if(node.name?.rangeOfString("FriendlyHero_") != nil) {
+                    let name = node.name!.replace("FriendlyHero_", withString: "")
+                    self.selectFriendlyHero(name, node: node)
                 }
                 
                 if(node.name?.rangeOfString("Enemy_") != nil) {

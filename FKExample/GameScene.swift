@@ -152,7 +152,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     // MARK: Utility
     
-    func createSquad(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64) {
+    func createSquad(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, formation: FKFormationComponent.Arrangement = .Grid) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -164,7 +164,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 controller: controller,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:formationToTest,
+                formation:formation,
                 columns: columns,
                 spacing: spacing,
                 pathfinder : self))
@@ -173,7 +173,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         self.squads.append(squad)
     }
     
-    func createSquadWithHero(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, hero:String = "Bomur") {
+    func createSquadWithHero(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, hero:String = "Bomur", formation: FKFormationComponent.Arrangement = .Grid) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -185,7 +185,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 controller: controller,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
-                formation:formationToTest,
+                formation:formation,
                 columns: columns,
                 spacing: spacing,
                 hero:hero,
