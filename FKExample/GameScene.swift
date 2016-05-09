@@ -30,7 +30,6 @@ let classMap : Dictionary<String, TestDefinition> = [
     "ReformOnUnitDeathTest" :  TestDefinition(settings:movementTestSetting, classObj: { return ReformOnUnitDeathTest() }),
     "ReformTest" :  TestDefinition(settings:movementTestSetting, classObj: { return ReformTest() }),
     "AddHeroTest" :  TestDefinition(settings:movementTestSetting, classObj: { return AddHeroTest() }),
-    "TriangleFormationTest" :  TestDefinition(settings:movementTestSetting, classObj: { return TriangleFormationTest() }),
     "InvalidMovePositionTest" :  TestDefinition(settings:movementTestSetting, classObj: { return InvalidMovePositionTest() }),
     "CatchingUpTest" :  TestDefinition(settings:movementTestSetting, classObj: { return CatchingUpTest() }),
     "PerformanceTest" :  TestDefinition(settings:movementTestSetting, classObj: { return PerformanceTest() }),
@@ -152,6 +151,42 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     // MARK: Utility
     
+    func createSquadFromInstructions(instructions:TestInstructions, position:CGPoint = CGPoint(x:1100, y:768)) {
+        var formation = FKFormationComponent.Arrangement.Grid
+        if instructions.selectedFriendlyFormation == "Triangle" {
+            formation = FKFormationComponent.Arrangement.Triangle
+        }
+        
+        self.createSquadWithHero(
+            instructions.selectedFriendly!,
+            currentUnits:instructions.selectedFriendlySize,
+            maxUnits:instructions.selectedFriendlySize + 1,
+            formation: formation,
+            hero: instructions.selectedFriendlyHero,
+            position:position)
+        
+
+    }
+    
+    func createEnemySquadFromInstructions(instructions:TestInstructions, position:CGPoint) {
+        var formation = FKFormationComponent.Arrangement.Grid
+        if instructions.selectedEnemeyFormation == "Triangle" {
+            formation = FKFormationComponent.Arrangement.Triangle
+        }
+        
+        self.createSquadWithHero(
+            instructions.selectedEnemy!,
+            currentUnits:instructions.selectedEnemySize,
+            maxUnits:instructions.selectedEnemySize + 1,
+            formation: formation,
+            hero: instructions.selectedEnemyHero,
+            controller: .EnemyNPC,
+            position:position)
+        
+        
+    }
+
+    
     func createSquad(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, formation: FKFormationComponent.Arrangement = .Grid) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
@@ -173,7 +208,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         self.squads.append(squad)
     }
     
-    func createSquadWithHero(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, hero:String = "Bomur", formation: FKFormationComponent.Arrangement = .Grid) {
+    func createSquadWithHero(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, hero:String? = nil, formation: FKFormationComponent.Arrangement = .Grid) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(

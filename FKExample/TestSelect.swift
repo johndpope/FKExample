@@ -58,6 +58,10 @@ class TestInstructions {
     
     var selectedEnemyAbility : String?
     
+    var selectedEnemeyFormation : String = "Square"
+    
+    var selectedEnemySize : Int = 6
+    
     init(settings:TestSettings) {
         self.settings = settings
     }

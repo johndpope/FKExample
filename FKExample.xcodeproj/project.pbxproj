@@ -51,7 +51,6 @@
 		E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */; };
 		E7F345121CA4E1BD00525966 /* ReformTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345111CA4E1BD00525966 /* ReformTest.swift */; };
 		E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345131CA4E20900525966 /* AddHeroTest.swift */; };
-		E7F345161CA4E29600525966 /* TriangleFormationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345151CA4E29600525966 /* TriangleFormationTest.swift */; };
 		E7F3451D1CA7852B00525966 /* InvalidMovePositionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -133,7 +132,6 @@
 		E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReformOnUnitDeathTest.swift; sourceTree = "<group>"; };
 		E7F345111CA4E1BD00525966 /* ReformTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReformTest.swift; sourceTree = "<group>"; };
 		E7F345131CA4E20900525966 /* AddHeroTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHeroTest.swift; sourceTree = "<group>"; };
-		E7F345151CA4E29600525966 /* TriangleFormationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleFormationTest.swift; sourceTree = "<group>"; };
 		E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidMovePositionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -311,7 +309,6 @@
 		E7F3451B1CA7851500525966 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				E7F345151CA4E29600525966 /* TriangleFormationTest.swift */,
 				E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */,
 			);
 			name = Misc;
@@ -474,7 +471,6 @@
 				E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */,
 				E7F345101CA4E18800525966 /* ReformOnUnitDeathTest.swift in Sources */,
 				E7F3451D1CA7852B00525966 /* InvalidMovePositionTest.swift in Sources */,
-				E7F345161CA4E29600525966 /* TriangleFormationTest.swift in Sources */,
 				E7433DED1CAAF56700AAA23E /* 1v1FightTest.swift in Sources */,
 				E7C4D3A81C9CFE2800D1B7D8 /* Navmesh.swift in Sources */,
 				E74CD1131C77C747002CFCEC /* AppDelegate.swift in Sources */,

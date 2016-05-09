@@ -28,8 +28,8 @@ class SingleFightTest : Testable {
     
     func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
-        self.scene?.createSquadWithHero(instructions.selectedFriendly!, currentUnits:9, maxUnits:10, columns:3)
-        self.scene?.createSquad(instructions.selectedEnemy!, position:CGPoint(x:1600, y:68), controller:.EnemyNPC, heading:2.4, currentUnits:9, maxUnits:9, columns:3)
+        self.scene?.createSquadFromInstructions(instructions)
+        self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1600, y:68))
         
         if instructions.selectedFriendly == "Archer1" {
             self.scene?.addShootToSquad(self.scene!.squads[0])
