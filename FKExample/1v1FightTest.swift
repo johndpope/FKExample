@@ -30,16 +30,26 @@ class SingleFightTest : Testable {
         self.scene?.configureNavmesh()
         self.scene?.createSquadWithHero(instructions.selectedFriendly!, currentUnits:9, maxUnits:10, columns:3)
         self.scene?.createSquad(instructions.selectedEnemy!, position:CGPoint(x:1600, y:68), controller:.EnemyNPC, heading:2.4, currentUnits:9, maxUnits:9, columns:3)
-        self.scene?.addMeleeToSquad(self.scene!.squads[0])
+        
+        if instructions.selectedFriendly == "Archer1" {
+            self.scene?.addShootToSquad(self.scene!.squads[0])
+
+        }
+        else {
+            self.scene?.addMeleeToSquad(self.scene!.squads[0])
+        }
         self.scene?.addMeleeToSquad(self.scene!.squads[1])
     }
     
     func tapped(location: CGPoint) {
-        let ability = self.scene?.squads[0].abilitiesComponent.abilities.filter({$0.name == "Attack"}).first
         var instructions = CommandInstructions()
         instructions.targetSquad = self.scene!.squads[1]
-        self.scene?.squads[0].abilitiesComponent.runAbility(ability!.ability, instructions: instructions)
-        
+        if let ability = self.scene?.squads[0].abilitiesComponent.abilities.filter({$0.name == "Attack"}).first {
+            self.scene?.squads[0].abilitiesComponent.runAbility(ability.ability, instructions: instructions)
+        }
+        if let ability = self.scene?.squads[0].abilitiesComponent.abilities.filter({$0.name == "Shoot"}).first {
+            self.scene?.squads[0].abilitiesComponent.runAbility(ability.ability, instructions: instructions)
+        }
     }
     
     func teardownTest() {

@@ -60,6 +60,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     override func didMoveToView(view: SKView) {
         
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+            self.size = CGSize(width: 2730, height: 1536)
+        }
+        
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
@@ -67,9 +71,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         self.registerGestures()
 
         
-        var instructions = TestInstructions(settings: movementTestSetting)
-        instructions.name = "MovementTest"
-        instructions.selectedFriendly = "Melee1"
+        var instructions = TestInstructions(settings: combatTestSetting)
+        instructions.name = "SingleFightTest"
+        instructions.selectedFriendly = "Archer1"
+        instructions.selectedEnemy = "BadMelee1"
         self.setupNextTest(instructions)
     }
     
@@ -224,6 +229,12 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     func addMeleeToSquad(squad:FKSquadEntity) {
         let ability = Ability.factoryInit("Attack")
         let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Attack", ability:ability, actionBarPosition:1, actionBarPriority:1)
+        squad.abilitiesComponent.abilities.append(activeAbility)
+    }
+    
+    func addShootToSquad(squad:FKSquadEntity) {
+        let ability = Ability.factoryInit("Shoot")
+        let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Shoot", ability:ability, actionBarPosition:1, actionBarPriority:1)
         squad.abilitiesComponent.abilities.append(activeAbility)
     }
     
