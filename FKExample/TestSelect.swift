@@ -114,6 +114,8 @@ class TestSelect : SKNode {
     // MARK: Tests
     
     func testSelected(name:String, node:SKNode) {
+        self.hideFriendlyUnitPanels()
+        self.hideEnemyUnitPanels()
         self.highlightItem(node, highlightPath: "Test/test_highlight")
         self.instructions = TestInstructions(settings: classMap[name]!.settings)
         self.instructions!.name = name
