@@ -28,6 +28,8 @@
 		E74F1B521C8D26020061F104 /* BomurInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E74F1B511C8D26020061F104 /* BomurInfo.plist */; };
 		E75B93281CD8007600DDC324 /* TestSelect.sks in Resources */ = {isa = PBXBuildFile; fileRef = E75B93271CD8007600DDC324 /* TestSelect.sks */; };
 		E75B932A1CD80A7800DDC324 /* TestSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75B93291CD80A7800DDC324 /* TestSelect.swift */; };
+		E764A2E31CE1743B00576B56 /* BadArcher1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E764A2E21CE1743B00576B56 /* BadArcher1.atlas */; };
+		E764A2E51CE1745300576B56 /* BadArcher1Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E764A2E41CE1745300576B56 /* BadArcher1Info.plist */; };
 		E7735B1A1CAB7D2600B684CF /* EngageMovingTargetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */; };
 		E77DE25D1CA997C800771803 /* CatchingUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DE25C1CA997C800771803 /* CatchingUpTest.swift */; };
 		E79401521CAF07F50076FC1C /* BadMelee1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E79401511CAF07F50076FC1C /* BadMelee1.atlas */; };
@@ -111,6 +113,8 @@
 		E74F1B511C8D26020061F104 /* BomurInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BomurInfo.plist; sourceTree = "<group>"; };
 		E75B93271CD8007600DDC324 /* TestSelect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestSelect.sks; sourceTree = "<group>"; };
 		E75B93291CD80A7800DDC324 /* TestSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSelect.swift; sourceTree = "<group>"; };
+		E764A2E21CE1743B00576B56 /* BadArcher1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BadArcher1.atlas; sourceTree = "<group>"; };
+		E764A2E41CE1745300576B56 /* BadArcher1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BadArcher1Info.plist; sourceTree = "<group>"; };
 		E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngageMovingTargetTest.swift; sourceTree = "<group>"; };
 		E77DE25C1CA997C800771803 /* CatchingUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchingUpTest.swift; sourceTree = "<group>"; };
 		E79401511CAF07F50076FC1C /* BadMelee1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BadMelee1.atlas; sourceTree = "<group>"; };
@@ -264,11 +268,13 @@
 		E7F345091CA4DFEE00525966 /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				E764A2E21CE1743B00576B56 /* BadArcher1.atlas */,
 				E79472B31CE0C95F00ADCAD0 /* Archer1.atlas */,
 				E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */,
 				E79401511CAF07F50076FC1C /* BadMelee1.atlas */,
 				E722D4741C97AEF500AAA43B /* Melee1.atlas */,
 				E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */,
+				E764A2E41CE1745300576B56 /* BadArcher1Info.plist */,
 				E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */,
 				E79472B11CE0C92900ADCAD0 /* Archer1Info.plist */,
 				E79401531CAF08040076FC1C /* BadMelee1Info.plist */,
@@ -421,6 +427,7 @@
 			files = (
 				E7CBE3311CDD9AB400AA4081 /* Melee2Info.plist in Resources */,
 				E722D4751C97AEF500AAA43B /* Melee1.atlas in Resources */,
+				E764A2E31CE1743B00576B56 /* BadArcher1.atlas in Resources */,
 				E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */,
 				E74CD1151C77C747002CFCEC /* GameScene.sks in Resources */,
 				E79401541CAF08040076FC1C /* BadMelee1Info.plist in Resources */,
@@ -433,6 +440,7 @@
 				E74CD11E1C77C747002CFCEC /* Assets.xcassets in Resources */,
 				E74CD11C1C77C747002CFCEC /* Main.storyboard in Resources */,
 				E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */,
+				E764A2E51CE1745300576B56 /* BadArcher1Info.plist in Resources */,
 				E79472B41CE0C95F00ADCAD0 /* Archer1.atlas in Resources */,
 				E75B93281CD8007600DDC324 /* TestSelect.sks in Resources */,
 				E79401521CAF07F50076FC1C /* BadMelee1.atlas in Resources */,

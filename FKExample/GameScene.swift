@@ -170,7 +170,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     func createEnemySquadFromInstructions(instructions:TestInstructions, position:CGPoint) {
         var formation = FKFormationComponent.Arrangement.Grid
-        if instructions.selectedEnemeyFormation == "Triangle" {
+        if instructions.selectedEnemyFormation == "Triangle" {
             formation = FKFormationComponent.Arrangement.Triangle
         }
         

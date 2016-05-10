@@ -58,7 +58,7 @@ class TestInstructions {
     
     var selectedEnemyAbility : String?
     
-    var selectedEnemeyFormation : String = "Square"
+    var selectedEnemyFormation : String = "Square"
     
     var selectedEnemySize : Int = 6
     
@@ -114,26 +114,11 @@ class TestSelect : SKNode {
     // MARK: Tests
     
     func testSelected(name:String, node:SKNode) {
-        self.unhighlightTests()
-        self.highlightSelectedTest(node)
+        self.highlightItem(node, highlightPath: "Test/test_highlight")
         self.instructions = TestInstructions(settings: classMap[name]!.settings)
         self.instructions!.name = name
         if !self.allowContinueIfValidParameters() {
             self.showFriendlyUnitPanels()
-        }
-    }
-    
-    func highlightSelectedTest(node:SKNode) {
-        if let highlight = self.root.childNodeWithName("Test/test_highlight") {
-            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
-        }
-    }
-    
-    func unhighlightTests() {
-        for child in self.root.childNodeWithName("Test")!.children {
-            if let label = child as? SKLabelNode {
-                label.fontColor = SKColor.blackColor()
-            }
         }
     }
     
@@ -150,26 +135,8 @@ class TestSelect : SKNode {
         self.hidePanel("Ability")
     }
     
-    func unhighlightFriendlyUnits() {
-        for child in self.root.childNodeWithName("Friendly")!.children {
-            if let label = child as? SKLabelNode {
-                label.fontColor = SKColor.blackColor()
-            }
-        }
-    }
-    
-    func highlightSelectedFriendlyUnit(node:SKNode) {
-        if let highlight = self.root.childNodeWithName("Friendly/Friendly_highlight") {
-            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
-            if let label = node as? SKLabelNode {
-                label.fontColor = SKColor.whiteColor()
-            }
-        }
-    }
-    
     func friendlyUnitSelected(name:String, node:SKNode) {
-        self.unhighlightFriendlyUnits()
-        self.highlightSelectedFriendlyUnit(node)
+        self.highlightItem(node, highlightPath: "Friendly/Friendly_highlight")
         self.instructions!.selectedFriendly = name
         if !self.allowContinueIfValidParameters() {
             self.showEnemyUnitPanels()
@@ -184,69 +151,28 @@ class TestSelect : SKNode {
     // MARK: Friendly Hero
     
     func selectFriendlyHero(name:String, node:SKNode) {
-        print(name)
-        print(self.instructions?.selectedFriendlyHero)
         if name != self.instructions!.selectedFriendlyHero {
-            self.highlightFriendlyHero(node)
+            self.highlightItem(node, highlightPath: "Ability/FriendlyHeroUI_highlight")
             self.instructions?.selectedFriendlyHero = name
         }
         else {
             self.instructions?.selectedFriendlyHero = nil
-            self.unhighlightFriendlyHero()
+            self.unhighlightItem("Ability/FriendlyHeroUI_highlight")
         }
     }
-    
-    func highlightFriendlyHero(node:SKNode) {
-        if let highlight = self.root.childNodeWithName("Ability/FriendlyHeroUI_highlight") {
-            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
-        }
-    }
-    
-    func unhighlightFriendlyHero() {
-        if let highlight = self.root.childNodeWithName("Ability/FriendlyHeroUI_highlight") {
-            highlight.position = CGPoint(x:highlight.position.x, y:10000)
-        }
-    }
-    
     
     // MARK: Friendly Size
     
     func selectFriendlySize(size:Int, node:SKNode) {
-        self.highlightFriendlySize(node)
+        self.highlightItem(node, highlightPath: "Ability/FriendlySizeUI_highlight")
         self.instructions?.selectedFriendlySize = size
-    }
-    
-    func highlightFriendlySize(node:SKNode) {
-        if let highlight = self.root.childNodeWithName("Ability/FriendlySizeUI_highlight") {
-            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
-            highlight.hidden = false
-        }
-    }
-    
-    func unhighlightFriendlySize() {
-        if let highlight = self.root.childNodeWithName("Ability/FriendlySizeUI_highlight") {
-            highlight.hidden = true
-        }
     }
     
     // MARK: Friendly Formation
     
     func selectFriendlyFormation(name:String, node:SKNode) {
-        self.highlightFriendlyFormation(node)
+        self.highlightItem(node, highlightPath: "Ability/FriendlyFormationUI_highlight")
         self.instructions?.selectedFriendlyFormation = name
-    }
-    
-    func highlightFriendlyFormation(node:SKNode) {
-        if let highlight = self.root.childNodeWithName("Ability/FriendlyFormationUI_highlight") {
-            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
-            highlight.hidden = false
-        }
-    }
-    
-    func unhighlightFriendlyFormation() {
-        if let highlight = self.root.childNodeWithName("Ability/FriendlyFormationUI_highlight") {
-            highlight.hidden = true
-        }
     }
     
     // MARK: Enemy Unit
@@ -287,6 +213,21 @@ class TestSelect : SKNode {
     
     
     // MARK: Enemy Abilities
+    
+    
+    // MARK: Enemy Size
+    
+    func selectEnemySize(size:Int, node:SKNode) {
+        self.highlightItem(node, highlightPath: "EnemyAbility/EnemySizeUI_highlight")
+        self.instructions?.selectedEnemySize = size
+    }
+    
+    // MARK: Enemy Formation
+    
+    func selectEnemyFormation(name:String, node:SKNode) {
+        self.highlightItem(node, highlightPath: "EnemyAbility/EnemyFormationUI_highlight")
+        self.instructions?.selectedEnemyFormation = name
+    }
     
     
     // MARK: Continue
@@ -352,6 +293,18 @@ class TestSelect : SKNode {
         self.root.childNodeWithName(name)?.hidden = false
     }
     
+    func highlightItem(node:SKNode, highlightPath:String) {
+        if let highlight = self.root.childNodeWithName(highlightPath) {
+            highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
+        }
+    }
+    
+    func unhighlightItem(highlightPath:String) {
+        if let highlight = self.root.childNodeWithName(highlightPath) {
+            highlight.position = CGPoint(x:highlight.position.x, y:10000)
+        }
+    }
+    
     // MARK: User Input
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -387,6 +340,16 @@ class TestSelect : SKNode {
                 if(node.name?.rangeOfString("Enemy_") != nil) {
                     let name = node.name!.replace("Enemy_", withString: "")
                     self.enemyUnitSelected(name, node: node)
+                }
+                
+                if(node.name?.rangeOfString("EnemySize_") != nil) {
+                    let name = node.name!.replace("EnemySize_", withString: "")
+                    self.selectEnemySize(Int(name)!, node: node)
+                }
+                
+                if(node.name?.rangeOfString("EnemyFormation_") != nil) {
+                    let name = node.name!.replace("EnemyFormation_", withString: "")
+                    self.selectEnemyFormation(name, node: node)
                 }
                 
                 if(node.name?.rangeOfString("run") != nil) {
