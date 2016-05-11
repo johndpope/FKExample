@@ -94,7 +94,6 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             self.currentTest = test as! Testable
             self.currentTest.scene = self
             self.currentTest.setupTest(instructions)
-            self.addDescriptionToScene()
         }
     }
     
@@ -292,12 +291,6 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: Test Specific
     
-    func addDescriptionToScene() {
-        if let testLabel = self.childNodeWithName("Camera/TestDescription") as? SKLabelNode {
-            testLabel.text = self.currentTest.desc
-        }
-    }
-    
     
     func refreshButtonTapped(location:CGPoint) -> Bool {
         let realLocation = self.camera!.convertPoint(location, fromNode: self)
@@ -314,6 +307,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     }
     
     func clearCurrentTest() {
+        
+        /// Deselect UI
+        self.actionBar?.handleInput(CGPoint(x:-10000, y:-10000))
+        
         /// Kill squads
         for squad in self.squads {
             squad.componentForClass(FKCasualtyComponent)?.manuallyDestorySquad()
