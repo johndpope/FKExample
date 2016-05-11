@@ -30,6 +30,9 @@
 		E75B932A1CD80A7800DDC324 /* TestSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75B93291CD80A7800DDC324 /* TestSelect.swift */; };
 		E764A2E31CE1743B00576B56 /* BadArcher1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E764A2E21CE1743B00576B56 /* BadArcher1.atlas */; };
 		E764A2E51CE1745300576B56 /* BadArcher1Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E764A2E41CE1745300576B56 /* BadArcher1Info.plist */; };
+		E764A32A1CE339B300576B56 /* WarGUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E764A3291CE339B300576B56 /* WarGUI.framework */; };
+		E764A32C1CE33ECC00576B56 /* WarGUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E764A3291CE339B300576B56 /* WarGUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E764A32E1CE33F2400576B56 /* ActionBarNode.sks in Resources */ = {isa = PBXBuildFile; fileRef = E764A32D1CE33F2400576B56 /* ActionBarNode.sks */; };
 		E7735B1A1CAB7D2600B684CF /* EngageMovingTargetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */; };
 		E77DE25D1CA997C800771803 /* CatchingUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DE25C1CA997C800771803 /* CatchingUpTest.swift */; };
 		E79401521CAF07F50076FC1C /* BadMelee1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E79401511CAF07F50076FC1C /* BadMelee1.atlas */; };
@@ -83,6 +86,7 @@
 				E74CD1471C77C776002CFCEC /* FormationKit.framework in Embed Frameworks */,
 				E7B394081C7813E700B9A7DA /* Particleboard.framework in Embed Frameworks */,
 				E7B394411C7E362E00B9A7DA /* SwitchBoard.framework in Embed Frameworks */,
+				E764A32C1CE33ECC00576B56 /* WarGUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +119,8 @@
 		E75B93291CD80A7800DDC324 /* TestSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSelect.swift; sourceTree = "<group>"; };
 		E764A2E21CE1743B00576B56 /* BadArcher1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BadArcher1.atlas; sourceTree = "<group>"; };
 		E764A2E41CE1745300576B56 /* BadArcher1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BadArcher1Info.plist; sourceTree = "<group>"; };
+		E764A3291CE339B300576B56 /* WarGUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WarGUI.framework; path = "../../../Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/WarGUI.framework"; sourceTree = "<group>"; };
+		E764A32D1CE33F2400576B56 /* ActionBarNode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ActionBarNode.sks; sourceTree = "<group>"; };
 		E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngageMovingTargetTest.swift; sourceTree = "<group>"; };
 		E77DE25C1CA997C800771803 /* CatchingUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchingUpTest.swift; sourceTree = "<group>"; };
 		E79401511CAF07F50076FC1C /* BadMelee1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BadMelee1.atlas; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 				E74CD1461C77C776002CFCEC /* FormationKit.framework in Frameworks */,
 				E7B394071C7813E700B9A7DA /* Particleboard.framework in Frameworks */,
 				E7B394401C7E362E00B9A7DA /* SwitchBoard.framework in Frameworks */,
+				E764A32A1CE339B300576B56 /* WarGUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +196,7 @@
 				E74CD1441C77C771002CFCEC /* FormationKit.framework */,
 				E7B3943E1C7E354800B9A7DA /* SwitchBoard.framework */,
 				E7B394051C78139200B9A7DA /* Particleboard.framework */,
+				E764A3291CE339B300576B56 /* WarGUI.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +230,7 @@
 				E7433DE31CA9BDDD00AAA23E /* Abilities.plist */,
 				E75B93271CD8007600DDC324 /* TestSelect.sks */,
 				E75B93291CD80A7800DDC324 /* TestSelect.swift */,
+				E764A32D1CE33F2400576B56 /* ActionBarNode.sks */,
 			);
 			path = FKExample;
 			sourceTree = "<group>";
@@ -438,6 +447,7 @@
 				E7C4D3AB1C9CFF1200D1B7D8 /* Test.atlas in Resources */,
 				E74CD1211C77C747002CFCEC /* LaunchScreen.storyboard in Resources */,
 				E74CD11E1C77C747002CFCEC /* Assets.xcassets in Resources */,
+				E764A32E1CE33F2400576B56 /* ActionBarNode.sks in Resources */,
 				E74CD11C1C77C747002CFCEC /* Main.storyboard in Resources */,
 				E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */,
 				E764A2E51CE1745300576B56 /* BadArcher1Info.plist in Resources */,
@@ -637,6 +647,7 @@
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/FormationKit-bpqssleqnwcbiubogrrthdulwrdb/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/Particleboard-evhemslkpnponvhfactqjnukksgb/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/",
+					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/",
 				);
 				INFOPLIST_FILE = FKExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -655,6 +666,7 @@
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/FormationKit-bpqssleqnwcbiubogrrthdulwrdb/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/Particleboard-evhemslkpnponvhfactqjnukksgb/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/",
+					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/",
 				);
 				INFOPLIST_FILE = FKExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

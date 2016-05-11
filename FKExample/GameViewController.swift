@@ -41,7 +41,7 @@ class GameViewController: UIViewController {
                     transition: nil,
                     preloadable: true,
                     category: SBSceneContainer.SceneGroup.Battle,
-                    atlases: ["BadArcher1", "Archer1", "Melee1", "Melee2", "CombatAssets", "Bomur", "Test"]))
+                    atlases: ["BadArcher1", "Archer1", "Melee1", "Melee2", "CombatAssets", "Bomur", "Test", "UI", "icons"]))
             
             if let initialScene = self.sceneManager?.scenes["GameScene"] {
                 self.sceneManager?.sceneDidFinish(initialScene)

@@ -11,6 +11,7 @@ import GameplayKit
 import FormationKit
 import SwitchBoard
 import Particleboard
+import WarGUI
 
 struct TestDefinition {
     
@@ -37,7 +38,7 @@ let classMap : Dictionary<String, TestDefinition> = [
     "EngageMovingTargetTest" :  TestDefinition(settings:combatTestSetting, classObj: { return EngageMovingTargetTest() })
 ]
 
-class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
+class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, FKHeraldryProtocol {
     
     var lastUpdateTimeInterval: NSTimeInterval = 0
     
@@ -57,6 +58,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
     
     var formationToTest = FKFormationComponent.Arrangement.Grid
     
+    var actionBar : WGActionEntity?
+    
     override func didMoveToView(view: SKView) {
         
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
@@ -75,6 +78,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         instructions.selectedFriendly = "Archer1"
         instructions.selectedEnemy = "BadMelee1"
         self.setupNextTest(instructions)
+        self.setupGUI()
     }
     
     func setupNextTest(instructions : TestInstructions)  {
@@ -202,7 +206,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 formation:formation,
                 columns: columns,
                 spacing: spacing,
-                pathfinder : self))
+                pathfinder : self,
+                herladryDelegate:self))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
@@ -224,7 +229,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
                 columns: columns,
                 spacing: spacing,
                 hero:hero,
-                pathfinder : self))
+                pathfinder : self,
+                herladryDelegate:self))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
@@ -244,7 +250,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
             columns: 1,
             spacing: 64,
             hero:"Bomur",
-            pathfinder : self)) {
+            pathfinder : self,
+            herladryDelegate:self)) {
                 hero.renderComponent.node.position = CGPoint(x:200, y:200)
                 FKUnitFactory.sharedInstance.addUnitToScene(hero)
                 self.heros.append(hero)
@@ -278,7 +285,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
             let location = touch.locationInNode(self)
             if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) && !self.testButtonTapped(location) {
                 let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
-                self.currentTest.tapped(realLocation)
+                self.actionBar?.handleInput(realLocation)
             }
         }
     }
@@ -367,7 +374,30 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         }
         return false
     }
+    
+    // MARK: GUI
+    
+    func setupGUI() {
+        let bar = WGActionEntity(parentNode: self.camera!)
+        self.actionBar = bar
+    }
+    
+    func heraldryTapped(squad: FKSquadEntity) {
+        if(squad.controller == .EnemyNPC) {
+            self.actionBar?.handleEnemySquadTouched(squad)
+        }
+        else {
+            self.actionBar?.selectSquad(squad)
+        }
+    }
    
+    func heraldryDoubleTapped(squad: FKSquadEntity) {
+        if let camera = self.camera {
+            let pos = self.convertPoint(squad.agent.actualPosition, fromNode:squad.layer!)
+            camera.panToPoint(pos)
+        }
+    }
+    
     // MARK: UPDATE
     
     override func update(currentTime: CFTimeInterval) {
@@ -391,6 +421,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol {
         for componentSystem in FKUnitFactory.sharedInstance.componentSystems {
             componentSystem.updateWithDeltaTime(deltaTime)
         }
+        
+        /// Update entites not part of the system
+        self.actionBar?.updateWithDeltaTime(deltaTime)
         
     }
     
