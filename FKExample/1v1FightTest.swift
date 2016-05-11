@@ -11,6 +11,7 @@ import GameplayKit
 import FormationKit
 import SwitchBoard
 import Particleboard
+import StrongRoom
 
 class SingleFightTest : Testable {
     
@@ -31,13 +32,20 @@ class SingleFightTest : Testable {
         self.scene?.createSquadFromInstructions(instructions)
         self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1600, y:68))
         
-        if instructions.selectedFriendly == "Archer1" {
-            self.scene?.addShootToSquad(self.scene!.squads[0])
+        if let data = FKUnitFactory.sharedInstance.loadPListData(instructions.selectedFriendly!) {
+            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data)
+            for abilityData in allAbilities {
+                let ability = Ability.factoryInit(abilityData.abilityName)
+                let activeAbility = FKAbilitiesComponent.ActiveAbility(
+                    name:abilityData.abilityName,
+                    ability:ability,
+                    actionBarPosition:abilityData.actionBarPosition,
+                    actionBarPriority:abilityData.actionBarPriority)
+                self.scene!.squads[0].abilitiesComponent.abilities.append(activeAbility)
+            }
+        }
+        
 
-        }
-        else {
-            self.scene?.addMeleeToSquad(self.scene!.squads[0])
-        }
         self.scene?.addMeleeToSquad(self.scene!.squads[1])
     }
     
