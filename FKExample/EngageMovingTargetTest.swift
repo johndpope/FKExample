@@ -31,17 +31,8 @@ class EngageMovingTargetTest : Testable {
         self.scene?.createSquadFromInstructions(instructions)
         self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1600, y:68))
         
-        if instructions.selectedFriendly == "Archer1" {
-            self.scene?.addShootToSquad(self.scene!.squads[0])
-            
-        }
-        else {
-            self.scene?.addMeleeToSquad(self.scene!.squads[0])
-        }
-
-        self.scene?.addMeleeToSquad(self.scene!.squads[1])
-        self.scene?.addMoveToSquad(self.scene!.squads[1])
-        self.moveEnemySquad()
+        self.scene?.addAbilitiesToSquad(self.scene!.squads[0])
+        self.scene?.addAbilitiesToSquad(self.scene!.squads[1])
     }
     
     func moveEnemySquad() {

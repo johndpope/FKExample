@@ -29,7 +29,8 @@ class MovementTest : Testable {
     func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
-        self.scene?.addMoveToSquad(self.scene!.squads[0])
+        self.scene?.addAbilitiesToSquad(self.scene!.squads[0])
+
     }
     
     func tapped(location: CGPoint) {

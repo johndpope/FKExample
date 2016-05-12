@@ -32,21 +32,8 @@ class SingleFightTest : Testable {
         self.scene?.createSquadFromInstructions(instructions)
         self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1600, y:68))
         
-        if let data = FKUnitFactory.sharedInstance.loadPListData(instructions.selectedFriendly!) {
-            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data)
-            for abilityData in allAbilities {
-                let ability = Ability.factoryInit(abilityData.abilityName)
-                let activeAbility = FKAbilitiesComponent.ActiveAbility(
-                    name:abilityData.abilityName,
-                    ability:ability,
-                    actionBarPosition:abilityData.actionBarPosition,
-                    actionBarPriority:abilityData.actionBarPriority)
-                self.scene!.squads[0].abilitiesComponent.abilities.append(activeAbility)
-            }
-        }
-        
-
-        self.scene?.addMeleeToSquad(self.scene!.squads[1])
+        self.scene?.addAbilitiesToSquad(self.scene!.squads[0])
+        self.scene?.addAbilitiesToSquad(self.scene!.squads[1])
     }
     
     func tapped(location: CGPoint) {

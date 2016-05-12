@@ -13,6 +13,8 @@
 		E722D4751C97AEF500AAA43B /* Melee1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E722D4741C97AEF500AAA43B /* Melee1.atlas */; };
 		E738BFC31CE3B70200A89C07 /* StrongRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E738BFC11CE3B6F300A89C07 /* StrongRoom.framework */; };
 		E738BFC41CE3B70200A89C07 /* StrongRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E738BFC11CE3B6F300A89C07 /* StrongRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E738BFC61CE50E5A00A89C07 /* TrebuchetInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E738BFC51CE50E5A00A89C07 /* TrebuchetInfo.plist */; };
+		E738BFC81CE50E8B00A89C07 /* Trebuchet.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E738BFC71CE50E8B00A89C07 /* Trebuchet.atlas */; };
 		E7433DDA1CA9A41200AAA23E /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */; };
 		E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7433DE31CA9BDDD00AAA23E /* Abilities.plist */; };
 		E7433DED1CAAF56700AAA23E /* 1v1FightTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */; };
@@ -99,6 +101,8 @@
 /* Begin PBXFileReference section */
 		E722D4741C97AEF500AAA43B /* Melee1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Melee1.atlas; sourceTree = "<group>"; };
 		E738BFC11CE3B6F300A89C07 /* StrongRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StrongRoom.framework; path = "../../../Library/Developer/Xcode/DerivedData/StrongRoom-ccnbonfcsfimyagfmnnongjmnche/Build/Products/Debug-iphoneos/StrongRoom.framework"; sourceTree = "<group>"; };
+		E738BFC51CE50E5A00A89C07 /* TrebuchetInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrebuchetInfo.plist; sourceTree = "<group>"; };
+		E738BFC71CE50E8B00A89C07 /* Trebuchet.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Trebuchet.atlas; sourceTree = "<group>"; };
 		E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		E7433DE31CA9BDDD00AAA23E /* Abilities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Abilities.plist; sourceTree = "<group>"; };
 		E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 1v1FightTest.swift; sourceTree = "<group>"; };
@@ -283,12 +287,14 @@
 		E7F345091CA4DFEE00525966 /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				E738BFC71CE50E8B00A89C07 /* Trebuchet.atlas */,
 				E764A2E21CE1743B00576B56 /* BadArcher1.atlas */,
 				E79472B31CE0C95F00ADCAD0 /* Archer1.atlas */,
 				E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */,
 				E79401511CAF07F50076FC1C /* BadMelee1.atlas */,
 				E722D4741C97AEF500AAA43B /* Melee1.atlas */,
 				E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */,
+				E738BFC51CE50E5A00A89C07 /* TrebuchetInfo.plist */,
 				E764A2E41CE1745300576B56 /* BadArcher1Info.plist */,
 				E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */,
 				E79472B11CE0C92900ADCAD0 /* Archer1Info.plist */,
@@ -442,6 +448,7 @@
 			files = (
 				E7CBE3311CDD9AB400AA4081 /* Melee2Info.plist in Resources */,
 				E722D4751C97AEF500AAA43B /* Melee1.atlas in Resources */,
+				E738BFC81CE50E8B00A89C07 /* Trebuchet.atlas in Resources */,
 				E764A2E31CE1743B00576B56 /* BadArcher1.atlas in Resources */,
 				E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */,
 				E74CD1151C77C747002CFCEC /* GameScene.sks in Resources */,
@@ -461,6 +468,7 @@
 				E75B93281CD8007600DDC324 /* TestSelect.sks in Resources */,
 				E79401521CAF07F50076FC1C /* BadMelee1.atlas in Resources */,
 				E74F1B521C8D26020061F104 /* BomurInfo.plist in Resources */,
+				E738BFC61CE50E5A00A89C07 /* TrebuchetInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

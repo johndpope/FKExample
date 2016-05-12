@@ -12,6 +12,7 @@ import FormationKit
 import SwitchBoard
 import Particleboard
 import WarGUI
+import StrongRoom
 
 struct TestDefinition {
     
@@ -75,8 +76,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         var instructions = TestInstructions(settings: combatTestSetting)
         instructions.name = "SingleFightTest"
-        instructions.selectedFriendly = "Archer1"
+        instructions.selectedFriendly = "Trebuchet"
         instructions.selectedEnemy = "BadMelee1"
+        instructions.selectedFriendlyHero = nil
+        instructions.selectedFriendlySize = 1
         self.setupNextTest(instructions)
         self.setupGUI()
     }
@@ -261,6 +264,23 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: Common Abilities
     
+    func addAbilitiesToSquad(squad:FKSquadEntity) {
+        
+        if let data = FKUnitFactory.sharedInstance.loadPListData(squad.unitName) {
+            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data)
+            for abilityData in allAbilities {
+                let ability = Ability.factoryInit(abilityData.abilityName)
+                let activeAbility = FKAbilitiesComponent.ActiveAbility(
+                    name:abilityData.abilityName,
+                    ability:ability,
+                    actionBarPosition:abilityData.actionBarPosition,
+                    actionBarPriority:abilityData.actionBarPriority)
+                squad.abilitiesComponent.abilities.append(activeAbility)
+            }
+        }
+
+    }
+    
     func addMoveToSquad(squad:FKSquadEntity) {
         let ability = Ability.factoryInit("Move")
         let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Move", ability:ability, actionBarPosition:1, actionBarPriority:1)
@@ -307,9 +327,6 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     }
     
     func clearCurrentTest() {
-        
-        /// Deselect UI
-        self.actionBar?.handleInput(CGPoint(x:-10000, y:-10000))
         
         /// Kill squads
         for squad in self.squads {
@@ -358,6 +375,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         let realLocation = self.camera!.convertPoint(location, fromNode: self)
         if let tests = self.camera?.nodeAtPoint(realLocation) as? SKSpriteNode {
             if tests.name == "tests" {
+                
+                /// Deselect UI
+                self.actionBar?.handleInput(CGPoint(x:-10000, y:-10000))
                 
                 let testNode = TestSelect()
                 testNode.name = "SelectTests"
