@@ -15,6 +15,7 @@
 		E738BFC41CE3B70200A89C07 /* StrongRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E738BFC11CE3B6F300A89C07 /* StrongRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E738BFC61CE50E5A00A89C07 /* TrebuchetInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E738BFC51CE50E5A00A89C07 /* TrebuchetInfo.plist */; };
 		E738BFC81CE50E8B00A89C07 /* Trebuchet.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E738BFC71CE50E8B00A89C07 /* Trebuchet.atlas */; };
+		E738BFCC1CE51B8500A89C07 /* LeaderInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E738BFCB1CE51B8500A89C07 /* LeaderInfo.plist */; };
 		E7433DDA1CA9A41200AAA23E /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */; };
 		E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7433DE31CA9BDDD00AAA23E /* Abilities.plist */; };
 		E7433DED1CAAF56700AAA23E /* 1v1FightTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */; };
@@ -103,6 +104,7 @@
 		E738BFC11CE3B6F300A89C07 /* StrongRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StrongRoom.framework; path = "../../../Library/Developer/Xcode/DerivedData/StrongRoom-ccnbonfcsfimyagfmnnongjmnche/Build/Products/Debug-iphoneos/StrongRoom.framework"; sourceTree = "<group>"; };
 		E738BFC51CE50E5A00A89C07 /* TrebuchetInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrebuchetInfo.plist; sourceTree = "<group>"; };
 		E738BFC71CE50E8B00A89C07 /* Trebuchet.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Trebuchet.atlas; sourceTree = "<group>"; };
+		E738BFCB1CE51B8500A89C07 /* LeaderInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeaderInfo.plist; sourceTree = "<group>"; };
 		E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		E7433DE31CA9BDDD00AAA23E /* Abilities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Abilities.plist; sourceTree = "<group>"; };
 		E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 1v1FightTest.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				E79401511CAF07F50076FC1C /* BadMelee1.atlas */,
 				E722D4741C97AEF500AAA43B /* Melee1.atlas */,
 				E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */,
+				E738BFCB1CE51B8500A89C07 /* LeaderInfo.plist */,
 				E738BFC51CE50E5A00A89C07 /* TrebuchetInfo.plist */,
 				E764A2E41CE1745300576B56 /* BadArcher1Info.plist */,
 				E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */,
@@ -465,6 +468,7 @@
 				E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */,
 				E764A2E51CE1745300576B56 /* BadArcher1Info.plist in Resources */,
 				E79472B41CE0C95F00ADCAD0 /* Archer1.atlas in Resources */,
+				E738BFCC1CE51B8500A89C07 /* LeaderInfo.plist in Resources */,
 				E75B93281CD8007600DDC324 /* TestSelect.sks in Resources */,
 				E79401521CAF07F50076FC1C /* BadMelee1.atlas in Resources */,
 				E74F1B521C8D26020061F104 /* BomurInfo.plist in Resources */,

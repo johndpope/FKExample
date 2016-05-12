@@ -81,7 +81,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         instructions.selectedFriendlyHero = nil
         instructions.selectedFriendlySize = 1
         self.setupNextTest(instructions)
-        self.setupGUI()
+        let leader = self.createArmyLeader()
+        self.addAbilitiesToSquad(leader, filter:["Haste"])
+        self.setupGUI(leader)
     }
     
     func setupNextTest(instructions : TestInstructions)  {
@@ -193,7 +195,31 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     }
 
     
-    func createSquad(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, formation: FKFormationComponent.Arrangement = .Grid) {
+    func createArmyLeader() -> FKSquadEntity {
+        /// Create a squad
+        let squad = FKSquadFactory.sharedInstance.createSquad(
+            FKSquadFactory.FKSquadConstruction(
+                name:"Leader",
+                position: CGPoint(x:0, y:0),
+                heading: 0,
+                currentUnits: 0,
+                maxUnits: 0,
+                controller: .FriendlyNPC,
+                scene: nil,
+                layer: nil,
+                formation:.Grid,
+                columns: 1,
+                spacing: 0,
+                pathfinder : self,
+                herladryDelegate:self))
+        
+        /// Store it so it doesn't disappear when this function finishes
+        self.squads.append(squad)
+        return squad
+
+    }
+    
+    func createSquad(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, formation: FKFormationComponent.Arrangement = .Grid) -> FKSquadEntity {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -213,6 +239,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
+        return squad
     }
     
     func createSquadWithHero(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, hero:String? = nil, formation: FKFormationComponent.Arrangement = .Grid) {
@@ -264,18 +291,21 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: Common Abilities
     
-    func addAbilitiesToSquad(squad:FKSquadEntity) {
+    func addAbilitiesToSquad(squad:FKSquadEntity, filter:[String]? = nil) {
         
         if let data = FKUnitFactory.sharedInstance.loadPListData(squad.unitName) {
             let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data)
             for abilityData in allAbilities {
-                let ability = Ability.factoryInit(abilityData.abilityName)
-                let activeAbility = FKAbilitiesComponent.ActiveAbility(
-                    name:abilityData.abilityName,
-                    ability:ability,
-                    actionBarPosition:abilityData.actionBarPosition,
-                    actionBarPriority:abilityData.actionBarPriority)
-                squad.abilitiesComponent.abilities.append(activeAbility)
+                
+                if filter == nil || (filter?.contains(abilityData.abilityName))! {
+                    let ability = Ability.factoryInit(abilityData.abilityName)
+                    let activeAbility = FKAbilitiesComponent.ActiveAbility(
+                        name:abilityData.abilityName,
+                        ability:ability,
+                        actionBarPosition:abilityData.actionBarPosition,
+                        actionBarPriority:abilityData.actionBarPriority)
+                    squad.abilitiesComponent.abilities.append(activeAbility)
+                }
             }
         }
 
@@ -394,8 +424,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: GUI
     
-    func setupGUI() {
-        let bar = WGActionEntity(parentNode: self.camera!)
+    func setupGUI(leader:FKSquadEntity) {
+        let bar = WGActionEntity(parentNode: self.camera!, leader:leader)
         self.actionBar = bar
     }
     
