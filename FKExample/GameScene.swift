@@ -61,6 +61,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     var actionBar : WGActionEntity?
     
+    var ui : WGContainerNode?
+    
     override func didMoveToView(view: SKView) {
         
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
@@ -113,11 +115,19 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         super.buildWorldLayers()
         
-        // Set the camera as the scenes camera. Some scenes work without this lines, others don't.
-        // For example, LevelScene worked without it, but Camp scene did not
+        /// Set the camera as the scenes camera. Some scenes work without this lines, others don't.
+        /// For example, LevelScene worked without it, but Camp scene did not
         self.camera = self.childNodeWithName("Camera") as? SKCameraNode
         
         self.setCameraBounds(self.cameraBounds)
+        
+        /// manually create other SKNode layers
+        let ui = WGContainerNode()
+        ui.name = "UI"
+        self.camera!.addChild(ui)
+        ui.initWithDefaults(self)
+        self.ui = ui
+        
     }
     
     // MARK: SKPhysicsContactDelegate
@@ -261,6 +271,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 controller: controller,
                 scene: self,
                 layer: self.childNodeWithName("World")!,
+                uiLayer: self.ui!,
                 formation:formation,
                 columns: columns,
                 spacing: spacing,
@@ -476,6 +487,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             let pos = self.convertPoint(squad.agent.actualPosition, fromNode:squad.layer!)
             camera.panToPoint(pos)
         }
+    }
+    
+    func lockToPositionWhenOffscreen(desiredPosition: CGPoint, node: SKSpriteNode) -> CGPoint? {
+        return WGAnchorPointService.sharedInstance.anchorIsNecessary(desiredPosition, node: node)
     }
     
     // MARK: UPDATE
