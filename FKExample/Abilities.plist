@@ -2,6 +2,50 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BomurSmash</key>
+	<dict>
+		<key>validations</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>NotInCombat</string>
+			</dict>
+		</array>
+		<key>sounds</key>
+		<array/>
+		<key>modifiers</key>
+		<array>
+			<dict>
+				<key>modification</key>
+				<string>Permanent</string>
+				<key>behavior</key>
+				<string>Instant</string>
+				<key>amount</key>
+				<integer>-10</integer>
+				<key>attribute</key>
+				<string>HitPoints</string>
+			</dict>
+		</array>
+		<key>delayBetweenUsage</key>
+		<integer>2</integer>
+		<key>range</key>
+		<integer>55</integer>
+		<key>animation</key>
+		<dict>
+			<key>triggerPoint</key>
+			<real>0.7</real>
+			<key>keyBack</key>
+			<integer>8</integer>
+			<key>keyFront</key>
+			<integer>7</integer>
+		</dict>
+		<key>behavior</key>
+		<string>Melee</string>
+		<key>iconDesc</key>
+		<string>Smash!</string>
+		<key>iconName</key>
+		<string>icon_MeleeAttack.png</string>
+	</dict>
 	<key>Flee</key>
 	<dict>
 		<key>validations</key>

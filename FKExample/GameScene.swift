@@ -76,10 +76,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         var instructions = TestInstructions(settings: combatTestSetting)
         instructions.name = "SingleFightTest"
-        instructions.selectedFriendly = "Trebuchet"
+        instructions.selectedFriendly = "Melee1"
         instructions.selectedEnemy = "BadMelee1"
-        instructions.selectedFriendlyHero = nil
-        instructions.selectedFriendlySize = 1
         self.setupNextTest(instructions)
         let leader = self.createArmyLeader()
         self.addAbilitiesToSquad(leader, filter:["Haste"])
@@ -164,11 +162,15 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         if instructions.selectedFriendlyFormation == "Triangle" {
             formation = FKFormationComponent.Arrangement.Triangle
         }
+        var size = instructions.selectedFriendlySize
+        if instructions.selectedFriendlyHero != nil {
+            size = size + 1
+        }
         
         self.createSquadWithHero(
             instructions.selectedFriendly!,
-            currentUnits:instructions.selectedFriendlySize,
-            maxUnits:instructions.selectedFriendlySize + 1,
+            currentUnits:size,
+            maxUnits:size,
             formation: formation,
             hero: instructions.selectedFriendlyHero,
             position:position)
@@ -182,10 +184,15 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             formation = FKFormationComponent.Arrangement.Triangle
         }
         
+        var size = instructions.selectedEnemySize
+        if instructions.selectedEnemyHero != nil {
+            size = size + 1
+        }
+        
         self.createSquadWithHero(
             instructions.selectedEnemy!,
-            currentUnits:instructions.selectedEnemySize,
-            maxUnits:instructions.selectedEnemySize + 1,
+            currentUnits:size,
+            maxUnits:size,
             formation: formation,
             hero: instructions.selectedEnemyHero,
             controller: .EnemyNPC,
@@ -259,7 +266,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 spacing: spacing,
                 hero:hero,
                 pathfinder : self,
-                herladryDelegate:self))
+                herladryDelegate:self,
+                abilities:self.getAbilitiesForSquad(name),
+                heroAbilities:self.getAbilitiesForSquad(hero)))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
@@ -286,6 +295,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 self.heros.append(hero)
                 return hero
         }
+        
         return nil
     }
     
@@ -309,6 +319,29 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             }
         }
 
+    }
+    
+    func getAbilitiesForSquad(unitName:String?) -> [FKAbilitiesComponent.ActiveAbility] {
+        var ret = Array<FKAbilitiesComponent.ActiveAbility>()
+        
+        guard unitName != nil else {
+            return ret
+        }
+        
+        if let data = FKUnitFactory.sharedInstance.loadPListData(unitName!) {
+            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data)
+            for abilityData in allAbilities {
+                
+                let ability = Ability.factoryInit(abilityData.abilityName)
+                let activeAbility = FKAbilitiesComponent.ActiveAbility(
+                        name:abilityData.abilityName,
+                        ability:ability,
+                        actionBarPosition:abilityData.actionBarPosition,
+                        actionBarPriority:abilityData.actionBarPriority)
+                ret.append(activeAbility)
+            }
+        }
+        return ret
     }
     
     func addMoveToSquad(squad:FKSquadEntity) {

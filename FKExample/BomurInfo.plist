@@ -126,43 +126,12 @@
 	<key>name</key>
 	<string>Bomur</string>
 	<key>levels</key>
-	<array>
-		<dict>
-			<key>expRequired</key>
-			<integer>0</integer>
-			<key>upgrades</key>
-			<array/>
-		</dict>
-		<dict>
-			<key>expRequired</key>
-			<integer>100</integer>
-			<key>upgrades</key>
-			<array>
-				<dict>
-					<key>modifier</key>
-					<dict>
-						<key>modification</key>
-						<string>Permanent</string>
-						<key>behavior</key>
-						<string>Instant</string>
-						<key>amount</key>
-						<integer>-10</integer>
-						<key>attribute</key>
-						<string>HitPoints</string>
-					</dict>
-					<key>upgradeType</key>
-					<string>Automatic</string>
-					<key>abilityName</key>
-					<string>Attack</string>
-				</dict>
-			</array>
-		</dict>
-	</array>
+	<array/>
 	<key>unlocks</key>
 	<array>
 		<dict>
 			<key>abilityName</key>
-			<string>Move</string>
+			<string>BomurSmash</string>
 			<key>tier</key>
 			<integer>0</integer>
 			<key>category</key>
@@ -172,57 +141,9 @@
 			<key>autoUnlock</key>
 			<true/>
 			<key>actionBarPosition</key>
-			<integer>1</integer>
-			<key>actionBarPriority</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>abilityName</key>
-			<string>Attack</string>
-			<key>tier</key>
-			<integer>0</integer>
-			<key>category</key>
-			<string>Uncategorized</string>
-			<key>cost</key>
-			<integer>0</integer>
-			<key>autoUnlock</key>
-			<true/>
-			<key>actionBarPosition</key>
-			<integer>2</integer>
-			<key>actionBarPriority</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>abilityName</key>
-			<string>Charge</string>
-			<key>tier</key>
-			<integer>0</integer>
-			<key>category</key>
-			<string>Uncategorized</string>
-			<key>cost</key>
-			<integer>0</integer>
-			<key>autoUnlock</key>
-			<true/>
-			<key>actionBarPosition</key>
-			<integer>2</integer>
-			<key>actionBarPriority</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>abilityName</key>
-			<string>Flee</string>
-			<key>tier</key>
-			<integer>0</integer>
-			<key>category</key>
-			<string>Uncategorized</string>
-			<key>cost</key>
-			<integer>0</integer>
-			<key>autoUnlock</key>
-			<true/>
-			<key>actionBarPosition</key>
-			<integer>2</integer>
-			<key>actionBarPriority</key>
 			<integer>3</integer>
+			<key>actionBarPriority</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 </dict>
