@@ -47,6 +47,15 @@
 		E79401541CAF08040076FC1C /* BadMelee1Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E79401531CAF08040076FC1C /* BadMelee1Info.plist */; };
 		E79472B21CE0C92900ADCAD0 /* Archer1Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E79472B11CE0C92900ADCAD0 /* Archer1Info.plist */; };
 		E79472B41CE0C95F00ADCAD0 /* Archer1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E79472B31CE0C95F00ADCAD0 /* Archer1.atlas */; };
+		E7ACE8C61CEB86F400AC0A58 /* battle_sounds in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8C51CEB86F400AC0A58 /* battle_sounds */; };
+		E7ACE8CF1CEB8BD100AC0A58 /* BagOpen 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8C71CEB8BD100AC0A58 /* BagOpen 1.mp3 */; };
+		E7ACE8D01CEB8BD100AC0A58 /* click_enterA_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8C81CEB8BD100AC0A58 /* click_enterA_1.wav */; };
+		E7ACE8D11CEB8BD100AC0A58 /* click_enterB_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8C91CEB8BD100AC0A58 /* click_enterB_1.wav */; };
+		E7ACE8D21CEB8BD100AC0A58 /* Coins 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8CA1CEB8BD100AC0A58 /* Coins 1.mp3 */; };
+		E7ACE8D31CEB8BD100AC0A58 /* Coins 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8CB1CEB8BD100AC0A58 /* Coins 2.mp3 */; };
+		E7ACE8D41CEB8BD100AC0A58 /* Coins 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8CC1CEB8BD100AC0A58 /* Coins 3.mp3 */; };
+		E7ACE8D51CEB8BD100AC0A58 /* digi_error_short1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8CD1CEB8BD100AC0A58 /* digi_error_short1.wav */; };
+		E7ACE8D61CEB8BD100AC0A58 /* Recruit 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E7ACE8CE1CEB8BD100AC0A58 /* Recruit 1.mp3 */; };
 		E7B394071C7813E700B9A7DA /* Particleboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B394051C78139200B9A7DA /* Particleboard.framework */; };
 		E7B394081C7813E700B9A7DA /* Particleboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7B394051C78139200B9A7DA /* Particleboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7B3943D1C7E33EE00B9A7DA /* Melee1Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */; };
@@ -143,6 +152,15 @@
 		E79401531CAF08040076FC1C /* BadMelee1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BadMelee1Info.plist; sourceTree = "<group>"; };
 		E79472B11CE0C92900ADCAD0 /* Archer1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Archer1Info.plist; sourceTree = "<group>"; };
 		E79472B31CE0C95F00ADCAD0 /* Archer1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Archer1.atlas; sourceTree = "<group>"; };
+		E7ACE8C51CEB86F400AC0A58 /* battle_sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = battle_sounds; sourceTree = "<group>"; };
+		E7ACE8C71CEB8BD100AC0A58 /* BagOpen 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BagOpen 1.mp3"; sourceTree = "<group>"; };
+		E7ACE8C81CEB8BD100AC0A58 /* click_enterA_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_enterA_1.wav; sourceTree = "<group>"; };
+		E7ACE8C91CEB8BD100AC0A58 /* click_enterB_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_enterB_1.wav; sourceTree = "<group>"; };
+		E7ACE8CA1CEB8BD100AC0A58 /* Coins 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Coins 1.mp3"; sourceTree = "<group>"; };
+		E7ACE8CB1CEB8BD100AC0A58 /* Coins 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Coins 2.mp3"; sourceTree = "<group>"; };
+		E7ACE8CC1CEB8BD100AC0A58 /* Coins 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Coins 3.mp3"; sourceTree = "<group>"; };
+		E7ACE8CD1CEB8BD100AC0A58 /* digi_error_short1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digi_error_short1.wav; sourceTree = "<group>"; };
+		E7ACE8CE1CEB8BD100AC0A58 /* Recruit 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Recruit 1.mp3"; sourceTree = "<group>"; };
 		E7B394051C78139200B9A7DA /* Particleboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Particleboard.framework; path = "../../../Library/Developer/Xcode/DerivedData/Particleboard-evhemslkpnponvhfactqjnukksgb/Build/Products/Debug-iphoneos/Particleboard.framework"; sourceTree = "<group>"; };
 		E7B3943C1C7E33EE00B9A7DA /* Melee1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Melee1Info.plist; sourceTree = "<group>"; };
 		E7B3943E1C7E354800B9A7DA /* SwitchBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwitchBoard.framework; path = "../../../Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/SwitchBoard.framework"; sourceTree = "<group>"; };
@@ -241,6 +259,7 @@
 		E74CD1111C77C747002CFCEC /* FKExample */ = {
 			isa = PBXGroup;
 			children = (
+				E7ACE8C41CEB86ED00AC0A58 /* Sounds */,
 				E738BFCD1CE5F09E00A89C07 /* Assets */,
 				E7F345091CA4DFEE00525966 /* Units */,
 				E7F345071CA4DFC100525966 /* Tests */,
@@ -280,6 +299,22 @@
 				E74CD1381C77C747002CFCEC /* Info.plist */,
 			);
 			path = FKExampleUITests;
+			sourceTree = "<group>";
+		};
+		E7ACE8C41CEB86ED00AC0A58 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E7ACE8C71CEB8BD100AC0A58 /* BagOpen 1.mp3 */,
+				E7ACE8C81CEB8BD100AC0A58 /* click_enterA_1.wav */,
+				E7ACE8C91CEB8BD100AC0A58 /* click_enterB_1.wav */,
+				E7ACE8CA1CEB8BD100AC0A58 /* Coins 1.mp3 */,
+				E7ACE8CB1CEB8BD100AC0A58 /* Coins 2.mp3 */,
+				E7ACE8CC1CEB8BD100AC0A58 /* Coins 3.mp3 */,
+				E7ACE8CD1CEB8BD100AC0A58 /* digi_error_short1.wav */,
+				E7ACE8CE1CEB8BD100AC0A58 /* Recruit 1.mp3 */,
+				E7ACE8C51CEB86F400AC0A58 /* battle_sounds */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		E7F345071CA4DFC100525966 /* Tests */ = {
@@ -466,6 +501,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7ACE8C61CEB86F400AC0A58 /* battle_sounds in Resources */,
 				E7CBE3311CDD9AB400AA4081 /* Melee2Info.plist in Resources */,
 				E722D4751C97AEF500AAA43B /* Melee1.atlas in Resources */,
 				E738BFC81CE50E8B00A89C07 /* Trebuchet.atlas in Resources */,
@@ -474,22 +510,30 @@
 				E74CD1151C77C747002CFCEC /* GameScene.sks in Resources */,
 				E79401541CAF08040076FC1C /* BadMelee1Info.plist in Resources */,
 				E738BFD21CE5F26B00A89C07 /* MyParticle.sks in Resources */,
+				E7ACE8D11CEB8BD100AC0A58 /* click_enterB_1.wav in Resources */,
 				E7B3943D1C7E33EE00B9A7DA /* Melee1Info.plist in Resources */,
 				E7B394431C7E37B900B9A7DA /* Loading.sks in Resources */,
 				E738BFCF1CE5F0A600A89C07 /* particle_Haste.sks in Resources */,
 				E79472B21CE0C92900ADCAD0 /* Archer1Info.plist in Resources */,
 				E7CBE32F1CDD9AAE00AA4081 /* Melee2.atlas in Resources */,
+				E7ACE8D51CEB8BD100AC0A58 /* digi_error_short1.wav in Resources */,
 				E7C4D3AB1C9CFF1200D1B7D8 /* Test.atlas in Resources */,
+				E7ACE8CF1CEB8BD100AC0A58 /* BagOpen 1.mp3 in Resources */,
+				E7ACE8D01CEB8BD100AC0A58 /* click_enterA_1.wav in Resources */,
 				E74CD1211C77C747002CFCEC /* LaunchScreen.storyboard in Resources */,
 				E74CD11E1C77C747002CFCEC /* Assets.xcassets in Resources */,
 				E764A32E1CE33F2400576B56 /* ActionBarNode.sks in Resources */,
+				E7ACE8D61CEB8BD100AC0A58 /* Recruit 1.mp3 in Resources */,
 				E74CD11C1C77C747002CFCEC /* Main.storyboard in Resources */,
+				E7ACE8D21CEB8BD100AC0A58 /* Coins 1.mp3 in Resources */,
 				E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */,
+				E7ACE8D41CEB8BD100AC0A58 /* Coins 3.mp3 in Resources */,
 				E738BFD31CE5F26B00A89C07 /* spark.png in Resources */,
 				E764A2E51CE1745300576B56 /* BadArcher1Info.plist in Resources */,
 				E79472B41CE0C95F00ADCAD0 /* Archer1.atlas in Resources */,
 				E738BFCC1CE51B8500A89C07 /* LeaderInfo.plist in Resources */,
 				E75B93281CD8007600DDC324 /* TestSelect.sks in Resources */,
+				E7ACE8D31CEB8BD100AC0A58 /* Coins 2.mp3 in Resources */,
 				E79401521CAF07F50076FC1C /* BadMelee1.atlas in Resources */,
 				E74F1B521C8D26020061F104 /* BomurInfo.plist in Resources */,
 				E738BFC61CE50E5A00A89C07 /* TrebuchetInfo.plist in Resources */,
