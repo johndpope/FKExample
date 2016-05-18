@@ -414,8 +414,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         /// Remove previous nodes
         for node in self.childNodeWithName("World")!.children {
-            print(node.name)
-            if node.name != "obstacles" && node.name != "bg" {
+            if node.name != "obstacles" && node.name != "bg" && node.name != "flee" {
                 node.removeFromParent()
             }
         }
