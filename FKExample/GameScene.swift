@@ -167,7 +167,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: Utility
     
-    func createSquadFromInstructions(instructions:TestInstructions, position:CGPoint = CGPoint(x:1100, y:768)) {
+    func createSquadFromInstructions(instructions:TestInstructions, position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1) {
         var formation = FKFormationComponent.Arrangement.Grid
         if instructions.selectedFriendlyFormation == "Triangle" {
             formation = FKFormationComponent.Arrangement.Triangle
@@ -179,16 +179,17 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         self.createSquadWithHero(
             instructions.selectedFriendly!,
-            currentUnits:size,
+            currentUnits:instructions.selectedFriendlySize,
             maxUnits:size,
             formation: formation,
             hero: instructions.selectedFriendlyHero,
-            position:position)
+            position:position,
+            heading:heading)
         
 
     }
     
-    func createEnemySquadFromInstructions(instructions:TestInstructions, position:CGPoint) {
+    func createEnemySquadFromInstructions(instructions:TestInstructions, position:CGPoint, heading:Float = -1) {
         var formation = FKFormationComponent.Arrangement.Grid
         if instructions.selectedEnemyFormation == "Triangle" {
             formation = FKFormationComponent.Arrangement.Triangle
@@ -201,12 +202,13 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         self.createSquadWithHero(
             instructions.selectedEnemy!,
-            currentUnits:size,
+            currentUnits:instructions.selectedEnemySize,
             maxUnits:size,
             formation: formation,
             hero: instructions.selectedEnemyHero,
             controller: .EnemyNPC,
-            position:position)
+            position:position,
+            heading:heading)
         
         
     }

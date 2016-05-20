@@ -564,7 +564,7 @@
 			<key>name</key>
 			<string>Rocks</string>
 			<key>physics</key>
-			<false/>
+			<true/>
 			<key>offsetX</key>
 			<integer>0</integer>
 			<key>offsetY</key>
