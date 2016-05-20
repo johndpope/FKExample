@@ -4,11 +4,15 @@
 <dict>
 	<key>BomurSmash</key>
 	<dict>
+		<key>specialty</key>
+		<string>Lunge</string>
+		<key>cooldown</key>
+		<integer>10</integer>
 		<key>validations</key>
 		<array>
 			<dict>
 				<key>type</key>
-				<string>NotInCombat</string>
+				<string>Engaged</string>
 			</dict>
 		</array>
 		<key>sounds</key>
@@ -40,7 +44,7 @@
 			<integer>7</integer>
 		</dict>
 		<key>behavior</key>
-		<string>Melee</string>
+		<string>Instant</string>
 		<key>iconDesc</key>
 		<string>Smash!</string>
 		<key>iconName</key>

@@ -82,7 +82,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         instructions.selectedEnemy = "BadMelee1"
         self.setupNextTest(instructions)
         let leader = self.createArmyLeader()
-        self.addAbilitiesToSquad(leader, filter:["Haste"])
+        //self.addAbilitiesToSquad(leader, filter:["Haste"])
         self.setupGUI(leader)
     }
     
@@ -228,7 +228,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 columns: 1,
                 spacing: 0,
                 pathfinder : self,
-                herladryDelegate:self))
+                herladryDelegate:self,
+                abilities:self.getAbilitiesForSquad("Leader")))
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
