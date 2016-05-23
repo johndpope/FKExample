@@ -43,14 +43,7 @@ class EngageMovingTargetTest : Testable {
     }
     
     func tapped(location: CGPoint) {
-        var instructions = CommandInstructions()
-        instructions.targetSquad = self.scene!.squads[1]
-        if let ability = self.scene?.squads[0].abilitiesComponent.abilities.filter({$0.name == "Attack"}).first {
-            self.scene?.squads[0].abilitiesComponent.runAbility(ability.ability, instructions: instructions)
-        }
-        if let ability = self.scene?.squads[0].abilitiesComponent.abilities.filter({$0.name == "Shoot"}).first {
-            self.scene?.squads[0].abilitiesComponent.runAbility(ability.ability, instructions: instructions)
-        }
+
     }
     
     func teardownTest() {

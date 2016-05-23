@@ -382,6 +382,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) && !self.testButtonTapped(location) {
                 let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
                 self.actionBar?.handleInput(realLocation)
+                self.currentTest?.tapped(location)
             }
         }
     }

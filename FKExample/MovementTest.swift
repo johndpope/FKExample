@@ -29,17 +29,11 @@ class MovementTest : Testable {
     func setupTest(instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
-        self.scene?.addAbilitiesToSquad(self.scene!.squads[0])
 
     }
     
     func tapped(location: CGPoint) {
     
-        let moveAbility = self.scene?.squads[0].abilitiesComponent.abilities.filter({$0.name == "Move"}).first
-        var instructions = CommandInstructions()
-        instructions.desiredPosition = location
-        self.scene?.squads[0].abilitiesComponent.runAbility(moveAbility!.ability, instructions: instructions)
-            
     }
     
     func teardownTest() {

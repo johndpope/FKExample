@@ -269,6 +269,13 @@ class TestSelect : SKNode {
     }
     
     func continuePressed() {
+        
+        /// Hard coded fixes
+        if self.instructions?.selectedFriendly == "Trebuchet" {
+            self.instructions?.selectedFriendlySize = 1
+            self.instructions?.selectedFriendlyHero = nil
+        }
+       
         self.callback(instructions: self.instructions!)
         self.root.removeFromParent()
     }
