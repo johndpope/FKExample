@@ -1,0 +1,6 @@
+framework module RenderReduce {
+    umbrella header "RenderReduce.h"
+
+    export *
+    module * { export * }
+}

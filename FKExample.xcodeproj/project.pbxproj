@@ -42,6 +42,7 @@
 		E764A32C1CE33ECC00576B56 /* WarGUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E764A3291CE339B300576B56 /* WarGUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E764A32E1CE33F2400576B56 /* ActionBarNode.sks in Resources */ = {isa = PBXBuildFile; fileRef = E764A32D1CE33F2400576B56 /* ActionBarNode.sks */; };
 		E7735B1A1CAB7D2600B684CF /* EngageMovingTargetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */; };
+		E77C230A1D1981A0006605C2 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E77C23091D1981A0006605C2 /* dummy.cpp */; };
 		E77DE25D1CA997C800771803 /* CatchingUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DE25C1CA997C800771803 /* CatchingUpTest.swift */; };
 		E79401521CAF07F50076FC1C /* BadMelee1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E79401511CAF07F50076FC1C /* BadMelee1.atlas */; };
 		E79401541CAF08040076FC1C /* BadMelee1Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E79401531CAF08040076FC1C /* BadMelee1Info.plist */; };
@@ -64,8 +65,13 @@
 		E7B394431C7E37B900B9A7DA /* Loading.sks in Resources */ = {isa = PBXBuildFile; fileRef = E7B394421C7E37B900B9A7DA /* Loading.sks */; };
 		E7C4D3A81C9CFE2800D1B7D8 /* Navmesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4D3A61C9CFE2800D1B7D8 /* Navmesh.swift */; };
 		E7C4D3A91C9CFE2800D1B7D8 /* MeshObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */; };
-		E7C4D3AB1C9CFF1200D1B7D8 /* Test.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */; };
 		E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */; };
+		E7C704391D12F44E00B3A1DD /* RenderReduce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C704371D12F43B00B3A1DD /* RenderReduce.framework */; };
+		E7C7043A1D12F44E00B3A1DD /* RenderReduce.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C704371D12F43B00B3A1DD /* RenderReduce.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7C704471D12F58000B3A1DD /* Test_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C704431D12F58000B3A1DD /* Test_01.jpg */; };
+		E7C704481D12F58000B3A1DD /* Test_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C704441D12F58000B3A1DD /* Test_02.jpg */; };
+		E7C704491D12F58000B3A1DD /* Test_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C704451D12F58000B3A1DD /* Test_03.jpg */; };
+		E7C7044A1D12F58000B3A1DD /* Test_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C704461D12F58000B3A1DD /* Test_04.jpg */; };
 		E7CBE32F1CDD9AAE00AA4081 /* Melee2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */; };
 		E7CBE3311CDD9AB400AA4081 /* Melee2Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7CBE3301CDD9AB400AA4081 /* Melee2Info.plist */; };
 		E7F3450C1CA4E09500525966 /* Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450B1CA4E09500525966 /* Testable.swift */; };
@@ -104,6 +110,7 @@
 				E738BFC41CE3B70200A89C07 /* StrongRoom.framework in Embed Frameworks */,
 				E7B394081C7813E700B9A7DA /* Particleboard.framework in Embed Frameworks */,
 				E7B394411C7E362E00B9A7DA /* SwitchBoard.framework in Embed Frameworks */,
+				E7C7043A1D12F44E00B3A1DD /* RenderReduce.framework in Embed Frameworks */,
 				E764A32C1CE33ECC00576B56 /* WarGUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -147,6 +154,8 @@
 		E764A3291CE339B300576B56 /* WarGUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WarGUI.framework; path = "../../../Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/WarGUI.framework"; sourceTree = "<group>"; };
 		E764A32D1CE33F2400576B56 /* ActionBarNode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ActionBarNode.sks; sourceTree = "<group>"; };
 		E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngageMovingTargetTest.swift; sourceTree = "<group>"; };
+		E77C23081D1981A0006605C2 /* FKExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FKExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		E77C23091D1981A0006605C2 /* dummy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dummy.cpp; sourceTree = "<group>"; };
 		E77DE25C1CA997C800771803 /* CatchingUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchingUpTest.swift; sourceTree = "<group>"; };
 		E79401511CAF07F50076FC1C /* BadMelee1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BadMelee1.atlas; sourceTree = "<group>"; };
 		E79401531CAF08040076FC1C /* BadMelee1Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BadMelee1Info.plist; sourceTree = "<group>"; };
@@ -167,8 +176,12 @@
 		E7B394421C7E37B900B9A7DA /* Loading.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Loading.sks; sourceTree = "<group>"; };
 		E7C4D3A61C9CFE2800D1B7D8 /* Navmesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Navmesh.swift; path = FKExample/Navmesh.swift; sourceTree = "<group>"; };
 		E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeshObstacle.swift; path = FKExample/MeshObstacle.swift; sourceTree = "<group>"; };
-		E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Test.atlas; sourceTree = "<group>"; };
 		E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestLevel_obstacles.plist; sourceTree = "<group>"; };
+		E7C704371D12F43B00B3A1DD /* RenderReduce.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RenderReduce.framework; sourceTree = "<group>"; };
+		E7C704431D12F58000B3A1DD /* Test_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Test_01.jpg; sourceTree = "<group>"; };
+		E7C704441D12F58000B3A1DD /* Test_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Test_02.jpg; sourceTree = "<group>"; };
+		E7C704451D12F58000B3A1DD /* Test_03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Test_03.jpg; sourceTree = "<group>"; };
+		E7C704461D12F58000B3A1DD /* Test_04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Test_04.jpg; sourceTree = "<group>"; };
 		E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Melee2.atlas; sourceTree = "<group>"; };
 		E7CBE3301CDD9AB400AA4081 /* Melee2Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Melee2Info.plist; sourceTree = "<group>"; };
 		E7F3450B1CA4E09500525966 /* Testable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testable.swift; sourceTree = "<group>"; };
@@ -188,6 +201,7 @@
 				E74CD1461C77C776002CFCEC /* FormationKit.framework in Frameworks */,
 				E7B394071C7813E700B9A7DA /* Particleboard.framework in Frameworks */,
 				E7B394401C7E362E00B9A7DA /* SwitchBoard.framework in Frameworks */,
+				E7C704391D12F44E00B3A1DD /* RenderReduce.framework in Frameworks */,
 				E764A32A1CE339B300576B56 /* WarGUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +229,10 @@
 		E738BFCD1CE5F09E00A89C07 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E7C704431D12F58000B3A1DD /* Test_01.jpg */,
+				E7C704441D12F58000B3A1DD /* Test_02.jpg */,
+				E7C704451D12F58000B3A1DD /* Test_03.jpg */,
+				E7C704461D12F58000B3A1DD /* Test_04.jpg */,
 				E738BFCE1CE5F0A600A89C07 /* particle_Haste.sks */,
 				E738BFD01CE5F26B00A89C07 /* MyParticle.sks */,
 				E738BFD11CE5F26B00A89C07 /* spark.png */,
@@ -238,6 +256,7 @@
 				E74CD12A1C77C747002CFCEC /* FKExampleTests */,
 				E74CD1351C77C747002CFCEC /* FKExampleUITests */,
 				E74CD1101C77C747002CFCEC /* Products */,
+				E7C704371D12F43B00B3A1DD /* RenderReduce.framework */,
 				E738BFC11CE3B6F300A89C07 /* StrongRoom.framework */,
 				E74CD1441C77C771002CFCEC /* FormationKit.framework */,
 				E7B3943E1C7E354800B9A7DA /* SwitchBoard.framework */,
@@ -259,6 +278,7 @@
 		E74CD1111C77C747002CFCEC /* FKExample */ = {
 			isa = PBXGroup;
 			children = (
+				E77C23091D1981A0006605C2 /* dummy.cpp */,
 				E7ACE8C41CEB86ED00AC0A58 /* Sounds */,
 				E738BFCD1CE5F09E00A89C07 /* Assets */,
 				E7F345091CA4DFEE00525966 /* Units */,
@@ -279,6 +299,7 @@
 				E75B93271CD8007600DDC324 /* TestSelect.sks */,
 				E75B93291CD80A7800DDC324 /* TestSelect.swift */,
 				E764A32D1CE33F2400576B56 /* ActionBarNode.sks */,
+				E77C23081D1981A0006605C2 /* FKExample-Bridging-Header.h */,
 			);
 			path = FKExample;
 			sourceTree = "<group>";
@@ -347,7 +368,6 @@
 				E7CBE32E1CDD9AAE00AA4081 /* Melee2.atlas */,
 				E79401511CAF07F50076FC1C /* BadMelee1.atlas */,
 				E722D4741C97AEF500AAA43B /* Melee1.atlas */,
-				E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */,
 				E738BFCB1CE51B8500A89C07 /* LeaderInfo.plist */,
 				E738BFC51CE50E5A00A89C07 /* TrebuchetInfo.plist */,
 				E764A2E41CE1745300576B56 /* BadArcher1Info.plist */,
@@ -459,7 +479,7 @@
 		E74CD1071C77C747002CFCEC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Phalanx Studios";
 				TargetAttributes = {
@@ -503,21 +523,24 @@
 			files = (
 				E7ACE8C61CEB86F400AC0A58 /* battle_sounds in Resources */,
 				E7CBE3311CDD9AB400AA4081 /* Melee2Info.plist in Resources */,
+				E7C704491D12F58000B3A1DD /* Test_03.jpg in Resources */,
+				E7C704471D12F58000B3A1DD /* Test_01.jpg in Resources */,
 				E722D4751C97AEF500AAA43B /* Melee1.atlas in Resources */,
 				E738BFC81CE50E8B00A89C07 /* Trebuchet.atlas in Resources */,
+				E7C704481D12F58000B3A1DD /* Test_02.jpg in Resources */,
 				E764A2E31CE1743B00576B56 /* BadArcher1.atlas in Resources */,
 				E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */,
 				E74CD1151C77C747002CFCEC /* GameScene.sks in Resources */,
 				E79401541CAF08040076FC1C /* BadMelee1Info.plist in Resources */,
 				E738BFD21CE5F26B00A89C07 /* MyParticle.sks in Resources */,
 				E7ACE8D11CEB8BD100AC0A58 /* click_enterB_1.wav in Resources */,
+				E7C7044A1D12F58000B3A1DD /* Test_04.jpg in Resources */,
 				E7B3943D1C7E33EE00B9A7DA /* Melee1Info.plist in Resources */,
 				E7B394431C7E37B900B9A7DA /* Loading.sks in Resources */,
 				E738BFCF1CE5F0A600A89C07 /* particle_Haste.sks in Resources */,
 				E79472B21CE0C92900ADCAD0 /* Archer1Info.plist in Resources */,
 				E7CBE32F1CDD9AAE00AA4081 /* Melee2.atlas in Resources */,
 				E7ACE8D51CEB8BD100AC0A58 /* digi_error_short1.wav in Resources */,
-				E7C4D3AB1C9CFF1200D1B7D8 /* Test.atlas in Resources */,
 				E7ACE8CF1CEB8BD100AC0A58 /* BagOpen 1.mp3 in Resources */,
 				E7ACE8D01CEB8BD100AC0A58 /* click_enterA_1.wav in Resources */,
 				E74CD1211C77C747002CFCEC /* LaunchScreen.storyboard in Resources */,
@@ -561,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E77C230A1D1981A0006605C2 /* dummy.cpp in Sources */,
 				E7F3450E1CA4E0FC00525966 /* MovementTest.swift in Sources */,
 				E7C4D3A91C9CFE2800D1B7D8 /* MeshObstacle.swift in Sources */,
 				E74CD1171C77C747002CFCEC /* GameScene.swift in Sources */,
@@ -671,10 +695,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"Texture Atlas Maximum Size" = 4096x4096;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -712,10 +738,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"Texture Atlas Maximum Size" = 4096x4096;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -723,6 +751,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -731,12 +760,16 @@
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/StrongRoom-ccnbonfcsfimyagfmnnongjmnche/Build/Products/Debug-iphoneos/",
+					"$(PROJECT_DIR)",
+					/Users/ryancampbell/Documents/Games/FKExample/,
 				);
 				INFOPLIST_FILE = FKExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Phalanx.FKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FKExample/FKExample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -744,6 +777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -752,12 +786,16 @@
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/StrongRoom-ccnbonfcsfimyagfmnnongjmnche/Build/Products/Debug-iphoneos/",
+					"$(PROJECT_DIR)",
+					/Users/ryancampbell/Documents/Games/FKExample/,
 				);
 				INFOPLIST_FILE = FKExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Phalanx.FKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FKExample/FKExample-Bridging-Header.h";
 			};
 			name = Release;
 		};

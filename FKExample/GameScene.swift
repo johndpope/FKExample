@@ -13,6 +13,7 @@ import SwitchBoard
 import Particleboard
 import WarGUI
 import StrongRoom
+import RenderReduce
 
 struct TestDefinition {
     
@@ -107,26 +108,99 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     /// Setup an array of child SKNodes to hold different visual elements
     override func buildWorldLayers() {
         
-        self.cameraBounds = CameraBounds(lower: 100, left: 0, upper: 0, right: 0)
+
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            self.size = CGSize(width: 2048, height: 1536)
+        /// Add background images
+        if let view = self.view {
+            
+            let options1 : NSDictionary = [
+                "render" : "reduce",
+                "filename" : "Test_01.jpg",
+                "validate" : "original",
+                "dumpIntermediate" : true
+            ]
+            let options2 : NSDictionary = [
+                "render" : "reduce",
+                "filename" : "Test_02.jpg",
+                "validate" : "original",
+                "dumpIntermediate" : true
+            ]
+            let options3 : NSDictionary = [
+                "render" : "reduce",
+                "filename" : "Test_03.jpg",
+                "validate" : "original",
+                "dumpIntermediate" : true
+            ]
+            let options4 : NSDictionary = [
+                "render" : "reduce",
+                "filename" : "Test_04.jpg",
+                "validate" : "original",
+                "dumpIntermediate" : true
+            ]
+            
+            let results = NSMutableDictionary()
+            
+            if let texture : RRTexture = RRTexture.encodeTexture(options1 as [NSObject : AnyObject], results: results) {
+                
+                let bg = RRNode.makeSpriteNode(view, texture: texture)
+                bg.zPosition = 1
+
+                bg.position = CGPoint(x:-700, y:470)
+                self.childNodeWithName("World/bg")?.addChild(bg)
+                
+                let results = NSMutableDictionary()
+                
+                if let texture2 : RRTexture = RRTexture.encodeTexture(options2 as [NSObject : AnyObject], results: results) {
+                    
+                    let bg = RRNode.makeSpriteNode(view, texture: texture2)
+                    bg.zPosition = 1
+
+                    bg.position = CGPoint(x:700, y:470)
+                    self.childNodeWithName("World/bg")?.addChild(bg)
+                    
+                    let results = NSMutableDictionary()
+                    
+                    if let texture3 : RRTexture = RRTexture.encodeTexture(options3 as [NSObject : AnyObject], results: results) {
+                        
+                        let bg = RRNode.makeSpriteNode(view, texture: texture3)
+                        bg.zPosition = 1
+                        bg.position = CGPoint(x:-700, y:-470)
+                        self.childNodeWithName("World/bg")?.addChild(bg)
+                        
+                        let results = NSMutableDictionary()
+                        
+                        if let texture4 : RRTexture = RRTexture.encodeTexture(options4 as [NSObject : AnyObject], results: results) {
+                            
+                            let bg = RRNode.makeSpriteNode(view, texture: texture4)
+                            bg.zPosition = 1
+
+                            bg.position = CGPoint(x:700, y:-470)
+                            self.childNodeWithName("World/bg")?.addChild(bg)
+                        
+                            self.cameraBounds = CameraBounds(lower: 100, left: 0, upper: 0, right: 0)
+                            
+                            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                                self.size = CGSize(width: 2048, height: 1536)
+                            }
+                            
+                            super.buildWorldLayers()
+                            
+                            /// Set the camera as the scenes camera. Some scenes work without this lines, others don't.
+                            /// For example, LevelScene worked without it, but Camp scene did not
+                            self.camera = self.childNodeWithName("Camera") as? SKCameraNode
+                            
+                            self.setCameraBounds(self.cameraBounds)
+                            
+                            /// manually create other SKNode layers
+                            let ui = WGContainerNode()
+                            ui.name = "UI"
+                            self.camera!.addChild(ui)
+                            ui.initWithDefaults(self)
+                            self.ui = ui
+                        }}}}
+
+            
         }
-        
-        super.buildWorldLayers()
-        
-        /// Set the camera as the scenes camera. Some scenes work without this lines, others don't.
-        /// For example, LevelScene worked without it, but Camp scene did not
-        self.camera = self.childNodeWithName("Camera") as? SKCameraNode
-        
-        self.setCameraBounds(self.cameraBounds)
-        
-        /// manually create other SKNode layers
-        let ui = WGContainerNode()
-        ui.name = "UI"
-        self.camera!.addChild(ui)
-        ui.initWithDefaults(self)
-        self.ui = ui
         
     }
     
@@ -490,6 +564,14 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             let pos = self.convertPoint(squad.agent.actualPosition, fromNode:squad.layer!)
             camera.panToPoint(pos)
         }
+    }
+    
+    func heraldryLongPress(squad: FKSquadEntity) {
+        /// do nothing
+    }
+    
+    func heraldryTapStarted(squad: FKSquadEntity) {
+        /// do nothing
     }
     
     func lockToPositionWhenOffscreen(desiredPosition: CGPoint, node: SKSpriteNode) -> CGPoint? {
