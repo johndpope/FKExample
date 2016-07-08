@@ -26,12 +26,12 @@ class ReformOnUnitDeathTest : Testable {
         self.scene = scene
     }
     
-    func setupTest(instructions:TestInstructions) {
+    func setupTest(_ instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
     }
     
-    func tapped(location: CGPoint) {
+    func tapped(_ location: CGPoint) {
         let rand = Int.random(min: 0, max: (self.scene?.squads[0].units.count)! - 1)
         let unit = self.scene?.squads[0].units[rand]
         unit!.componentForClass(FKDeathComponent)?.beginDeath()

@@ -12,26 +12,26 @@ import SwitchBoard
 
 enum MeshSize : Float {
     case
-    Individual = 32,
-    Small = 80,
-    Medium = 130,
-    Large = 180,
-    XLarge = 230
+    individual = 32,
+    small = 80,
+    medium = 130,
+    large = 180,
+    xLarge = 230
     
-    static func getAppropriateSize(radius:Float) -> MeshSize {
-        if(radius >= MeshSize.Large.rawValue) {
-            return MeshSize.XLarge
+    static func getAppropriateSize(_ radius:Float) -> MeshSize {
+        if(radius >= MeshSize.large.rawValue) {
+            return MeshSize.xLarge
         }
-        if(radius >= MeshSize.Medium.rawValue) {
-            return MeshSize.Large
+        if(radius >= MeshSize.medium.rawValue) {
+            return MeshSize.large
         }
-        if(radius >= MeshSize.Small.rawValue) {
-            return MeshSize.Medium
+        if(radius >= MeshSize.small.rawValue) {
+            return MeshSize.medium
         }
-        if(radius >= MeshSize.Individual.rawValue) {
-            return MeshSize.Small
+        if(radius >= MeshSize.individual.rawValue) {
+            return MeshSize.small
         }
-        return MeshSize.Individual
+        return MeshSize.individual
     }
 }
 
@@ -40,11 +40,11 @@ Extension of [GKObstacleGraph](https://developer.apple.com/library/prerelease/io
 that has built in utility methods for pathfinding. For example, if the desired point is inside of an obstacle, you can optionally find the 
 closest point on the graph.
 */
-class Navmesh : GKObstacleGraph {
+class Navmesh : GKObstacleGraph<GKGraphNode2D> {
     
     var meshObstacles = [MeshObstacle]()
     
-    var meshes = Dictionary<MeshSize, GKObstacleGraph>()
+    var meshes = Dictionary<MeshSize, GKObstacleGraph<GKGraphNode2D>>()
     
     // MARK: Initializing a Navmesh
     
@@ -65,6 +65,7 @@ class Navmesh : GKObstacleGraph {
         //let obstacleSpriteNodes: [SKSpriteNode] = scene["World/obstacles/*"] as! [SKSpriteNode]
         //obstacles = SKNode.obstaclesFromNodePhysicsBodies(obstacleSpriteNodes)
         super.init(obstacles: obstacles, bufferRadius: bufferRadius)
+
         self.removeNodesOutsideOfSceneBounds(scene)
         
         self.removeNodesThatArentConnected()
@@ -79,20 +80,24 @@ class Navmesh : GKObstacleGraph {
     
     /// For each level, multiple navmeshes will be made. The different buffer radius will help units of different sizing navigate.
     /// Call this function when the obstacle have already been loaded
-    override init(obstacles:[GKPolygonObstacle], bufferRadius:Float) {
-        super.init(obstacles: obstacles, bufferRadius: bufferRadius)
+    override init(obstacles:[GKPolygonObstacle], bufferRadius:Float, nodeClass:AnyClass) {
+        super.init(obstacles: obstacles, bufferRadius: bufferRadius, nodeClass:nodeClass)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     /// Standard helper to load a plist file
-    class func loadPListData(file:String) -> NSDictionary {
+    class func loadPListData(_ file:String) -> NSDictionary {
         let lookup = "\(file)_obstacles"
-        let path = NSBundle.mainBundle().pathForResource(lookup, ofType: "plist")
+        let path = Bundle.main.pathForResource(lookup, ofType: "plist")
         let pListData = NSDictionary(contentsOfFile:path!)
         return pListData!
     }
     
     /// Loops through each item in the plist file and creates a sprite with the appropriate physcis shape based off of the data.
-    class func buildObstacles(data:NSDictionary, scene:GameScene, bufferRadius:CGFloat) -> [MeshObstacle] {
+    class func buildObstacles(_ data:NSDictionary, scene:GameScene, bufferRadius:CGFloat) -> [MeshObstacle] {
         
         /// Drill down to the fixtures object
         let bodies = data["bodies"] as! NSDictionary
@@ -101,12 +106,12 @@ class Navmesh : GKObstacleGraph {
         var ret = [MeshObstacle]()
         
         /// Each fixture contains multiple polygons. A fixture would be two unconnected obstacles. A polygon would be all convex shapes that make one obstacle.
-        for (_, fixture) in fixtures.enumerate() {
+        for (_, fixture) in fixtures.enumerated() {
             let polygons = fixture["polygons"] as! Array<Array<String>>
             if polygons.count > 1 {
                 print("PhysicsEditor split the polyogn into multiple triangles")
             }
-            for (_, polygon) in polygons.enumerate() {
+            for (_, polygon) in polygons.enumerated() {
                 
                 let mesh = MeshObstacle(polygon: polygon, scene:scene, buffer:bufferRadius)
                 ret.append(mesh)
@@ -120,12 +125,12 @@ class Navmesh : GKObstacleGraph {
     }
     
     /// When the graph is intiialized, we'll remove all nodes outside of the scene to prevent units from walking off of the scene.
-    func removeNodesOutsideOfSceneBounds(scene:GameScene) {
-        if let bg = scene.childNodeWithName("World/bg") {
+    func removeNodesOutsideOfSceneBounds(_ scene:GameScene) {
+        if let bg = scene.childNode(withName: "World/bg") {
             var nodesOffScene = [GKGraphNode2D]()
             for node in self.nodes as! [GKGraphNode2D] {
-                let worldPosition = bg.convertPoint(CGPoint(node.position), fromNode: scene)
-                if(!bg.containsPoint(worldPosition)) {
+                let worldPosition = bg.convert(CGPoint(node.position), from: scene)
+                if(!bg.contains(worldPosition)) {
                     nodesOffScene.append(node)
                 }
             }
@@ -137,16 +142,16 @@ class Navmesh : GKObstacleGraph {
     
     /// Attempts to find a path through the graph while ignoring any obstacles you wish. Obstacles apply to the placement of the start
     /// and end node (i.e.: a unit lies inside of an obstacle and needs to get out).
-    func findPath(start:CGPoint, end:CGPoint, ignoringObstacles:[GKPolygonObstacle] = [], radius:Float, scene:GameScene, size:Float = 32) -> GKPath? {
+    func findPath(_ start:CGPoint, end:CGPoint, ignoringObstacles:[GKPolygonObstacle] = [], radius:Float, scene:GameScene, size:Float = 32) -> GKPath? {
         let startNode = GKGraphNode2D(point:float2(start))
         let endNode = GKGraphNode2D(point:float2(end))
         //let targetMesh = self.meshes[MeshSize.getAppropriateSize(size)]!
         
-        self.connectNodeUsingObstacles(startNode, ignoringObstacles: ignoringObstacles)
-        self.connectNodeUsingObstacles(endNode, ignoringObstacles: ignoringObstacles)
+        self.connectNode(usingObstacles: startNode, ignoring: ignoringObstacles)
+        self.connectNode(usingObstacles: endNode, ignoring: ignoringObstacles)
         
         if(!startNode.connectedNodes.isEmpty && !endNode.connectedNodes.isEmpty) {
-            let pathNodes = self.findPathFromNode(startNode, toNode: endNode) as! [GKGraphNode2D]
+            let pathNodes = self.findPath(from: startNode, to: endNode) as! [GKGraphNode2D]
             let path = GKPath(graphNodes: pathNodes, radius: radius)
             self.removeNodes([startNode, endNode])
             return path
@@ -158,28 +163,28 @@ class Navmesh : GKObstacleGraph {
     }
     
     /// Attempts to find a path even if the start and end point lie within a buffer region.
-    func findPathIngoringBuffer(start:CGPoint, end:CGPoint, radius:Float, scene:GameScene, size:Float = 32) -> (path:GKPath, nodes:[GKGraphNode2D])? {
+    func findPathIngoringBuffer(_ start:CGPoint, end:CGPoint, radius:Float, scene:GameScene, size:Float = 32) -> (path:GKPath, nodes:[GKGraphNode2D])? {
         let startNode = GKGraphNode2D(point:float2(start))
         let endNode = GKGraphNode2D(point:float2(end))
         //let targetMesh = self.meshes[MeshSize.getAppropriateSize(size)]!
 
         /// First try to connect using ignore buffer
-        self.connectNodeUsingObstacles(startNode, ignoringBufferRadiusOfObstacles: self.getBuffersContainingPoint(float2(start)))
-        self.connectNodeUsingObstacles(endNode, ignoringBufferRadiusOfObstacles: self.getBuffersContainingPoint(float2(end)))
+        self.connectNode(usingObstacles: startNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(start)))
+        self.connectNode(usingObstacles: endNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(end)))
 
         /// If weve reached this point, buffer connection didnt work, so try to force connection to lowest cost node
         if startNode.connectedNodes.isEmpty {
             self.removeNodes([startNode])
-            self.connectNodeToLowestCostNode(startNode, bidirectional: true)
+            self.connectNode(toLowestCost: startNode, bidirectional: true)
         }
     
         if endNode.connectedNodes.isEmpty {
             self.removeNodes([endNode])
-            self.connectNodeToLowestCostNode(endNode, bidirectional: true)
+            self.connectNode(toLowestCost: endNode, bidirectional: true)
         }
         
         /// Should have connections by now, so find a path
-        if let pathNodes = self.findPathFromNode(startNode, toNode: endNode) as? [GKGraphNode2D] {
+        if let pathNodes = self.findPath(from: startNode, to: endNode) as? [GKGraphNode2D] {
             if(pathNodes.count > 1) {
                 self.removeNodes([startNode, endNode])
                 let path = GKPath(graphNodes: pathNodes, radius: radius)
@@ -204,7 +209,7 @@ class Navmesh : GKObstacleGraph {
     
     /// Determines if a point lies on an obstacle. If this doesn't perform well, we can loop through the MeshObstacles and call
     /// containsPoint() on each one. Expects world point
-    func pointIsValid(point:float2) -> Bool {
+    func pointIsValid(_ point:float2) -> Bool {
         for mesh in self.meshObstacles {
             if mesh.containsPoint(CGPoint(point)) {
                 return false
@@ -214,7 +219,7 @@ class Navmesh : GKObstacleGraph {
     }
     
     /// Builds a list of all buffer regions of obstacles containing a point. Used for ignoreBufferRadius when adding a GKGraphNode to the mesh.
-    func getBuffersContainingPoint(point:float2) -> [GKPolygonObstacle] {
+    func getBuffersContainingPoint(_ point:float2) -> [GKPolygonObstacle] {
         var ret = [GKPolygonObstacle]()
         for mesh in self.meshObstacles {
             if mesh.containsPointInBuffer(CGPoint(point)) {

@@ -19,6 +19,8 @@
 		E738BFCF1CE5F0A600A89C07 /* particle_Haste.sks in Resources */ = {isa = PBXBuildFile; fileRef = E738BFCE1CE5F0A600A89C07 /* particle_Haste.sks */; };
 		E738BFD21CE5F26B00A89C07 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = E738BFD01CE5F26B00A89C07 /* MyParticle.sks */; };
 		E738BFD31CE5F26B00A89C07 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E738BFD11CE5F26B00A89C07 /* spark.png */; };
+		E74233881D2FE5EB00D1F5D5 /* DeckKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74233861D2FE5D600D1F5D5 /* DeckKit.framework */; };
+		E74233891D2FE5EB00D1F5D5 /* DeckKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E74233861D2FE5D600D1F5D5 /* DeckKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7433DDA1CA9A41200AAA23E /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */; };
 		E7433DE41CA9BDDD00AAA23E /* Abilities.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7433DE31CA9BDDD00AAA23E /* Abilities.plist */; };
 		E7433DED1CAAF56700AAA23E /* 1v1FightTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */; };
@@ -100,6 +102,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E74233891D2FE5EB00D1F5D5 /* DeckKit.framework in Embed Frameworks */,
 				E74CD1471C77C776002CFCEC /* FormationKit.framework in Embed Frameworks */,
 				E738BFC41CE3B70200A89C07 /* StrongRoom.framework in Embed Frameworks */,
 				E7B394081C7813E700B9A7DA /* Particleboard.framework in Embed Frameworks */,
@@ -120,6 +123,7 @@
 		E738BFCE1CE5F0A600A89C07 /* particle_Haste.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = particle_Haste.sks; sourceTree = "<group>"; };
 		E738BFD01CE5F26B00A89C07 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		E738BFD11CE5F26B00A89C07 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		E74233861D2FE5D600D1F5D5 /* DeckKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeckKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/DeckKit-gnskwbgyvsbwkjcpyqgykkcfftyb/Build/Products/Debug-iphoneos/DeckKit.framework"; sourceTree = "<group>"; };
 		E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		E7433DE31CA9BDDD00AAA23E /* Abilities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Abilities.plist; sourceTree = "<group>"; };
 		E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 1v1FightTest.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 			files = (
 				E738BFC31CE3B70200A89C07 /* StrongRoom.framework in Frameworks */,
 				E74CD1461C77C776002CFCEC /* FormationKit.framework in Frameworks */,
+				E74233881D2FE5EB00D1F5D5 /* DeckKit.framework in Frameworks */,
 				E7B394071C7813E700B9A7DA /* Particleboard.framework in Frameworks */,
 				E7B394401C7E362E00B9A7DA /* SwitchBoard.framework in Frameworks */,
 				E764A32A1CE339B300576B56 /* WarGUI.framework in Frameworks */,
@@ -239,6 +244,7 @@
 				E74CD1351C77C747002CFCEC /* FKExampleUITests */,
 				E74CD1101C77C747002CFCEC /* Products */,
 				E738BFC11CE3B6F300A89C07 /* StrongRoom.framework */,
+				E74233861D2FE5D600D1F5D5 /* DeckKit.framework */,
 				E74CD1441C77C771002CFCEC /* FormationKit.framework */,
 				E7B3943E1C7E354800B9A7DA /* SwitchBoard.framework */,
 				E7B394051C78139200B9A7DA /* Particleboard.framework */,
@@ -460,18 +466,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Phalanx Studios";
 				TargetAttributes = {
 					E74CD10E1C77C747002CFCEC = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = RK3T9BYSJ8;
+						DevelopmentTeamName = "Ryan Campbell";
+						LastSwiftMigration = 0800;
 					};
 					E74CD1261C77C747002CFCEC = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = E74CD10E1C77C747002CFCEC;
 					};
 					E74CD1311C77C747002CFCEC = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = E74CD10E1C77C747002CFCEC;
 					};
 				};
@@ -731,12 +742,14 @@
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/StrongRoom-ccnbonfcsfimyagfmnnongjmnche/Build/Products/Debug-iphoneos/",
+					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/DeckKit-gnskwbgyvsbwkjcpyqgykkcfftyb/Build/Products/Debug-iphoneos/",
 				);
 				INFOPLIST_FILE = FKExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Phalanx.FKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -752,12 +765,15 @@
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/SwitchBoard-fudrnelmkuzmfvcfdpnlwciawfye/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/WarGUI-eqxxwkmqldzpgkbgrdouqcatezxn/Build/Products/Debug-iphoneos/",
 					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/StrongRoom-ccnbonfcsfimyagfmnnongjmnche/Build/Products/Debug-iphoneos/",
+					"/Users/ryancampbell/Library/Developer/Xcode/DerivedData/DeckKit-gnskwbgyvsbwkjcpyqgykkcfftyb/Build/Products/Debug-iphoneos/",
 				);
 				INFOPLIST_FILE = FKExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Phalanx.FKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -770,6 +786,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = phalanx.FKExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FKExample.app/FKExample";
 			};
 			name = Debug;
@@ -782,6 +799,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = phalanx.FKExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FKExample.app/FKExample";
 			};
 			name = Release;
@@ -794,6 +813,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = phalanx.FKExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = FKExample;
 				USES_XCTRUNNER = YES;
 			};
@@ -806,6 +826,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = phalanx.FKExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = FKExample;
 				USES_XCTRUNNER = YES;
 			};

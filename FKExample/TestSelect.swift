@@ -103,7 +103,7 @@ class TestSelect : SKNode {
             self.root.addChild(child.copy() as! SKNode)
         }
         self.addChild(self.root)
-        self.userInteractionEnabled = true
+        self.isUserInteractionEnabled = true
         self.hidePanels(["Friendly", "Ability", "Enemy", "EnemyAbility"])
     }
     
@@ -113,7 +113,7 @@ class TestSelect : SKNode {
     
     // MARK: Tests
     
-    func testSelected(name:String, node:SKNode) {
+    func testSelected(_ name:String, node:SKNode) {
         self.hideFriendlyUnitPanels()
         self.hideEnemyUnitPanels()
         self.highlightItem(node, highlightPath: "Test/test_highlight")
@@ -137,7 +137,7 @@ class TestSelect : SKNode {
         self.hidePanel("Ability")
     }
     
-    func friendlyUnitSelected(name:String, node:SKNode) {
+    func friendlyUnitSelected(_ name:String, node:SKNode) {
         self.highlightItem(node, highlightPath: "Friendly/Friendly_highlight")
         self.instructions!.selectedFriendly = name
         if !self.allowContinueIfValidParameters() {
@@ -152,7 +152,7 @@ class TestSelect : SKNode {
     
     // MARK: Friendly Hero
     
-    func selectFriendlyHero(name:String, node:SKNode) {
+    func selectFriendlyHero(_ name:String, node:SKNode) {
         if name != self.instructions!.selectedFriendlyHero {
             self.highlightItem(node, highlightPath: "Ability/FriendlyHeroUI_highlight")
             self.instructions?.selectedFriendlyHero = name
@@ -165,14 +165,14 @@ class TestSelect : SKNode {
     
     // MARK: Friendly Size
     
-    func selectFriendlySize(size:Int, node:SKNode) {
+    func selectFriendlySize(_ size:Int, node:SKNode) {
         self.highlightItem(node, highlightPath: "Ability/FriendlySizeUI_highlight")
         self.instructions?.selectedFriendlySize = size
     }
     
     // MARK: Friendly Formation
     
-    func selectFriendlyFormation(name:String, node:SKNode) {
+    func selectFriendlyFormation(_ name:String, node:SKNode) {
         self.highlightItem(node, highlightPath: "Ability/FriendlyFormationUI_highlight")
         self.instructions?.selectedFriendlyFormation = name
     }
@@ -190,20 +190,20 @@ class TestSelect : SKNode {
     }
     
     func unhighlightEnemyUnits() {
-        for child in self.root.childNodeWithName("Enemy")!.children {
+        for child in self.root.childNode(withName: "Enemy")!.children {
             if let label = child as? SKLabelNode {
-                label.fontColor = SKColor.blackColor()
+                label.fontColor = SKColor.black()
             }
         }
     }
     
-    func highlightSelectedEnemyUnit(node:SKNode) {
-        if let highlight = self.root.childNodeWithName("Enemy/Enemy_highlight") {
+    func highlightSelectedEnemyUnit(_ node:SKNode) {
+        if let highlight = self.root.childNode(withName: "Enemy/Enemy_highlight") {
             highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
         }
     }
     
-    func enemyUnitSelected(name:String, node:SKNode) {
+    func enemyUnitSelected(_ name:String, node:SKNode) {
         self.unhighlightEnemyUnits()
         self.highlightSelectedEnemyUnit(node)
         self.instructions!.selectedEnemy = name
@@ -219,14 +219,14 @@ class TestSelect : SKNode {
     
     // MARK: Enemy Size
     
-    func selectEnemySize(size:Int, node:SKNode) {
+    func selectEnemySize(_ size:Int, node:SKNode) {
         self.highlightItem(node, highlightPath: "EnemyAbility/EnemySizeUI_highlight")
         self.instructions?.selectedEnemySize = size
     }
     
     // MARK: Enemy Formation
     
-    func selectEnemyFormation(name:String, node:SKNode) {
+    func selectEnemyFormation(_ name:String, node:SKNode) {
         self.highlightItem(node, highlightPath: "EnemyAbility/EnemyFormationUI_highlight")
         self.instructions?.selectedEnemyFormation = name
     }
@@ -253,17 +253,17 @@ class TestSelect : SKNode {
     }
     
     func showContinueButton() {
-        if let proceed = self.root.childNodeWithName("Continue") {
+        if let proceed = self.root.childNode(withName: "Continue") {
             if proceed.position.y != 50 {
-                proceed.runAction(SKAction.moveToY(50, duration: 0.3))
+                proceed.run(SKAction.moveTo(y: 50, duration: 0.3))
             }
         }
     }
     
     func hideContinueButton() {
-        if let proceed = self.root.childNodeWithName("Continue") {
+        if let proceed = self.root.childNode(withName: "Continue") {
             if proceed.position.y != -110 {
-                proceed.runAction(SKAction.moveToY(-110, duration: 0.3))
+                proceed.run(SKAction.moveTo(y: -110, duration: 0.3))
             }
         }
     }
@@ -282,86 +282,86 @@ class TestSelect : SKNode {
     
     // MARK: Utility
     
-    func hidePanels(names:[String]) {
+    func hidePanels(_ names:[String]) {
         for name in names {
             self.hidePanel(name)
         }
     }
     
-    func hidePanel(name:String) {
-        self.root.childNodeWithName(name)?.hidden = true
+    func hidePanel(_ name:String) {
+        self.root.childNode(withName: name)?.isHidden = true
     }
     
-    func showPanels(names:[String]) {
+    func showPanels(_ names:[String]) {
         for name in names {
             self.showPanel(name)
         }
     }
     
-    func showPanel(name:String) {
-        self.root.childNodeWithName(name)?.hidden = false
+    func showPanel(_ name:String) {
+        self.root.childNode(withName: name)?.isHidden = false
     }
     
-    func highlightItem(node:SKNode, highlightPath:String) {
-        if let highlight = self.root.childNodeWithName(highlightPath) {
+    func highlightItem(_ node:SKNode, highlightPath:String) {
+        if let highlight = self.root.childNode(withName: highlightPath) {
             highlight.position = CGPoint(x:highlight.position.x, y:node.position.y)
         }
     }
     
-    func unhighlightItem(highlightPath:String) {
-        if let highlight = self.root.childNodeWithName(highlightPath) {
+    func unhighlightItem(_ highlightPath:String) {
+        if let highlight = self.root.childNode(withName: highlightPath) {
             highlight.position = CGPoint(x:highlight.position.x, y:10000)
         }
     }
     
     // MARK: User Input
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
-            let location = touch.locationInNode(self.root)
-            let nodes = self.root.nodesAtPoint(location)
+            let location = touch.location(in: self.root)
+            let nodes = self.root.nodes(at: location)
             for node in nodes {
-                if(node.name?.rangeOfString("test_") != nil) {
-                    let name = node.name!.replace("test_", withString: "")
+                if(node.name?.range(of: "test_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "test_", with: "")
                     self.testSelected(name, node: node)
                 }
                 
-                if(node.name?.rangeOfString("Friendly_") != nil) {
-                    let name = node.name!.replace("Friendly_", withString: "")
+                if(node.name?.range(of: "Friendly_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "Friendly_", with: "")
                     self.friendlyUnitSelected(name, node: node)
                 }
                 
-                if(node.name?.rangeOfString("FriendlySize_") != nil) {
-                    let name = node.name!.replace("FriendlySize_", withString: "")
+                if(node.name?.range(of: "FriendlySize_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "FriendlySize_", with: "")
                     self.selectFriendlySize(Int(name)!, node: node)
                 }
                 
-                if(node.name?.rangeOfString("FriendlyFormation_") != nil) {
-                    let name = node.name!.replace("FriendlyFormation_", withString: "")
+                if(node.name?.range(of: "FriendlyFormation_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "FriendlyFormation_", with: "")
                     self.selectFriendlyFormation(name, node: node)
                 }
                 
-                if(node.name?.rangeOfString("FriendlyHero_") != nil) {
-                    let name = node.name!.replace("FriendlyHero_", withString: "")
+                if(node.name?.range(of: "FriendlyHero_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "FriendlyHero_", with: "")
                     self.selectFriendlyHero(name, node: node)
                 }
                 
-                if(node.name?.rangeOfString("Enemy_") != nil) {
-                    let name = node.name!.replace("Enemy_", withString: "")
+                if(node.name?.range(of: "Enemy_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "Enemy_", with: "")
                     self.enemyUnitSelected(name, node: node)
                 }
                 
-                if(node.name?.rangeOfString("EnemySize_") != nil) {
-                    let name = node.name!.replace("EnemySize_", withString: "")
+                if(node.name?.range(of: "EnemySize_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "EnemySize_", with: "")
                     self.selectEnemySize(Int(name)!, node: node)
                 }
                 
-                if(node.name?.rangeOfString("EnemyFormation_") != nil) {
-                    let name = node.name!.replace("EnemyFormation_", withString: "")
+                if(node.name?.range(of: "EnemyFormation_") != nil) {
+                    let name = node.name!.replacingOccurrences(of: "EnemyFormation_", with: "")
                     self.selectEnemyFormation(name, node: node)
                 }
                 
-                if(node.name?.rangeOfString("run") != nil) {
+                if(node.name?.range(of: "run") != nil) {
                     self.continuePressed()
                 }
             }

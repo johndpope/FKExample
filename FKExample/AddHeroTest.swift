@@ -26,13 +26,13 @@ class AddHeroTest : Testable {
         self.scene = scene
     }
     
-    func setupTest(instructions:TestInstructions) {
+    func setupTest(_ instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquad(instructions.selectedFriendly!)
         self.scene?.createHero()
     }
     
-    func tapped(location: CGPoint) {
+    func tapped(_ location: CGPoint) {
         self.scene?.heros[0].addUnitToSquad((self.scene?.squads[0])!)
     }
     

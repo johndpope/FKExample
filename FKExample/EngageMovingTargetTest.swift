@@ -26,7 +26,7 @@ class EngageMovingTargetTest : Testable {
         self.scene = scene
     }
     
-    func setupTest(instructions:TestInstructions) {
+    func setupTest(_ instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
         self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1600, y:68))
@@ -42,7 +42,7 @@ class EngageMovingTargetTest : Testable {
         self.scene?.squads[1].abilitiesComponent.runAbility(moveAbility!.ability, instructions: instructions)
     }
     
-    func tapped(location: CGPoint) {
+    func tapped(_ location: CGPoint) {
 
     }
     

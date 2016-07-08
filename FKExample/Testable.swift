@@ -14,9 +14,9 @@ protocol Testable {
     
     weak var scene : GameScene? { get set }
     
-    func setupTest(instructions:TestInstructions)
+    func setupTest(_ instructions:TestInstructions)
     
-    func tapped(location:CGPoint)
+    func tapped(_ location:CGPoint)
     
     func teardownTest()
     

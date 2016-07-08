@@ -41,9 +41,9 @@ let classMap : Dictionary<String, TestDefinition> = [
 
 class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, FKHeraldryProtocol {
     
-    var lastUpdateTimeInterval: NSTimeInterval = 0
+    var lastUpdateTimeInterval: TimeInterval = 0
     
-    let maximumUpdateDeltaTime: NSTimeInterval = 2.0 / 60.0
+    let maximumUpdateDeltaTime: TimeInterval = 2.0 / 60.0
     
     var navmesh : Navmesh?
     
@@ -57,15 +57,15 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     var currentInstructions : TestInstructions!
     
-    var formationToTest = FKFormationComponent.Arrangement.Grid
+    var formationToTest = FKFormationComponent.Arrangement.grid
     
     var actionBar : WGActionEntity?
     
     var ui : WGContainerNode?
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+        if UIDevice.current().userInterfaceIdiom == .phone {
             self.size = CGSize(width: 2730, height: 1536)
         }
         
@@ -78,16 +78,19 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         var instructions = TestInstructions(settings: combatTestSetting)
         instructions.name = "SingleFightTest"
-        instructions.selectedFriendly = "Melee1"
+        instructions.selectedFriendly = "Trebuchet"
         instructions.selectedEnemy = "BadMelee1"
+        instructions.selectedFriendlySize = 1
+        instructions.selectedFriendlyHero = nil
+        instructions.selectedEnemySize = 20
         self.setupNextTest(instructions)
         let leader = self.createArmyLeader()
         //self.addAbilitiesToSquad(leader, filter:["Haste"])
         self.setupGUI(leader)
     }
     
-    func setupNextTest(instructions : TestInstructions)  {
-        self.camera?.childNodeWithName("SelectTests")?.removeFromParent()
+    func setupNextTest(_ instructions : TestInstructions)  {
+        self.camera?.childNode(withName: "SelectTests")?.removeFromParent()
         let test = classMap[instructions.name!]!.classObj()
         if test is Testable {
             
@@ -109,7 +112,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         self.cameraBounds = CameraBounds(lower: 100, left: 0, upper: 0, right: 0)
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+        if UIDevice.current().userInterfaceIdiom == .pad {
             self.size = CGSize(width: 2048, height: 1536)
         }
         
@@ -117,9 +120,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         /// Set the camera as the scenes camera. Some scenes work without this lines, others don't.
         /// For example, LevelScene worked without it, but Camp scene did not
-        self.camera = self.childNodeWithName("Camera") as? SKCameraNode
+        self.camera = self.childNode(withName: "Camera") as? SKCameraNode
         
-        self.setCameraBounds(self.cameraBounds)
+        self.setCameraBounds(offsetBounds: self.cameraBounds)
         
         /// manually create other SKNode layers
         let ui = WGContainerNode()
@@ -132,45 +135,30 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: SKPhysicsContactDelegate
     
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         FKPhysicsService.sharedInstance.didBeginContact(contact)
     }
     
-    func didEndContact(contact: SKPhysicsContact) {
+    func didEnd(_ contact: SKPhysicsContact) {
         FKPhysicsService.sharedInstance.didEndContact(contact)
     }
     
     // MARK: Navmesh
     
     func configureNavmesh() {
-        self.enumerateChildNodesWithName("World/obstacles/*") { node, stop in
+        self.enumerateChildNodes(withName: "World/obstacles/*") { node, stop in
             node.removeFromParent()
         }
         self.navmesh = Navmesh(file: "TestLevel", scene: self, bufferRadius: 140)
     }
-    
-    func configureNavmeshWithObstacles(names:[String]) {
-        var obstacleSpriteNodes = [SKSpriteNode]()
-        self.enumerateChildNodesWithName("World/obstacles/*") { node, stop in
-            let realNode = node as! SKSpriteNode
-            if names.contains(realNode.name!) {
-                obstacleSpriteNodes.append(realNode)
-            }
-            else {
-                node.removeFromParent()
-            }
-        }
-        
-        let polygonObstacles: [GKPolygonObstacle] = SKNode.obstaclesFromNodePhysicsBodies(obstacleSpriteNodes)
-        self.navmesh = Navmesh(obstacles: polygonObstacles, bufferRadius: 140)
-    }
+
     
     // MARK: Utility
     
-    func createSquadFromInstructions(instructions:TestInstructions, position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1) {
-        var formation = FKFormationComponent.Arrangement.Grid
+    func createSquadFromInstructions(_ instructions:TestInstructions, position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1) {
+        var formation = FKFormationComponent.Arrangement.grid
         if instructions.selectedFriendlyFormation == "Triangle" {
-            formation = FKFormationComponent.Arrangement.Triangle
+            formation = FKFormationComponent.Arrangement.triangle
         }
         var size = instructions.selectedFriendlySize
         if instructions.selectedFriendlyHero != nil {
@@ -189,10 +177,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
 
     }
     
-    func createEnemySquadFromInstructions(instructions:TestInstructions, position:CGPoint, heading:Float = -1) {
-        var formation = FKFormationComponent.Arrangement.Grid
+    func createEnemySquadFromInstructions(_ instructions:TestInstructions, position:CGPoint, heading:Float = -1) {
+        var formation = FKFormationComponent.Arrangement.grid
         if instructions.selectedEnemyFormation == "Triangle" {
-            formation = FKFormationComponent.Arrangement.Triangle
+            formation = FKFormationComponent.Arrangement.triangle
         }
         
         var size = instructions.selectedEnemySize
@@ -206,7 +194,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             maxUnits:size,
             formation: formation,
             hero: instructions.selectedEnemyHero,
-            controller: .EnemyNPC,
+            controller: .enemyNPC,
             position:position,
             heading:heading)
         
@@ -218,20 +206,19 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
-                name:"Leader",
+                name: "Leader",
                 position: CGPoint(x:0, y:0),
-                heading: 0,
+                heading: Float(0),
                 currentUnits: 0,
                 maxUnits: 0,
-                controller: .FriendlyNPC,
-                scene: nil,
-                layer: nil,
-                formation:.Grid,
+                controller: .friendlyNPC,
+                formation: .grid,
                 columns: 1,
                 spacing: 0,
-                pathfinder : self,
-                herladryDelegate:self,
-                abilities:self.getAbilitiesForSquad("Leader")))
+                pathfinder: self,
+                herladryDelegate: self,
+                abilities:self.getAbilitiesForSquad("Leader"))
+            )
         
         /// Store it so it doesn't disappear when this function finishes
         self.squads.append(squad)
@@ -239,7 +226,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
 
     }
     
-    func createSquad(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, formation: FKFormationComponent.Arrangement = .Grid) -> FKSquadEntity {
+    func createSquad(_ name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .player, columns : Int = 5, spacing: Int = 64, formation: FKFormationComponent.Arrangement = .grid) -> FKSquadEntity {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -250,7 +237,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 maxUnits: maxUnits,
                 controller: controller,
                 scene: self,
-                layer: self.childNodeWithName("World")!,
+                layer: self.childNode(withName: "World")!,
                 formation:formation,
                 columns: columns,
                 spacing: spacing,
@@ -262,7 +249,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         return squad
     }
     
-    func createSquadWithHero(name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .Player, columns : Int = 5, spacing: Int = 64, hero:String? = nil, formation: FKFormationComponent.Arrangement = .Grid) {
+    func createSquadWithHero(_ name:String = "Melee1", position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1, currentUnits : Int = 19, maxUnits : Int = 20, controller:FKSquadEntity.Controller = .player, columns : Int = 5, spacing: Int = 64, hero:String? = nil, formation: FKFormationComponent.Arrangement = .grid) {
         /// Create a squad
         let squad = FKSquadFactory.sharedInstance.createSquad(
             FKSquadFactory.FKSquadConstruction(
@@ -273,7 +260,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 maxUnits: maxUnits,
                 controller: controller,
                 scene: self,
-                layer: self.childNodeWithName("World")!,
+                layer: self.childNode(withName: "World")!,
                 uiLayer: self.ui!,
                 formation:formation,
                 columns: columns,
@@ -295,10 +282,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             heading: 3.14,
             currentUnits: 1,
             maxUnits: 1,
-            controller: .Player,
+            controller: .player,
             scene: self,
-            layer: self.childNodeWithName("World")!,
-            formation:FKFormationComponent.Arrangement.Grid,
+            layer: self.childNode(withName: "World")!,
+            formation:FKFormationComponent.Arrangement.grid,
             columns: 1,
             spacing: 64,
             hero:"Bomur",
@@ -315,10 +302,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: Common Abilities
     
-    func addAbilitiesToSquad(squad:FKSquadEntity, filter:[String]? = nil) {
+    func addAbilitiesToSquad(_ squad:FKSquadEntity, filter:[String]? = nil) {
         
         if let data = FKUnitFactory.sharedInstance.loadPListData(squad.unitName) {
-            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data)
+            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data: data)
             for abilityData in allAbilities {
                 
                 if filter == nil || (filter?.contains(abilityData.abilityName))! {
@@ -335,7 +322,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
 
     }
     
-    func getAbilitiesForSquad(unitName:String?) -> [FKAbilitiesComponent.ActiveAbility] {
+    func getAbilitiesForSquad(_ unitName:String?) -> [FKAbilitiesComponent.ActiveAbility] {
         var ret = Array<FKAbilitiesComponent.ActiveAbility>()
         
         guard unitName != nil else {
@@ -343,7 +330,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         }
         
         if let data = FKUnitFactory.sharedInstance.loadPListData(unitName!) {
-            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data)
+            let allAbilities = SRUnlockFactory.sharedInstance.getAllAbilitiesForSquad(data: data)
             for abilityData in allAbilities {
                 
                 let ability = Ability.factoryInit(abilityData.abilityName)
@@ -358,29 +345,29 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         return ret
     }
     
-    func addMoveToSquad(squad:FKSquadEntity) {
+    func addMoveToSquad(_ squad:FKSquadEntity) {
         let ability = Ability.factoryInit("Move")
         let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Move", ability:ability, actionBarPosition:1, actionBarPriority:1)
         squad.abilitiesComponent.abilities.append(activeAbility)
     }
     
-    func addMeleeToSquad(squad:FKSquadEntity) {
+    func addMeleeToSquad(_ squad:FKSquadEntity) {
         let ability = Ability.factoryInit("Attack")
         let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Attack", ability:ability, actionBarPosition:1, actionBarPriority:1)
         squad.abilitiesComponent.abilities.append(activeAbility)
     }
     
-    func addShootToSquad(squad:FKSquadEntity) {
+    func addShootToSquad(_ squad:FKSquadEntity) {
         let ability = Ability.factoryInit("Shoot")
         let activeAbility = FKAbilitiesComponent.ActiveAbility(name:"Shoot", ability:ability, actionBarPosition:1, actionBarPriority:1)
         squad.abilitiesComponent.abilities.append(activeAbility)
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
+            let location = touch.location(in:self)
             if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) && !self.testButtonTapped(location) {
-                let realLocation = self.childNodeWithName("World")!.convertPoint(location, fromNode: self)
+                let realLocation = self.childNode(withName: "World")!.convert(location, from: self)
                 self.actionBar?.handleInput(realLocation)
                 self.currentTest?.tapped(location)
             }
@@ -390,9 +377,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     // MARK: Test Specific
     
     
-    func refreshButtonTapped(location:CGPoint) -> Bool {
-        let realLocation = self.camera!.convertPoint(location, fromNode: self)
-        if let refresh = self.camera?.nodeAtPoint(realLocation) as? SKSpriteNode {
+    func refreshButtonTapped(_ location:CGPoint) -> Bool {
+        let realLocation = self.camera!.convert(location, from: self)
+        if let refresh = self.camera?.atPoint(realLocation) as? SKSpriteNode {
             if refresh.name == "refresh" {
                 
                 self.clearCurrentTest()
@@ -417,7 +404,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         self.heros.removeAll()
         
         /// Remove previous nodes
-        for node in self.childNodeWithName("World")!.children {
+        for node in self.childNode(withName: "World")!.children {
             if node.name != "obstacles" && node.name != "bg" && node.name != "flee" {
                 node.removeFromParent()
             }
@@ -427,9 +414,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         self.currentTest.teardownTest()
     }
     
-    func debugButtonTapped(location:CGPoint) -> Bool {
-        let realLocation = self.camera!.convertPoint(location, fromNode: self)
-        if let debug = self.camera?.nodeAtPoint(realLocation) as? SKSpriteNode {
+    func debugButtonTapped(_ location:CGPoint) -> Bool {
+        let realLocation = self.camera!.convert(location, from: self)
+        if let debug = self.camera?.atPoint(realLocation) as? SKSpriteNode {
             if debug.name == "debug" {
                 
                 if DebugFlags.sharedInstance.DEBUG_ENABLED == false {
@@ -448,9 +435,9 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         return false
     }
     
-    func testButtonTapped(location:CGPoint) -> Bool {
-        let realLocation = self.camera!.convertPoint(location, fromNode: self)
-        if let tests = self.camera?.nodeAtPoint(realLocation) as? SKSpriteNode {
+    func testButtonTapped(_ location:CGPoint) -> Bool {
+        let realLocation = self.camera!.convert(location, from: self)
+        if let tests = self.camera?.atPoint(realLocation) as? SKSpriteNode {
             if tests.name == "tests" {
                 
                 /// Deselect UI
@@ -471,13 +458,13 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: GUI
     
-    func setupGUI(leader:FKSquadEntity) {
+    func setupGUI(_ leader:FKSquadEntity) {
         let bar = WGActionEntity(parentNode: self.camera!, leader:leader)
         self.actionBar = bar
     }
     
-    func heraldryTapped(squad: FKSquadEntity) {
-        if(squad.controller == .EnemyNPC) {
+    func heraldryTapped(_ squad: FKSquadEntity) {
+        if(squad.controller == .enemyNPC) {
             self.actionBar?.handleEnemySquadTouched(squad)
         }
         else {
@@ -485,20 +472,28 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         }
     }
    
-    func heraldryDoubleTapped(squad: FKSquadEntity) {
+    func heraldryDoubleTapped(_ squad: FKSquadEntity) {
         if let camera = self.camera {
-            let pos = self.convertPoint(squad.agent.actualPosition, fromNode:squad.layer!)
-            camera.panToPoint(pos)
+            let pos = self.convert(squad.agent.actualPosition, from:squad.layer!)
+            camera.panToPoint(point: pos)
         }
     }
     
-    func lockToPositionWhenOffscreen(desiredPosition: CGPoint, node: SKSpriteNode) -> CGPoint? {
+    func heraldryLongPress(_ squad: FKSquadEntity) {
+        /// do nothing
+    }
+    
+    func heraldryTapStarted(_ squad: FKSquadEntity) {
+        /// do nothing
+    }
+    
+    func lockToPositionWhenOffscreen(_ desiredPosition: CGPoint, node: SKSpriteNode) -> CGPoint? {
         return WGAnchorPointService.sharedInstance.anchorIsNecessary(desiredPosition, node: node)
     }
     
     // MARK: UPDATE
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: CFTimeInterval) {
         
         /* Called before each frame is rendered */
         // Calculate the amount of time since `update` was last called.
@@ -512,26 +507,26 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             
         /// Update the squad component system
         for componentSystem in FKSquadFactory.sharedInstance.componentSystems {
-            componentSystem.updateWithDeltaTime(deltaTime)
+            componentSystem.update(withDeltaTime: deltaTime)
         }
         
         /// Update the unit component system
         for componentSystem in FKUnitFactory.sharedInstance.componentSystems {
-            componentSystem.updateWithDeltaTime(deltaTime)
+            componentSystem.update(withDeltaTime: deltaTime)
         }
         
         /// Update entites not part of the system
-        self.actionBar?.updateWithDeltaTime(deltaTime)
+        self.actionBar?.update(withDeltaTime: deltaTime)
         
     }
     
     // MARK: Pathfinding Protocol
     
-    func getPathToPoint(start: CGPoint, end: CGPoint) -> (path: GKPath, nodes: [GKGraphNode2D])? {
+    func getPathToPoint(_ start: CGPoint, end: CGPoint) -> (path: GKPath, nodes: [GKGraphNode2D])? {
         return self.navmesh?.findPathIngoringBuffer(start, end: end, radius: 50, scene: self)
     }
     
-    func isPointValid(desired: float2) -> Bool {
+    func isPointValid(_ desired: float2) -> Bool {
         return self.navmesh!.pointIsValid(desired)
     }
     

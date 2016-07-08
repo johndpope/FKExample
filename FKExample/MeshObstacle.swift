@@ -39,38 +39,39 @@ class MeshObstacle {
     
         **Note** On init, the sprite will be added to the scene.
     */
-    init(polygon:Array<String>, scene:GameScene, var buffer:CGFloat) {
+    init(polygon:Array<String>, scene:GameScene, buffer:CGFloat) {
+        var buffer = buffer
         
         /// Fudge the buffer a bit to make sure all potential obstacles are included in searches for buffer radius
         buffer += 25
         
         let sprite = SKSpriteNode()
-        let path = CGPathCreateMutable()
-        let obstacleLayer = scene.childNodeWithName("World/obstacles")
+        let path = CGMutablePath()
+        let obstacleLayer = scene.childNode(withName: "World/obstacles")
         
         /// Build each sprite and physics body based off of polygon shape
         for i in 0 ..< polygon.count {
-            let points = polygon[i].componentsSeparatedByString(",")
-            let x = points[0].stringByReplacingOccurrencesOfString("{ ", withString: "")
-            let y = points[1].stringByReplacingOccurrencesOfString(" }", withString: "")
+            let points = polygon[i].components(separatedBy: ",")
+            let x = points[0].replacingOccurrences(of: "{ ", with: "")
+            let y = points[1].replacingOccurrences(of: " }", with: "")
             if(i == 0) {
-                CGPathMoveToPoint(path, nil, CGFloat((x as NSString).floatValue), CGFloat((y as NSString).floatValue))
+                path.moveTo(nil, x: CGFloat((x as NSString).floatValue), y: CGFloat((y as NSString).floatValue))
             }
             else {
-                CGPathAddLineToPoint(path, nil, CGFloat((x as NSString).floatValue), CGFloat((y as NSString).floatValue))
+                path.addLineTo(nil, x: CGFloat((x as NSString).floatValue), y: CGFloat((y as NSString).floatValue))
             }
         }
-        CGPathCloseSubpath(path)
-        sprite.physicsBody = SKPhysicsBody(polygonFromPath: path)
-        sprite.physicsBody?.dynamic = false
-        sprite.physicsBody?.categoryBitMask = FKPhysicsService.ColliderType.Environment.rawValue
+        path.closeSubpath()
+        sprite.physicsBody = SKPhysicsBody(polygonFrom: path)
+        sprite.physicsBody?.isDynamic = false
+        sprite.physicsBody?.categoryBitMask = FKPhysicsService.ColliderType.environment.rawValue
     
         self.sprite = sprite
         self.path = path
         obstacleLayer?.addChild(self.sprite)
-        self.obstacle = SKNode.obstaclesFromNodePhysicsBodies([self.sprite]).first!
+        self.obstacle = SKNode.obstacles(fromNodePhysicsBodies: [self.sprite]).first!
         
-        self.bufferedPath = CGPathCreateCopyByStrokingPath(path, nil, buffer * 2, CGLineCap.Butt, CGLineJoin.Miter, buffer)!
+        self.bufferedPath = CGPath(copyByStroking: path, transform: nil, lineWidth: buffer * 2, lineCap: CGLineCap.butt, lineJoin: CGLineJoin.miter, miterLimit: buffer)!
 
         
     }
@@ -78,31 +79,31 @@ class MeshObstacle {
     // MARK: Hit Testing
     
     /// Used to check if the current unit / hit check is already within the polygon. Coordinates are based on World layer
-    func containsPoint(point:CGPoint) -> Bool {
-        return CGPathContainsPoint(self.path, nil, point, false)
+    func containsPoint(_ point:CGPoint) -> Bool {
+        return self.path.containsPoint(nil, point: point, eoFill: false)
     }
     
     /// Used to check if the current unit / hit check is already within the buffered polygon. Coordinates are based on World layer
-    func containsPointInBuffer(point:CGPoint) -> Bool {
+    func containsPointInBuffer(_ point:CGPoint) -> Bool {
         if let scene = self.sprite.scene as? GameScene {
-            let localPoint = scene.childNodeWithName("World")!.convertPoint(point, fromNode: scene)
-            return CGPathContainsPoint(self.bufferedPath, nil, localPoint, false)
+            let localPoint = scene.childNode(withName: "World")!.convert(point, from: scene)
+            return (self.bufferedPath).containsPoint(nil, point: localPoint, eoFill: false)
         }
         return false
     }
     
     /// Loops over each side of the polygon, and checks which side a point **within** the polygon lies closest to.
-    func closestSideToPoint(point:float2) -> (start:float2, end:float2) {
+    func closestSideToPoint(_ point:float2) -> (start:float2, end:float2) {
         var sorted = [float2]()
         for i in 0 ..< self.obstacle.vertexCount {
-            sorted.append(self.obstacle.vertexAtIndex(i))
+            sorted.append(self.obstacle.vertex(at: i))
         }
-        sorted.sortInPlace({ distance($0, point) < distance($1, point) })
+        sorted.sort(isOrderedBefore: { distance($0, point) < distance($1, point) })
         return (start:sorted[0], end:sorted[1])
     }
     
     /// Find the point where a perpendicular line connecting to a point inside of the polygon would intersect the edge of the polygon
-    func closestPointOutsideHitPoint(hitPoint:float2) -> float2 {
+    func closestPointOutsideHitPoint(_ hitPoint:float2) -> float2 {
         let closestEdgeToPoint = self.closestSideToPoint(hitPoint)
         let start = closestEdgeToPoint.start
         let end = closestEdgeToPoint.end

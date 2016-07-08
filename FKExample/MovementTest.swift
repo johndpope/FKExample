@@ -26,13 +26,13 @@ class MovementTest : Testable {
         self.scene = scene
     }
     
-    func setupTest(instructions:TestInstructions) {
+    func setupTest(_ instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
 
     }
     
-    func tapped(location: CGPoint) {
+    func tapped(_ location: CGPoint) {
     
     }
     

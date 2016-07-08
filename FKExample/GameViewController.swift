@@ -30,11 +30,11 @@ class GameViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             
             /// Cut the framerate down to 30 FPS
-            skView.frameInterval = 2
+            skView.preferredFramesPerSecond = 30
 
             self.sceneManager = SBSceneManager(view: skView)
             
-            self.sceneManager?.registerScene("GameScene",
+            self.sceneManager?.registerScene(key: "GameScene",
                 scene: SBSceneContainer(
                     classType: GameScene.self,
                     name: "GameScene",
@@ -44,7 +44,7 @@ class GameViewController: UIViewController {
                     atlases: ["dialogue", "Trebuchet", "BadArcher1", "Archer1", "Melee1", "Melee2", "CombatAssets", "Bomur", "Test", "UI", "icons"]))
             
             if let initialScene = self.sceneManager?.scenes["GameScene"] {
-                self.sceneManager?.sceneDidFinish(initialScene)
+                self.sceneManager?.sceneDidFinish(nextScene: initialScene)
             }
             
         }
@@ -55,10 +55,10 @@ class GameViewController: UIViewController {
     }
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return .AllButUpsideDown
+        if UIDevice.current().userInterfaceIdiom == .phone {
+            return .allButUpsideDown
         } else {
-            return .All
+            return .all
         }
     }
 

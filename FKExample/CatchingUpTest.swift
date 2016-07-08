@@ -27,14 +27,14 @@ class CatchingUpTest : Testable {
         self.scene = scene
     }
     
-    func setupTest(instructions:TestInstructions) {
+    func setupTest(_ instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions, position:CGPoint(x:-1200, y:-1200))
-        self.scene?.camera?.panToPoint(CGPoint(x:-1200, y:-1200))
+        self.scene?.camera?.panToPoint(point: CGPoint(x:-1200, y:-1200))
 
     }
     
-    func tapped(location: CGPoint) {
+    func tapped(_ location: CGPoint) {
       
     }
     

@@ -26,13 +26,13 @@ class ReformTest : Testable {
         self.scene = scene
     }
     
-    func setupTest(instructions:TestInstructions) {
+    func setupTest(_ instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
         self.scrambleUnits()
     }
     
-    func tapped(location: CGPoint) {
+    func tapped(_ location: CGPoint) {
         self.scene?.squads[0].formationComponent.reassignStandingPositionsByDistance()
     }
     
@@ -48,7 +48,7 @@ class ReformTest : Testable {
             let randomY = CGFloat.random(min: -300, max: 300)
             let base = unit.componentForClass(FKRenderComponent)?.basePosition
             let location = CGPoint(x: base!.x + randomX, y: base!.y + randomY)
-            let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.Towards)
+            let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.towards)
             unit.movementComponent.executeMovementInstructions(instructions)
         }
     }
