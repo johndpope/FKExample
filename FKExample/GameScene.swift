@@ -13,6 +13,7 @@ import SwitchBoard
 import Particleboard
 import WarGUI
 import StrongRoom
+import BarricAssets
 
 struct TestDefinition {
     
@@ -155,7 +156,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: Utility
     
-    func createSquadFromInstructions(_ instructions:TestInstructions, position:CGPoint = CGPoint(x:1100, y:768), heading:Float = -1) {
+    func createSquadFromInstructions(_ instructions:TestInstructions, position:CGPoint = CGPoint(x:0, y:900), heading:Float = -1) {
+        
         var formation = FKFormationComponent.Arrangement.grid
         if instructions.selectedFriendlyFormation == "Triangle" {
             formation = FKFormationComponent.Arrangement.triangle
