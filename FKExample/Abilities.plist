@@ -487,7 +487,7 @@
 				<key>behavior</key>
 				<string>Instant</string>
 				<key>amount</key>
-				<integer>-50</integer>
+				<integer>-100</integer>
 				<key>attribute</key>
 				<string>HitPoints</string>
 			</dict>

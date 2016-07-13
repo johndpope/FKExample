@@ -47,6 +47,8 @@ class GameViewController: UIViewController {
                 self.sceneManager?.sceneDidFinish(nextScene: initialScene)
             }
             
+            ///skView.showsPhysics = true
+            
         }
     }
 
