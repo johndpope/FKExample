@@ -147,9 +147,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     // MARK: Navmesh
     
     func configureNavmesh() {
-        self.enumerateChildNodes(withName: "World/obstacles/*") { node, stop in
-            node.removeFromParent()
-        }
+   
         self.navmesh = Navmesh(file: "TestLevel", scene: self, bufferRadius: 140)
     }
 

@@ -57,10 +57,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 294.000,14.000 }</string>	
-								<string>{ 240.000,46.000 }</string>	
-								<string>{ -1038.000,-744.000 }</string>	
-								<string>{ -994.000,-782.000 }</string>
+								<string>{ 292.000,12.000 }</string>	
+								<string>{ 240.000,40.000 }</string>	
+								<string>{ -1028.000,-740.000 }</string>	
+								<string>{ -912.000,-720.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -78,11 +78,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -994.000,-782.000 }</string>	
-								<string>{ -816.000,-912.000 }</string>	
-								<string>{ -216.000,-1272.000 }</string>	
 								<string>{ -144.000,-1012.000 }</string>	
-								<string>{ -898.000,-722.000 }</string>
+								<string>{ -912.000,-720.000 }</string>	
+								<string>{ -1016.000,-736.000 }</string>	
+								<string>{ -216.000,-1272.000 }</string>
 							</array>
 						</array>
                     </dict>

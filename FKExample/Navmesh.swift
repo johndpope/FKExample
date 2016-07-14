@@ -40,7 +40,7 @@ Extension of [GKObstacleGraph](https://developer.apple.com/library/prerelease/io
 that has built in utility methods for pathfinding. For example, if the desired point is inside of an obstacle, you can optionally find the 
 closest point on the graph.
 */
-class Navmesh : GKObstacleGraph<GKGraphNode2D> {
+class Navmesh : GKMeshGraph<GKGraphNode2D> {
     
     var meshObstacles = [MeshObstacle]()
     
@@ -62,13 +62,30 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
         for mesh in meshes {
             bodies.append(mesh.sprite.physicsBody!)
         }*/
-        //let obstacleSpriteNodes: [SKSpriteNode] = scene["World/obstacles/*"] as! [SKSpriteNode]
-        //obstacles = SKNode.obstaclesFromNodePhysicsBodies(obstacleSpriteNodes)
-        super.init(obstacles: obstacles, bufferRadius: bufferRadius)
-
-        self.removeNodesOutsideOfSceneBounds(scene)
         
-        self.removeNodesThatArentConnected()
+        /**let obstacleSpriteNodes: [SKSpriteNode] = scene["World/obstacles/*"] as! [SKSpriteNode]
+        print(obstacleSpriteNodes)
+        let obstacles = SKNode.obstacles(fromNodePhysicsBodies: obstacleSpriteNodes)
+        print(obstacles)*/*/
+ 
+        ///super.init(obstacles: obstacles, bufferRadius: bufferRadius)
+        super.init(bufferRadius:0,
+                    minCoordinate:float2(-1776,-1124), maxCoordinate:float2(3824,2636))
+        
+        self.addNodes(scene.graphs["TestGraph"]!.nodes!)
+        
+        self.triangulationMode = [.vertices]
+        
+        self.addObstacles(obstacles)
+        
+        ///self.removeNodesOutsideOfSceneBounds(scene)
+        
+        ///self.removeNodesThatArentConnected()
+        
+        self.triangulate()
+        
+        self.debugOverlay(scene: scene)
+
         
         /*self.meshes[MeshSize.Individual] = GKObstacleGraph(obstacles: obstacles, bufferRadius: MeshSize.Individual.rawValue)
         self.meshes[MeshSize.Small] = GKObstacleGraph(obstacles: obstacles, bufferRadius: MeshSize.Small.rawValue)
@@ -80,9 +97,14 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
     
     /// For each level, multiple navmeshes will be made. The different buffer radius will help units of different sizing navigate.
     /// Call this function when the obstacle have already been loaded
-    override init(obstacles:[GKPolygonObstacle], bufferRadius:Float, nodeClass:AnyClass) {
-        super.init(obstacles: obstacles, bufferRadius: bufferRadius, nodeClass:nodeClass)
+    override init(bufferRadius: Float, minCoordinate: vector_float2, maxCoordinate: vector_float2) {
+        super.init(bufferRadius:bufferRadius, minCoordinate:minCoordinate, maxCoordinate:maxCoordinate)
     }
+    
+    override init(bufferRadius: Float, minCoordinate: vector_float2, maxCoordinate: vector_float2, nodeClass:AnyClass) {
+        super.init(bufferRadius:bufferRadius, minCoordinate:minCoordinate, maxCoordinate:maxCoordinate, nodeClass:nodeClass)
+    }
+
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -147,8 +169,8 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
         let endNode = GKGraphNode2D(point:float2(end))
         //let targetMesh = self.meshes[MeshSize.getAppropriateSize(size)]!
         
-        self.connectNode(usingObstacles: startNode, ignoring: ignoringObstacles)
-        self.connectNode(usingObstacles: endNode, ignoring: ignoringObstacles)
+        self.connectNode(usingObstacles: startNode)
+        self.connectNode(usingObstacles: endNode)
         
         if(!startNode.connectedNodes.isEmpty && !endNode.connectedNodes.isEmpty) {
             let pathNodes = self.findPath(from: startNode, to: endNode) as! [GKGraphNode2D]
@@ -169,8 +191,8 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
         //let targetMesh = self.meshes[MeshSize.getAppropriateSize(size)]!
 
         /// First try to connect using ignore buffer
-        self.connectNode(usingObstacles: startNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(start)))
-        self.connectNode(usingObstacles: endNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(end)))
+        self.connectNode(usingObstacles: startNode)
+        self.connectNode(usingObstacles: endNode)
 
         /// If weve reached this point, buffer connection didnt work, so try to force connection to lowest cost node
         if startNode.connectedNodes.isEmpty {
@@ -233,6 +255,48 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
         for node in self.nodes as! [GKGraphNode2D] {
             if node.connectedNodes.isEmpty {
                 self.removeNodes([node])
+            }
+        }
+    }
+    
+    // MARK: Debug
+    
+    /// Will automatically turn on debugging information if Debug.Navigaiton.enabled is set to true.
+    func debugOverlay(scene:GameScene) {
+        if let debug = scene.childNode(withName: "PermanentDebugLayer") {
+            
+            debug.enumerateChildNodes(withName: "navmeshDebug") { node, stop in
+                node.removeFromParent()
+            }
+            
+            for node in self.nodes as! [GKGraphNode2D] {
+                
+                
+                let point = node.position
+                
+                let shapeTexture = SKSpriteNode(texture: SKTexture(imageNamed: "yellow_circle"))
+                shapeTexture.zPosition = 1001
+                shapeTexture.position = CGPoint(point)
+                shapeTexture.setScale(0.4)
+                shapeTexture.name = "navmeshDebug"
+                debug.addChild(shapeTexture)
+                
+                for destination in node.connectedNodes as! [GKGraphNode2D] {
+                    let points = [CGPoint(x:CGFloat(node.position.x), y:CGFloat(node.position.y)), CGPoint(x:CGFloat(destination.position.x), y:CGFloat(destination.position.y))]
+                    
+                    let shapeNode = SKShapeNode(points: UnsafeMutablePointer<CGPoint>(points), count: 2)
+                    shapeNode.strokeColor = SKColor(white: 1.0, alpha: 0.5)
+                    shapeNode.lineWidth = 2.0
+                    shapeNode.zPosition = 1000
+                    shapeNode.name = "navmeshDebug"
+                    debug.addChild(shapeNode)
+                }
+                
+                if node.connectedNodes.isEmpty {
+                    shapeTexture.color = SKColor.red()
+                    shapeTexture.colorBlendFactor = 1
+                    shapeTexture.alpha = 0.2
+                }
             }
         }
     }
