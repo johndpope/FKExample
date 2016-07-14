@@ -30,7 +30,7 @@ class SingleFightTest : Testable {
     func setupTest(_ instructions:TestInstructions) {
         self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
-        self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1600, y:68), heading:2)
+        self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1450, y:68), heading:2.33)
     }
     
     func tapped(_ location: CGPoint) {

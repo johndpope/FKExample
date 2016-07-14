@@ -317,17 +317,8 @@
 				<string>SpellAir</string>
 			</dict>
 		</array>
-		<key>particles</key>
-		<array>
-			<dict>
-				<key>mark</key>
-				<string>Success</string>
-				<key>fileName</key>
-				<string>particle_Haste</string>
-			</dict>
-		</array>
 		<key>target</key>
-		<string>Friendly</string>
+		<string>Enemy</string>
 		<key>modifiers</key>
 		<array>
 			<dict>
