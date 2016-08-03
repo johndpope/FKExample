@@ -34,7 +34,7 @@ class ReformOnUnitDeathTest : Testable {
     func tapped(_ location: CGPoint) {
         let rand = Int.random(min: 0, max: (self.scene?.squads[0].units.count)! - 1)
         let unit = self.scene?.squads[0].units[rand]
-        unit!.componentForClass(FKDeathComponent)?.beginDeath()
+        unit!.component(ofType: FKDeathComponent.self)?.beginDeath()
     }
     
     func teardownTest() {

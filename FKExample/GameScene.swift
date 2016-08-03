@@ -66,7 +66,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     override func didMove(to view: SKView) {
         
-        if UIDevice.current().userInterfaceIdiom == .phone {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             self.size = CGSize(width: 2730, height: 1536)
         }
         
@@ -113,7 +113,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         self.cameraBounds = CameraBounds(lower: 100, left: 0, upper: 0, right: 0)
         
-        if UIDevice.current().userInterfaceIdiom == .pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             self.size = CGSize(width: 2048, height: 1536)
         }
         
@@ -169,12 +169,12 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         self.createSquadWithHero(
             instructions.selectedFriendly!,
+            position:position,
+            heading:heading,
             currentUnits:instructions.selectedFriendlySize,
             maxUnits:size,
-            formation: formation,
             hero: instructions.selectedFriendlyHero,
-            position:position,
-            heading:heading)
+            formation: formation)
         
 
     }
@@ -192,13 +192,13 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         self.createSquadWithHero(
             instructions.selectedEnemy!,
+            position:position,
+            heading:heading,
             currentUnits:instructions.selectedEnemySize,
             maxUnits:size,
-            formation: formation,
-            hero: instructions.selectedEnemyHero,
             controller: .enemyNPC,
-            position:position,
-            heading:heading)
+            hero: instructions.selectedEnemyHero,
+            formation: formation)
         
         
     }
@@ -397,7 +397,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         
         /// Kill squads
         for squad in self.squads {
-            squad.componentForClass(FKCasualtyComponent)?.manuallyDestorySquad()
+            squad.component(ofType: FKCasualtyComponent.self)?.manuallyDestorySquad()
         }
         
         /// Clear local references
@@ -427,7 +427,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 else {
                     DebugFlags.sharedInstance.DEBUG_ENABLED = false
                     for squad in self.squads {
-                        squad.componentForClass(FKSquadDebugComponent)?.clearDebugLayer()
+                        squad.component(ofType: FKSquadDebugComponent.self)?.clearDebugLayer()
                     }
                 }
                 

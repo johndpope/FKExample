@@ -91,7 +91,7 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
     /// Standard helper to load a plist file
     class func loadPListData(_ file:String) -> NSDictionary {
         let lookup = "\(file)_obstacles"
-        let path = Bundle.main.pathForResource(lookup, ofType: "plist")
+        let path = Bundle.main.path(forResource: lookup, ofType: "plist")
         let pListData = NSDictionary(contentsOfFile:path!)
         return pListData!
     }

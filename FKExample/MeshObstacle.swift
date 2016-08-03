@@ -98,7 +98,7 @@ class MeshObstacle {
         for i in 0 ..< self.obstacle.vertexCount {
             sorted.append(self.obstacle.vertex(at: i))
         }
-        sorted.sort(isOrderedBefore: { distance($0, point) < distance($1, point) })
+        sorted.sort(by: { distance($0, point) < distance($1, point) })
         return (start:sorted[0], end:sorted[1])
     }
     

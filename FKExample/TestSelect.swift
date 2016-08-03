@@ -192,7 +192,7 @@ class TestSelect : SKNode {
     func unhighlightEnemyUnits() {
         for child in self.root.childNode(withName: "Enemy")!.children {
             if let label = child as? SKLabelNode {
-                label.fontColor = SKColor.black()
+                label.fontColor = SKColor.black
             }
         }
     }

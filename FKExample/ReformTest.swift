@@ -42,11 +42,11 @@ class ReformTest : Testable {
     
     func scrambleUnits() {
         for unit in (self.scene?.squads[0].units)! {
-            unit.componentForClass(FKRankComponent)?.standingPosition?.occupiedBy = nil
-            unit.componentForClass(FKRankComponent)?.standingPosition = nil
+            unit.component(ofType: FKRankComponent.self)?.standingPosition?.occupiedBy = nil
+            unit.component(ofType: FKRankComponent.self)?.standingPosition = nil
             let randomX = CGFloat.random(min: -300, max: 300)
             let randomY = CGFloat.random(min: -300, max: 300)
-            let base = unit.componentForClass(FKRenderComponent)?.basePosition
+            let base = unit.component(ofType: FKRenderComponent.self)?.basePosition
             let location = CGPoint(x: base!.x + randomX, y: base!.y + randomY)
             let instructions = FKMovementInstructions(position: location, path: nil, type: FKMovementType.towards)
             unit.movementComponent.executeMovementInstructions(instructions)
