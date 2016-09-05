@@ -55,10 +55,10 @@ class MeshObstacle {
             let x = points[0].replacingOccurrences(of: "{ ", with: "")
             let y = points[1].replacingOccurrences(of: " }", with: "")
             if(i == 0) {
-                path.moveTo(nil, x: CGFloat((x as NSString).floatValue), y: CGFloat((y as NSString).floatValue))
+                path.move(to: CGPoint(x:CGFloat((x as NSString).floatValue), y:CGFloat((y as NSString).floatValue)))
             }
             else {
-                path.addLineTo(nil, x: CGFloat((x as NSString).floatValue), y: CGFloat((y as NSString).floatValue))
+                path.addLine(to: CGPoint(x:CGFloat((x as NSString).floatValue), y:CGFloat((y as NSString).floatValue)))
             }
         }
         path.closeSubpath()
@@ -71,7 +71,7 @@ class MeshObstacle {
         obstacleLayer?.addChild(self.sprite)
         self.obstacle = SKNode.obstacles(fromNodePhysicsBodies: [self.sprite]).first!
         
-        self.bufferedPath = CGPath(copyByStroking: path, transform: nil, lineWidth: buffer * 2, lineCap: CGLineCap.butt, lineJoin: CGLineJoin.miter, miterLimit: buffer)!
+        self.bufferedPath = CGPath(__byStroking: path, transform: nil, lineWidth: buffer * 2, lineCap: CGLineCap.butt, lineJoin: CGLineJoin.miter, miterLimit: buffer)!
 
         
     }
@@ -80,14 +80,14 @@ class MeshObstacle {
     
     /// Used to check if the current unit / hit check is already within the polygon. Coordinates are based on World layer
     func containsPoint(_ point:CGPoint) -> Bool {
-        return self.path.containsPoint(nil, point: point, eoFill: false)
+        return self.path.contains(point)
     }
     
     /// Used to check if the current unit / hit check is already within the buffered polygon. Coordinates are based on World layer
     func containsPointInBuffer(_ point:CGPoint) -> Bool {
         if let scene = self.sprite.scene as? GameScene {
             let localPoint = scene.childNode(withName: "World")!.convert(point, from: scene)
-            return (self.bufferedPath).containsPoint(nil, point: localPoint, eoFill: false)
+            return (self.bufferedPath).contains(localPoint)
         }
         return false
     }

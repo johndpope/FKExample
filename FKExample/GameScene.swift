@@ -21,7 +21,7 @@ struct TestDefinition {
     
     var settings : TestSettings
     
-    init(settings: TestSettings, classObj:()->AnyObject) {
+    init(settings: TestSettings, classObj: @escaping()->AnyObject) {
         self.classObj = classObj
         self.settings = settings
     }
@@ -461,7 +461,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     // MARK: GUI
     
     func setupGUI(_ leader:FKSquadEntity) {
-        let bar = WGActionEntity(parentNode: self.camera!, leader:leader)
+        let bar = WGActionEntity(parentNode: self.ui!, leader:leader)
         self.actionBar = bar
     }
     
@@ -509,16 +509,16 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
             
         /// Update the squad component system
         for componentSystem in FKSquadFactory.sharedInstance.componentSystems {
-            componentSystem.update(withDeltaTime: deltaTime)
+            componentSystem.update(deltaTime: deltaTime)
         }
         
         /// Update the unit component system
         for componentSystem in FKUnitFactory.sharedInstance.componentSystems {
-            componentSystem.update(withDeltaTime: deltaTime)
+            componentSystem.update(deltaTime: deltaTime)
         }
         
         /// Update entites not part of the system
-        self.actionBar?.update(withDeltaTime: deltaTime)
+        self.actionBar?.update(deltaTime: deltaTime)
         
     }
     

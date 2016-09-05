@@ -134,7 +134,7 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
                     nodesOffScene.append(node)
                 }
             }
-            self.removeNodes(nodesOffScene)
+            self.remove(nodesOffScene)
         }
     }
     
@@ -147,17 +147,17 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
         let endNode = GKGraphNode2D(point:float2(end))
         //let targetMesh = self.meshes[MeshSize.getAppropriateSize(size)]!
         
-        self.connectNode(usingObstacles: startNode, ignoring: ignoringObstacles)
-        self.connectNode(usingObstacles: endNode, ignoring: ignoringObstacles)
+        self.connectUsingObstacles(node: startNode, ignoring: ignoringObstacles)
+        self.connectUsingObstacles(node: endNode, ignoring: ignoringObstacles)
         
         if(!startNode.connectedNodes.isEmpty && !endNode.connectedNodes.isEmpty) {
             let pathNodes = self.findPath(from: startNode, to: endNode) as! [GKGraphNode2D]
             let path = GKPath(graphNodes: pathNodes, radius: radius)
-            self.removeNodes([startNode, endNode])
+            self.remove([startNode, endNode])
             return path
         }
         
-        self.removeNodes([startNode, endNode])
+        self.remove([startNode, endNode])
 
         return nil
     }
@@ -169,24 +169,24 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
         //let targetMesh = self.meshes[MeshSize.getAppropriateSize(size)]!
 
         /// First try to connect using ignore buffer
-        self.connectNode(usingObstacles: startNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(start)))
-        self.connectNode(usingObstacles: endNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(end)))
+        self.connectUsingObstacles(node: startNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(start)))
+        self.connectUsingObstacles(node: endNode, ignoringBufferRadiusOf: self.getBuffersContainingPoint(float2(end)))
 
         /// If weve reached this point, buffer connection didnt work, so try to force connection to lowest cost node
         if startNode.connectedNodes.isEmpty {
-            self.removeNodes([startNode])
-            self.connectNode(toLowestCost: startNode, bidirectional: true)
+            self.remove([startNode])
+            self.connectToLowestCostNode(node: startNode, bidirectional: true)
         }
     
         if endNode.connectedNodes.isEmpty {
-            self.removeNodes([endNode])
-            self.connectNode(toLowestCost: endNode, bidirectional: true)
+            self.remove([endNode])
+            self.connectToLowestCostNode(node: endNode, bidirectional: true)
         }
         
         /// Should have connections by now, so find a path
         if let pathNodes = self.findPath(from: startNode, to: endNode) as? [GKGraphNode2D] {
             if(pathNodes.count > 1) {
-                self.removeNodes([startNode, endNode])
+                self.remove([startNode, endNode])
                 let path = GKPath(graphNodes: pathNodes, radius: radius)
                 return (path, pathNodes)
             }
@@ -200,7 +200,7 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
             print("end empty")
         }
         
-        self.removeNodes([startNode, endNode])
+        self.remove([startNode, endNode])
         
         return nil
     }
@@ -232,7 +232,7 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
     func removeNodesThatArentConnected() {
         for node in self.nodes as! [GKGraphNode2D] {
             if node.connectedNodes.isEmpty {
-                self.removeNodes([node])
+                self.remove([node])
             }
         }
     }

@@ -48,7 +48,7 @@
 		<key>iconDesc</key>
 		<string>Smash!</string>
 		<key>iconName</key>
-		<string>icon_MeleeAttack.png</string>
+		<string>icon_Smash.png</string>
 	</dict>
 	<key>Flee</key>
 	<dict>
@@ -339,9 +339,9 @@
 		<key>behavior</key>
 		<string>Spell</string>
 		<key>iconDesc</key>
-		<string>Lightning</string>
+		<string>Fire</string>
 		<key>iconName</key>
-		<string>icon_Lightning.png</string>
+		<string>icon_Fireball.png</string>
 	</dict>
 	<key>Heal</key>
 	<dict>
@@ -534,7 +534,7 @@
 		<key>range</key>
 		<real>2000</real>
 		<key>iconName</key>
-		<string>icon_RangedAttack.png</string>
+		<string>icon_Ranged.png</string>
 		<key>iconDesc</key>
 		<string>Launch</string>
 		<key>behavior</key>
@@ -636,7 +636,7 @@
 		<key>range</key>
 		<integer>800</integer>
 		<key>iconName</key>
-		<string>icon_RangedAttack.png</string>
+		<string>icon_Ranged.png</string>
 		<key>iconDesc</key>
 		<string>Shoot</string>
 		<key>behavior</key>
@@ -745,7 +745,7 @@
 		<key>iconDesc</key>
 		<string>Attack</string>
 		<key>iconName</key>
-		<string>icon_MeleeAttack.png</string>
+		<string>icon_Melee.png</string>
 	</dict>
 	<key>Sprint</key>
 	<dict>
@@ -817,7 +817,7 @@
 		<key>iconDesc</key>
 		<string>Move</string>
 		<key>iconName</key>
-		<string>icon_WorldMap.png</string>
+		<string>icon_Travel.png</string>
 	</dict>
 </dict>
 </plist>

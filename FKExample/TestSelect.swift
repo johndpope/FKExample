@@ -91,7 +91,7 @@ class TestSelect : SKNode {
     
     var root : SKNode
     
-    var callback : (instructions:TestInstructions)->() = {_ in }
+    var callback : (_ instructions:TestInstructions)->() = {_ in }
     
     var instructions : TestInstructions?
     
@@ -276,7 +276,7 @@ class TestSelect : SKNode {
             self.instructions?.selectedFriendlyHero = nil
         }
        
-        self.callback(instructions: self.instructions!)
+        self.callback(self.instructions!)
         self.root.removeFromParent()
     }
     
