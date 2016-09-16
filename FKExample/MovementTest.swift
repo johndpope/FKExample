@@ -8,9 +8,17 @@
 
 import SpriteKit
 import GameplayKit
-import FormationKit
-import SwitchBoard
-import Particleboard
+#if os(iOS)
+    import FormationKit
+    import SwitchBoard
+    import Particleboard
+    import StrongRoom
+#elseif os(OSX)
+    import FormationKitOS
+    import SwitchBoardOS
+    import ParticleboardOS
+    import StrongRoomOS
+#endif
 
 class MovementTest : Testable {
     

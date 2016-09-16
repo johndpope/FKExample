@@ -8,9 +8,17 @@
 
 import SpriteKit
 import GameplayKit
-import FormationKit
-import SwitchBoard
-import Particleboard
+#if os(iOS)
+    import FormationKit
+    import SwitchBoard
+    import Particleboard
+    import StrongRoom
+#elseif os(OSX)
+    import FormationKitOS
+    import SwitchBoardOS
+    import ParticleboardOS
+    import StrongRoomOS
+#endif
 
 /// This test is currently a copy of invalid move. Turn on debug squad state to see when a unit switches to "C" for cathcing up.
 class CatchingUpTest : Testable {

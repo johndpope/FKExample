@@ -8,7 +8,17 @@
 
 import SpriteKit
 import GameplayKit
-import SwitchBoard
+#if os(iOS)
+    import FormationKit
+    import SwitchBoard
+    import Particleboard
+    import StrongRoom
+#elseif os(OSX)
+    import FormationKitOS
+    import SwitchBoardOS
+    import ParticleboardOS
+    import StrongRoomOS
+#endif
 
 enum MeshSize : Float {
     case

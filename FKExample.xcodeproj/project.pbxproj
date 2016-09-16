@@ -7,6 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E72AA7171D8C361E00A1F777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72AA7161D8C361E00A1F777 /* AppDelegate.swift */; };
+		E72AA71F1D8C361E00A1F777 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72AA71E1D8C361E00A1F777 /* ViewController.swift */; };
+		E72AA7241D8C361E00A1F777 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72AA7221D8C361E00A1F777 /* Main.storyboard */; };
+		E72AA72F1D8C361E00A1F777 /* FKExample_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72AA72E1D8C361E00A1F777 /* FKExample_macOSTests.swift */; };
+		E72AA73A1D8C361E00A1F777 /* FKExample_macOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72AA7391D8C361E00A1F777 /* FKExample_macOSUITests.swift */; };
+		E72AA7521D8C36AF00A1F777 /* DeckKitOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7471D8C36AF00A1F777 /* DeckKitOS.framework */; };
+		E72AA7541D8C36AF00A1F777 /* ParticleboardOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7491D8C36AF00A1F777 /* ParticleboardOS.framework */; };
+		E72AA7561D8C36AF00A1F777 /* SpeakerBoxOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74B1D8C36AF00A1F777 /* SpeakerBoxOS.framework */; };
+		E72AA7571D8C36AF00A1F777 /* StrongRoomOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74C1D8C36AF00A1F777 /* StrongRoomOS.framework */; };
+		E72AA7581D8C36AF00A1F777 /* SwitchBoardOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74D1D8C36AF00A1F777 /* SwitchBoardOS.framework */; };
+		E72AA75A1D8C36AF00A1F777 /* WavePoolOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74F1D8C36AF00A1F777 /* WavePoolOS.framework */; };
+		E72AA75B1D8C36C400A1F777 /* BarricAssetsOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7451D8C36AF00A1F777 /* BarricAssetsOS.framework */; };
+		E72AA75C1D8C36C400A1F777 /* BarricAssetsOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7451D8C36AF00A1F777 /* BarricAssetsOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA75D1D8C36C400A1F777 /* CutsceneKitOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7461D8C36AF00A1F777 /* CutsceneKitOS.framework */; };
+		E72AA75E1D8C36C400A1F777 /* CutsceneKitOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7461D8C36AF00A1F777 /* CutsceneKitOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7601D8C36C400A1F777 /* DeckKitOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7471D8C36AF00A1F777 /* DeckKitOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7611D8C36C400A1F777 /* FormationKitOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7481D8C36AF00A1F777 /* FormationKitOS.framework */; };
+		E72AA7621D8C36C400A1F777 /* FormationKitOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7481D8C36AF00A1F777 /* FormationKitOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7641D8C36C400A1F777 /* ParticleboardOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7491D8C36AF00A1F777 /* ParticleboardOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7651D8C36C400A1F777 /* PathKitOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74A1D8C36AF00A1F777 /* PathKitOS.framework */; };
+		E72AA7661D8C36C400A1F777 /* PathKitOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74A1D8C36AF00A1F777 /* PathKitOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7681D8C36C400A1F777 /* SpeakerBoxOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74B1D8C36AF00A1F777 /* SpeakerBoxOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7691D8C36C400A1F777 /* StrongRoomOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74C1D8C36AF00A1F777 /* StrongRoomOS.framework */; };
+		E72AA76A1D8C36C400A1F777 /* StrongRoomOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74C1D8C36AF00A1F777 /* StrongRoomOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA76C1D8C36C400A1F777 /* SwitchBoardOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74D1D8C36AF00A1F777 /* SwitchBoardOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA76D1D8C36C400A1F777 /* WarGUIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74E1D8C36AF00A1F777 /* WarGUIOS.framework */; };
+		E72AA76E1D8C36C400A1F777 /* WarGUIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74E1D8C36AF00A1F777 /* WarGUIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7701D8C36C400A1F777 /* WavePoolOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74F1D8C36AF00A1F777 /* WavePoolOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E72AA7721D8C370F00A1F777 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74CD1161C77C747002CFCEC /* GameScene.swift */; };
+		E72AA7731D8C378900A1F777 /* Testable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450B1CA4E09500525966 /* Testable.swift */; };
+		E72AA7741D8C379300A1F777 /* 1v1FightTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DEC1CAAF56700AAA23E /* 1v1FightTest.swift */; };
+		E72AA7751D8C37B500A1F777 /* EngageMovingTargetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7735B191CAB7D2600B684CF /* EngageMovingTargetTest.swift */; };
+		E72AA7761D8C37B500A1F777 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7433DD91CA9A41200AAA23E /* PerformanceTest.swift */; };
+		E72AA7771D8C37B500A1F777 /* ReformOnUnitDeathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450F1CA4E18800525966 /* ReformOnUnitDeathTest.swift */; };
+		E72AA7781D8C37B500A1F777 /* ReformTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345111CA4E1BD00525966 /* ReformTest.swift */; };
+		E72AA7791D8C37B500A1F777 /* AddHeroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345131CA4E20900525966 /* AddHeroTest.swift */; };
+		E72AA77A1D8C37B500A1F777 /* MovementTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3450D1CA4E0FC00525966 /* MovementTest.swift */; };
+		E72AA77B1D8C37B500A1F777 /* InvalidMovePositionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */; };
+		E72AA77C1D8C37B500A1F777 /* CatchingUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DE25C1CA997C800771803 /* CatchingUpTest.swift */; };
+		E72AA77D1D8C37B500A1F777 /* Navmesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4D3A61C9CFE2800D1B7D8 /* Navmesh.swift */; };
+		E72AA77E1D8C37B500A1F777 /* MeshObstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4D3A71C9CFE2800D1B7D8 /* MeshObstacle.swift */; };
+		E72AA77F1D8C37B500A1F777 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E74CD1141C77C747002CFCEC /* GameScene.sks */; };
+		E72AA7801D8C37B500A1F777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E74CD11D1C77C747002CFCEC /* Assets.xcassets */; };
+		E72AA7811D8C37B500A1F777 /* Gameplay.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E78F57C51D7DC453004C0BE9 /* Gameplay.xcassets */; };
+		E72AA7821D8C37B500A1F777 /* Loading.sks in Resources */ = {isa = PBXBuildFile; fileRef = E7B394421C7E37B900B9A7DA /* Loading.sks */; };
+		E72AA7831D8C37B500A1F777 /* TestSelect.sks in Resources */ = {isa = PBXBuildFile; fileRef = E75B93271CD8007600DDC324 /* TestSelect.sks */; };
+		E72AA7841D8C37B500A1F777 /* TestSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75B93291CD80A7800DDC324 /* TestSelect.swift */; };
+		E72AA7851D8C3AD300A1F777 /* TestLevel_obstacles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AC1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist */; };
+		E72AA7861D8C3B0900A1F777 /* BarricAssets.framework in Resources */ = {isa = PBXBuildFile; fileRef = E74871881D81FE41008D64D8 /* BarricAssets.framework */; };
+		E72AA7871D8C3C0900A1F777 /* Test.atlas in Resources */ = {isa = PBXBuildFile; fileRef = E7C4D3AA1C9CFF1200D1B7D8 /* Test.atlas */; };
 		E738BFCF1CE5F0A600A89C07 /* particle_Haste.sks in Resources */ = {isa = PBXBuildFile; fileRef = E738BFCE1CE5F0A600A89C07 /* particle_Haste.sks */; };
 		E738BFD21CE5F26B00A89C07 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = E738BFD01CE5F26B00A89C07 /* MyParticle.sks */; };
 		E738BFD31CE5F26B00A89C07 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E738BFD11CE5F26B00A89C07 /* spark.png */; };
@@ -66,6 +116,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E72AA72B1D8C361E00A1F777 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E74CD1071C77C747002CFCEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E72AA7131D8C361E00A1F777;
+			remoteInfo = "FKExample macOS";
+		};
+		E72AA7361D8C361E00A1F777 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E74CD1071C77C747002CFCEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E72AA7131D8C361E00A1F777;
+			remoteInfo = "FKExample macOS";
+		};
 		E74CD1281C77C747002CFCEC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E74CD1071C77C747002CFCEC /* Project object */;
@@ -83,6 +147,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E72AA7711D8C36C400A1F777 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E72AA7661D8C36C400A1F777 /* PathKitOS.framework in Embed Frameworks */,
+				E72AA76E1D8C36C400A1F777 /* WarGUIOS.framework in Embed Frameworks */,
+				E72AA7681D8C36C400A1F777 /* SpeakerBoxOS.framework in Embed Frameworks */,
+				E72AA7641D8C36C400A1F777 /* ParticleboardOS.framework in Embed Frameworks */,
+				E72AA7601D8C36C400A1F777 /* DeckKitOS.framework in Embed Frameworks */,
+				E72AA7621D8C36C400A1F777 /* FormationKitOS.framework in Embed Frameworks */,
+				E72AA75C1D8C36C400A1F777 /* BarricAssetsOS.framework in Embed Frameworks */,
+				E72AA76A1D8C36C400A1F777 /* StrongRoomOS.framework in Embed Frameworks */,
+				E72AA7701D8C36C400A1F777 /* WavePoolOS.framework in Embed Frameworks */,
+				E72AA75E1D8C36C400A1F777 /* CutsceneKitOS.framework in Embed Frameworks */,
+				E72AA76C1D8C36C400A1F777 /* SwitchBoardOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E74CD1481C77C776002CFCEC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,6 +189,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E72AA7141D8C361E00A1F777 /* FKExample macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FKExample macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E72AA7161D8C361E00A1F777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E72AA71E1D8C361E00A1F777 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E72AA7231D8C361E00A1F777 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E72AA7251D8C361E00A1F777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E72AA72A1D8C361E00A1F777 /* FKExample macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FKExample macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E72AA72E1D8C361E00A1F777 /* FKExample_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKExample_macOSTests.swift; sourceTree = "<group>"; };
+		E72AA7301D8C361E00A1F777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E72AA7351D8C361E00A1F777 /* FKExample macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FKExample macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E72AA7391D8C361E00A1F777 /* FKExample_macOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKExample_macOSUITests.swift; sourceTree = "<group>"; };
+		E72AA73B1D8C361E00A1F777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E72AA7451D8C36AF00A1F777 /* BarricAssetsOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BarricAssetsOS.framework; path = ../../../Builds/Products/Debug/BarricAssetsOS.framework; sourceTree = "<group>"; };
+		E72AA7461D8C36AF00A1F777 /* CutsceneKitOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CutsceneKitOS.framework; path = ../../../Builds/Products/Debug/CutsceneKitOS.framework; sourceTree = "<group>"; };
+		E72AA7471D8C36AF00A1F777 /* DeckKitOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeckKitOS.framework; path = ../../../Builds/Products/Debug/DeckKitOS.framework; sourceTree = "<group>"; };
+		E72AA7481D8C36AF00A1F777 /* FormationKitOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FormationKitOS.framework; path = ../../../Builds/Products/Debug/FormationKitOS.framework; sourceTree = "<group>"; };
+		E72AA7491D8C36AF00A1F777 /* ParticleboardOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParticleboardOS.framework; path = ../../../Builds/Products/Debug/ParticleboardOS.framework; sourceTree = "<group>"; };
+		E72AA74A1D8C36AF00A1F777 /* PathKitOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PathKitOS.framework; path = ../../../Builds/Products/Debug/PathKitOS.framework; sourceTree = "<group>"; };
+		E72AA74B1D8C36AF00A1F777 /* SpeakerBoxOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeakerBoxOS.framework; path = ../../../Builds/Products/Debug/SpeakerBoxOS.framework; sourceTree = "<group>"; };
+		E72AA74C1D8C36AF00A1F777 /* StrongRoomOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StrongRoomOS.framework; path = ../../../Builds/Products/Debug/StrongRoomOS.framework; sourceTree = "<group>"; };
+		E72AA74D1D8C36AF00A1F777 /* SwitchBoardOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwitchBoardOS.framework; path = ../../../Builds/Products/Debug/SwitchBoardOS.framework; sourceTree = "<group>"; };
+		E72AA74E1D8C36AF00A1F777 /* WarGUIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WarGUIOS.framework; path = ../../../Builds/Products/Debug/WarGUIOS.framework; sourceTree = "<group>"; };
+		E72AA74F1D8C36AF00A1F777 /* WavePoolOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WavePoolOS.framework; path = ../../../Builds/Products/Debug/WavePoolOS.framework; sourceTree = "<group>"; };
 		E738BFCE1CE5F0A600A89C07 /* particle_Haste.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = particle_Haste.sks; sourceTree = "<group>"; };
 		E738BFD01CE5F26B00A89C07 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		E738BFD11CE5F26B00A89C07 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -159,6 +266,39 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E72AA7111D8C361E00A1F777 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72AA76D1D8C36C400A1F777 /* WarGUIOS.framework in Frameworks */,
+				E72AA75D1D8C36C400A1F777 /* CutsceneKitOS.framework in Frameworks */,
+				E72AA7561D8C36AF00A1F777 /* SpeakerBoxOS.framework in Frameworks */,
+				E72AA7541D8C36AF00A1F777 /* ParticleboardOS.framework in Frameworks */,
+				E72AA75B1D8C36C400A1F777 /* BarricAssetsOS.framework in Frameworks */,
+				E72AA7611D8C36C400A1F777 /* FormationKitOS.framework in Frameworks */,
+				E72AA7691D8C36C400A1F777 /* StrongRoomOS.framework in Frameworks */,
+				E72AA7521D8C36AF00A1F777 /* DeckKitOS.framework in Frameworks */,
+				E72AA7571D8C36AF00A1F777 /* StrongRoomOS.framework in Frameworks */,
+				E72AA75A1D8C36AF00A1F777 /* WavePoolOS.framework in Frameworks */,
+				E72AA7651D8C36C400A1F777 /* PathKitOS.framework in Frameworks */,
+				E72AA7581D8C36AF00A1F777 /* SwitchBoardOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E72AA7271D8C361E00A1F777 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E72AA7321D8C361E00A1F777 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E74CD10C1C77C747002CFCEC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +332,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E72AA7151D8C361E00A1F777 /* FKExample macOS */ = {
+			isa = PBXGroup;
+			children = (
+				E72AA7161D8C361E00A1F777 /* AppDelegate.swift */,
+				E72AA71E1D8C361E00A1F777 /* ViewController.swift */,
+				E72AA7221D8C361E00A1F777 /* Main.storyboard */,
+				E72AA7251D8C361E00A1F777 /* Info.plist */,
+			);
+			path = "FKExample macOS";
+			sourceTree = "<group>";
+		};
+		E72AA72D1D8C361E00A1F777 /* FKExample macOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				E72AA72E1D8C361E00A1F777 /* FKExample_macOSTests.swift */,
+				E72AA7301D8C361E00A1F777 /* Info.plist */,
+			);
+			path = "FKExample macOSTests";
+			sourceTree = "<group>";
+		};
+		E72AA7381D8C361E00A1F777 /* FKExample macOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E72AA7391D8C361E00A1F777 /* FKExample_macOSUITests.swift */,
+				E72AA73B1D8C361E00A1F777 /* Info.plist */,
+			);
+			path = "FKExample macOSUITests";
+			sourceTree = "<group>";
+		};
 		E738BFCD1CE5F09E00A89C07 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +383,17 @@
 		E74871B81D82EBBD008D64D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E72AA7451D8C36AF00A1F777 /* BarricAssetsOS.framework */,
+				E72AA7461D8C36AF00A1F777 /* CutsceneKitOS.framework */,
+				E72AA7471D8C36AF00A1F777 /* DeckKitOS.framework */,
+				E72AA7481D8C36AF00A1F777 /* FormationKitOS.framework */,
+				E72AA7491D8C36AF00A1F777 /* ParticleboardOS.framework */,
+				E72AA74A1D8C36AF00A1F777 /* PathKitOS.framework */,
+				E72AA74B1D8C36AF00A1F777 /* SpeakerBoxOS.framework */,
+				E72AA74C1D8C36AF00A1F777 /* StrongRoomOS.framework */,
+				E72AA74D1D8C36AF00A1F777 /* SwitchBoardOS.framework */,
+				E72AA74E1D8C36AF00A1F777 /* WarGUIOS.framework */,
+				E72AA74F1D8C36AF00A1F777 /* WavePoolOS.framework */,
 				E74871BA1D82EDB6008D64D8 /* StrongRoom.framework */,
 				E74871881D81FE41008D64D8 /* BarricAssets.framework */,
 				E74871891D81FE41008D64D8 /* CutsceneKit.framework */,
@@ -229,6 +409,8 @@
 		E74871B91D82EBCE008D64D8 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				E72AA72D1D8C361E00A1F777 /* FKExample macOSTests */,
+				E72AA7381D8C361E00A1F777 /* FKExample macOSUITests */,
 				E74CD12A1C77C747002CFCEC /* FKExampleTests */,
 				E74CD1351C77C747002CFCEC /* FKExampleUITests */,
 				E74CD1101C77C747002CFCEC /* Products */,
@@ -241,6 +423,7 @@
 			children = (
 				E74CD1111C77C747002CFCEC /* FKExample */,
 				E74871B91D82EBCE008D64D8 /* System */,
+				E72AA7151D8C361E00A1F777 /* FKExample macOS */,
 				E74871B81D82EBBD008D64D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -251,6 +434,9 @@
 				E74CD10F1C77C747002CFCEC /* FKExample.app */,
 				E74CD1271C77C747002CFCEC /* FKExampleTests.xctest */,
 				E74CD1321C77C747002CFCEC /* FKExampleUITests.xctest */,
+				E72AA7141D8C361E00A1F777 /* FKExample macOS.app */,
+				E72AA72A1D8C361E00A1F777 /* FKExample macOSTests.xctest */,
+				E72AA7351D8C361E00A1F777 /* FKExample macOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -382,6 +568,60 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E72AA7131D8C361E00A1F777 /* FKExample macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E72AA73C1D8C361E00A1F777 /* Build configuration list for PBXNativeTarget "FKExample macOS" */;
+			buildPhases = (
+				E72AA7101D8C361E00A1F777 /* Sources */,
+				E72AA7111D8C361E00A1F777 /* Frameworks */,
+				E72AA7121D8C361E00A1F777 /* Resources */,
+				E72AA7711D8C36C400A1F777 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FKExample macOS";
+			productName = "FKExample macOS";
+			productReference = E72AA7141D8C361E00A1F777 /* FKExample macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E72AA7291D8C361E00A1F777 /* FKExample macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E72AA73F1D8C361E00A1F777 /* Build configuration list for PBXNativeTarget "FKExample macOSTests" */;
+			buildPhases = (
+				E72AA7261D8C361E00A1F777 /* Sources */,
+				E72AA7271D8C361E00A1F777 /* Frameworks */,
+				E72AA7281D8C361E00A1F777 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E72AA72C1D8C361E00A1F777 /* PBXTargetDependency */,
+			);
+			name = "FKExample macOSTests";
+			productName = "FKExample macOSTests";
+			productReference = E72AA72A1D8C361E00A1F777 /* FKExample macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E72AA7341D8C361E00A1F777 /* FKExample macOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E72AA7421D8C361E00A1F777 /* Build configuration list for PBXNativeTarget "FKExample macOSUITests" */;
+			buildPhases = (
+				E72AA7311D8C361E00A1F777 /* Sources */,
+				E72AA7321D8C361E00A1F777 /* Frameworks */,
+				E72AA7331D8C361E00A1F777 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E72AA7371D8C361E00A1F777 /* PBXTargetDependency */,
+			);
+			name = "FKExample macOSUITests";
+			productName = "FKExample macOSUITests";
+			productReference = E72AA7351D8C361E00A1F777 /* FKExample macOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E74CD10E1C77C747002CFCEC /* FKExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E74CD13B1C77C747002CFCEC /* Build configuration list for PBXNativeTarget "FKExample" */;
@@ -442,10 +682,27 @@
 		E74CD1071C77C747002CFCEC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Phalanx Studios";
 				TargetAttributes = {
+					E72AA7131D8C361E00A1F777 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = RK3T9BYSJ8;
+						ProvisioningStyle = Automatic;
+					};
+					E72AA7291D8C361E00A1F777 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = RK3T9BYSJ8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E72AA7131D8C361E00A1F777;
+					};
+					E72AA7341D8C361E00A1F777 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = RK3T9BYSJ8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E72AA7131D8C361E00A1F777;
+					};
 					E74CD10E1C77C747002CFCEC = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = RK3T9BYSJ8;
@@ -480,11 +737,44 @@
 				E74CD10E1C77C747002CFCEC /* FKExample */,
 				E74CD1261C77C747002CFCEC /* FKExampleTests */,
 				E74CD1311C77C747002CFCEC /* FKExampleUITests */,
+				E72AA7131D8C361E00A1F777 /* FKExample macOS */,
+				E72AA7291D8C361E00A1F777 /* FKExample macOSTests */,
+				E72AA7341D8C361E00A1F777 /* FKExample macOSUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E72AA7121D8C361E00A1F777 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72AA7861D8C3B0900A1F777 /* BarricAssets.framework in Resources */,
+				E72AA77F1D8C37B500A1F777 /* GameScene.sks in Resources */,
+				E72AA7811D8C37B500A1F777 /* Gameplay.xcassets in Resources */,
+				E72AA7821D8C37B500A1F777 /* Loading.sks in Resources */,
+				E72AA7871D8C3C0900A1F777 /* Test.atlas in Resources */,
+				E72AA7831D8C37B500A1F777 /* TestSelect.sks in Resources */,
+				E72AA7801D8C37B500A1F777 /* Assets.xcassets in Resources */,
+				E72AA7241D8C361E00A1F777 /* Main.storyboard in Resources */,
+				E72AA7851D8C3AD300A1F777 /* TestLevel_obstacles.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E72AA7281D8C361E00A1F777 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E72AA7331D8C361E00A1F777 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E74CD10D1C77C747002CFCEC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,6 +820,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E72AA7101D8C361E00A1F777 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72AA77E1D8C37B500A1F777 /* MeshObstacle.swift in Sources */,
+				E72AA71F1D8C361E00A1F777 /* ViewController.swift in Sources */,
+				E72AA7731D8C378900A1F777 /* Testable.swift in Sources */,
+				E72AA7721D8C370F00A1F777 /* GameScene.swift in Sources */,
+				E72AA7751D8C37B500A1F777 /* EngageMovingTargetTest.swift in Sources */,
+				E72AA77C1D8C37B500A1F777 /* CatchingUpTest.swift in Sources */,
+				E72AA7781D8C37B500A1F777 /* ReformTest.swift in Sources */,
+				E72AA7791D8C37B500A1F777 /* AddHeroTest.swift in Sources */,
+				E72AA7771D8C37B500A1F777 /* ReformOnUnitDeathTest.swift in Sources */,
+				E72AA77B1D8C37B500A1F777 /* InvalidMovePositionTest.swift in Sources */,
+				E72AA7741D8C379300A1F777 /* 1v1FightTest.swift in Sources */,
+				E72AA7841D8C37B500A1F777 /* TestSelect.swift in Sources */,
+				E72AA77A1D8C37B500A1F777 /* MovementTest.swift in Sources */,
+				E72AA7761D8C37B500A1F777 /* PerformanceTest.swift in Sources */,
+				E72AA77D1D8C37B500A1F777 /* Navmesh.swift in Sources */,
+				E72AA7171D8C361E00A1F777 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E72AA7261D8C361E00A1F777 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72AA72F1D8C361E00A1F777 /* FKExample_macOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E72AA7311D8C361E00A1F777 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72AA73A1D8C361E00A1F777 /* FKExample_macOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E74CD10B1C77C747002CFCEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -572,6 +901,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E72AA72C1D8C361E00A1F777 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E72AA7131D8C361E00A1F777 /* FKExample macOS */;
+			targetProxy = E72AA72B1D8C361E00A1F777 /* PBXContainerItemProxy */;
+		};
+		E72AA7371D8C361E00A1F777 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E72AA7131D8C361E00A1F777 /* FKExample macOS */;
+			targetProxy = E72AA7361D8C361E00A1F777 /* PBXContainerItemProxy */;
+		};
 		E74CD1291C77C747002CFCEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E74CD10E1C77C747002CFCEC /* FKExample */;
@@ -585,6 +924,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E72AA7221D8C361E00A1F777 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E72AA7231D8C361E00A1F777 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		E74CD11A1C77C747002CFCEC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -604,6 +951,147 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E72AA73D1D8C361E00A1F777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RK3T9BYSJ8;
+				INFOPLIST_FILE = "FKExample macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "phalanx.FKExample-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E72AA73E1D8C361E00A1F777 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RK3T9BYSJ8;
+				INFOPLIST_FILE = "FKExample macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "phalanx.FKExample-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		E72AA7401D8C361E00A1F777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RK3T9BYSJ8;
+				INFOPLIST_FILE = "FKExample macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "phalanx.FKExample-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FKExample macOS.app/Contents/MacOS/FKExample macOS";
+			};
+			name = Debug;
+		};
+		E72AA7411D8C361E00A1F777 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RK3T9BYSJ8;
+				INFOPLIST_FILE = "FKExample macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "phalanx.FKExample-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FKExample macOS.app/Contents/MacOS/FKExample macOS";
+			};
+			name = Release;
+		};
+		E72AA7431D8C361E00A1F777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RK3T9BYSJ8;
+				INFOPLIST_FILE = "FKExample macOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "phalanx.FKExample-macOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "FKExample macOS";
+			};
+			name = Debug;
+		};
+		E72AA7441D8C361E00A1F777 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RK3T9BYSJ8;
+				INFOPLIST_FILE = "FKExample macOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "phalanx.FKExample-macOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "FKExample macOS";
+			};
+			name = Release;
+		};
 		E74CD1391C77C747002CFCEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -794,6 +1282,30 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E72AA73C1D8C361E00A1F777 /* Build configuration list for PBXNativeTarget "FKExample macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E72AA73D1D8C361E00A1F777 /* Debug */,
+				E72AA73E1D8C361E00A1F777 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E72AA73F1D8C361E00A1F777 /* Build configuration list for PBXNativeTarget "FKExample macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E72AA7401D8C361E00A1F777 /* Debug */,
+				E72AA7411D8C361E00A1F777 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E72AA7421D8C361E00A1F777 /* Build configuration list for PBXNativeTarget "FKExample macOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E72AA7431D8C361E00A1F777 /* Debug */,
+				E72AA7441D8C361E00A1F777 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		E74CD10A1C77C747002CFCEC /* Build configuration list for PBXProject "FKExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -8,12 +8,22 @@
 
 import SpriteKit
 import GameplayKit
-import FormationKit
-import SwitchBoard
-import Particleboard
-import WarGUI
-import StrongRoom
-import BarricAssets
+
+#if os(iOS)
+    import FormationKit
+    import SwitchBoard
+    import Particleboard
+    import WarGUI
+    import StrongRoom
+    import BarricAssets
+#elseif os(OSX)
+    import FormationKitOS
+    import SwitchBoardOS
+    import ParticleboardOS
+    import WarGUIOS
+    import StrongRoomOS
+    import BarricAssetsOS
+#endif
 
 struct TestDefinition {
     
@@ -66,15 +76,13 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     override func didMove(to view: SKView) {
         
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            self.size = CGSize(width: 2730, height: 1536)
-        }
-        
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
         self.buildWorldLayers()
-        self.registerGestures()
+        #if os(iOS)
+            self.registerGestures()
+        #endif
 
         
         var instructions = TestInstructions(settings: combatTestSetting)
@@ -112,10 +120,17 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     override func buildWorldLayers() {
         
         self.cameraBounds = CameraBounds(lower: 100, left: 0, upper: 0, right: 0)
+        self.size = CGSize(width: 2730, height: 1536)
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.size = CGSize(width: 2048, height: 1536)
-        }
+        #if os(OSX)
+            ///self.size = CGSize(width: 1920, height: 1080)
+        #endif
+        
+        #if os(iOS)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                self.size = CGSize(width: 2048, height: 1536)
+            }
+        #endif
         
         super.buildWorldLayers()
         
@@ -365,16 +380,51 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         squad.abilitiesComponent.abilities.append(activeAbility)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch: AnyObject in touches {
-            let location = touch.location(in:self)
-            if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) && !self.testButtonTapped(location) {
-                let realLocation = self.childNode(withName: "World")!.convert(location, from: self)
-                self.actionBar?.handleInput(realLocation)
-                self.currentTest?.tapped(location)
-            }
+    func clickUp(location:CGPoint) {
+        if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) && !self.testButtonTapped(location) {
+            let realLocation = self.childNode(withName: "World")!.convert(location, from: self)
+            self.actionBar?.handleInput(realLocation)
+            self.currentTest?.tapped(location)
         }
     }
+    
+    func clickDown(location:CGPoint) {
+        
+    }
+    
+    // MARK: iOS Input
+    
+    #if os(iOS)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            self.clickDown(location: location)
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            self.clickUp(location: location)
+        }
+    }
+    #endif
+    
+    // MARK: macOS Input
+    
+    #if os(OSX)
+    
+    override func mouseDown(with event: NSEvent) {
+        let location = event.location(in: self)
+        self.clickDown(location: location)
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        let location = event.location(in: self)
+        self.clickUp(location: location)
+    }
+    
+    #endif
     
     // MARK: Test Specific
     
@@ -463,6 +513,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     func setupGUI(_ leader:FKSquadEntity) {
         let bar = WGActionEntity(parentNode: self.ui!, leader:leader)
         self.actionBar = bar
+        self.actionBar?.component(ofType: WGRenderComponent.self)?.show()
     }
     
     func heraldryTapped(_ squad: FKSquadEntity) {

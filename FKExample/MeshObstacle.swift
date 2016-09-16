@@ -8,8 +8,16 @@
 
 import SpriteKit
 import GameplayKit
-import SwitchBoard
-import FormationKit
+
+#if os(iOS)
+    import FormationKit
+    import SwitchBoard
+    import Particleboard
+#elseif os(OSX)
+    import FormationKitOS
+    import SwitchBoardOS
+    import ParticleboardOS
+#endif
 
 /**
 Because GKPolygonObstacle and SKSpriteNode.physcisBody do not have read access to the CGPath, we can't do easy hit detection.

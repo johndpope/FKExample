@@ -316,58 +316,92 @@ class TestSelect : SKNode {
     
     // MARK: User Input
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch: AnyObject in touches {
-            let location = touch.location(in: self.root)
-            let nodes = self.root.nodes(at: location)
-            for node in nodes {
-                if(node.name?.range(of: "test_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "test_", with: "")
-                    self.testSelected(name, node: node)
-                }
-                
-                if(node.name?.range(of: "Friendly_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "Friendly_", with: "")
-                    self.friendlyUnitSelected(name, node: node)
-                }
-                
-                if(node.name?.range(of: "FriendlySize_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "FriendlySize_", with: "")
-                    self.selectFriendlySize(Int(name)!, node: node)
-                }
-                
-                if(node.name?.range(of: "FriendlyFormation_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "FriendlyFormation_", with: "")
-                    self.selectFriendlyFormation(name, node: node)
-                }
-                
-                if(node.name?.range(of: "FriendlyHero_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "FriendlyHero_", with: "")
-                    self.selectFriendlyHero(name, node: node)
-                }
-                
-                if(node.name?.range(of: "Enemy_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "Enemy_", with: "")
-                    self.enemyUnitSelected(name, node: node)
-                }
-                
-                if(node.name?.range(of: "EnemySize_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "EnemySize_", with: "")
-                    self.selectEnemySize(Int(name)!, node: node)
-                }
-                
-                if(node.name?.range(of: "EnemyFormation_") != nil) {
-                    let name = node.name!.replacingOccurrences(of: "EnemyFormation_", with: "")
-                    self.selectEnemyFormation(name, node: node)
-                }
-                
-                if(node.name?.range(of: "run") != nil) {
-                    self.continuePressed()
-                }
+    func clickUp(location:CGPoint) {
+        let nodes = self.root.nodes(at: location)
+        for node in nodes {
+            if(node.name?.range(of: "test_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "test_", with: "")
+                self.testSelected(name, node: node)
+            }
+            
+            if(node.name?.range(of: "Friendly_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "Friendly_", with: "")
+                self.friendlyUnitSelected(name, node: node)
+            }
+            
+            if(node.name?.range(of: "FriendlySize_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "FriendlySize_", with: "")
+                self.selectFriendlySize(Int(name)!, node: node)
+            }
+            
+            if(node.name?.range(of: "FriendlyFormation_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "FriendlyFormation_", with: "")
+                self.selectFriendlyFormation(name, node: node)
+            }
+            
+            if(node.name?.range(of: "FriendlyHero_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "FriendlyHero_", with: "")
+                self.selectFriendlyHero(name, node: node)
+            }
+            
+            if(node.name?.range(of: "Enemy_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "Enemy_", with: "")
+                self.enemyUnitSelected(name, node: node)
+            }
+            
+            if(node.name?.range(of: "EnemySize_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "EnemySize_", with: "")
+                self.selectEnemySize(Int(name)!, node: node)
+            }
+            
+            if(node.name?.range(of: "EnemyFormation_") != nil) {
+                let name = node.name!.replacingOccurrences(of: "EnemyFormation_", with: "")
+                self.selectEnemyFormation(name, node: node)
+            }
+            
+            if(node.name?.range(of: "run") != nil) {
+                self.continuePressed()
             }
         }
-
     }
+    
+    func clickDown(location:CGPoint) {
+        
+    }
+    
+    // MARK: iOS Input
+    
+    #if os(iOS)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            self.clickDown(location: location)
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            self.clickUp(location: location)
+        }
+    }
+    #endif
+    
+    // MARK: macOS Input
+    
+    #if os(OSX)
+    
+    override func mouseDown(with event: NSEvent) {
+        let location = event.location(in: self)
+        self.clickDown(location: location)
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        let location = event.location(in: self)
+        self.clickUp(location: location)
+    }
+    
+    #endif
     
 }
 
