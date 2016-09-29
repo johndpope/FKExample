@@ -35,7 +35,6 @@ class EngageMovingTargetTest : Testable {
     }
     
     func setupTest(_ instructions:TestInstructions) {
-        self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions)
         self.scene?.createEnemySquadFromInstructions(instructions, position: CGPoint(x:1600, y:68))
         

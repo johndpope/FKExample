@@ -35,7 +35,6 @@ class InvalidMovePositionTest : Testable {
     }
     
     func setupTest(_ instructions:TestInstructions) {
-        self.scene?.configureNavmesh()
         self.scene?.createSquadFromInstructions(instructions, position:CGPoint(x:-1200, y:-1200))
         self.scene?.camera?.panToPoint(point: CGPoint(x:-1200, y:-1200))
 

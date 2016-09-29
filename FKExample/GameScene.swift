@@ -16,6 +16,7 @@ import GameplayKit
     import WarGUI
     import StrongRoom
     import BarricAssets
+    import PathKit
 #elseif os(OSX)
     import FormationKitOS
     import SwitchBoardOS
@@ -23,6 +24,7 @@ import GameplayKit
     import WarGUIOS
     import StrongRoomOS
     import BarricAssetsOS
+    import PathKitOS
 #endif
 
 struct TestDefinition {
@@ -56,7 +58,10 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     let maximumUpdateDeltaTime: TimeInterval = 2.0 / 60.0
     
-    var navmesh : Navmesh?
+    var navmesh : PKNavmesh?
+    
+    ///var navmesh : Navmesh?
+
     
     var squads = [FKSquadEntity]()
     
@@ -80,22 +85,22 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsWorld.speed = WorldPerformance.PHYSICS_SPEED
         self.buildWorldLayers()
-        #if os(iOS)
-            self.registerGestures()
-        #endif
+        self.registerGestures()
+        self.configureNavmesh()
 
         
         var instructions = TestInstructions(settings: combatTestSetting)
-        instructions.name = "SingleFightTest"
-        instructions.selectedFriendly = "Trebuchet"
-        instructions.selectedEnemy = "BadMelee1"
-        instructions.selectedFriendlySize = 1
+        instructions.name = "MovementTest"
+        instructions.selectedFriendly = "Melee1"
+        ///instructions.selectedEnemy = "BadMelee1"
+        instructions.selectedFriendlySize = 12
         instructions.selectedFriendlyHero = nil
-        instructions.selectedEnemySize = 20
+        ///instructions.selectedEnemySize = 20
         self.setupNextTest(instructions)
         let leader = self.createArmyLeader()
         //self.addAbilitiesToSquad(leader, filter:["Haste"])
         self.setupGUI(leader)
+        self.currentTest.setDebugFlags()
     }
     
     func setupNextTest(_ instructions : TestInstructions)  {
@@ -165,7 +170,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         self.enumerateChildNodes(withName: "World/obstacles/*") { node, stop in
             node.removeFromParent()
         }
-        self.navmesh = Navmesh(file: "TestLevel", scene: self, bufferRadius: 140)
+        self.navmesh = PKNavmesh(file:"TestLevel",scene:self, bgLayer:self.childNode(withName: "World")!, obstacleLayer:self.childNode(withName: "World/obstacles")!, bufferRadius:150, collider:FKPhysicsService.ColliderType.environment.rawValue)
+        ///self.navmesh = Navmesh(file:"TestLevel",scene:self, bufferRadius:50)
     }
 
     
@@ -575,12 +581,16 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     // MARK: Pathfinding Protocol
     
+    /// Positions should be in scene / global position (0,0) and NOT world layer
     func getPathToPoint(_ start: CGPoint, end: CGPoint) -> (path: GKPath, nodes: [GKGraphNode2D])? {
-        return self.navmesh?.findPathIngoringBuffer(start, end: end, radius: 50, scene: self)
+        return self.navmesh?.findPath(start, end: end, radius: 50, scene: self)
+        ///return self.navmesh?.findPathIngoringBuffer(start, end: end, radius: 50, scene: self)
     }
     
+    /// Desired should be a point in the World layer coordinate system
     func isPointValid(_ desired: float2) -> Bool {
-        return self.navmesh!.pointIsValid(desired)
+        let valid = self.navmesh!.pointIsValid(desired)
+        return valid
     }
     
     

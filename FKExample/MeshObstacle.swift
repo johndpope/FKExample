@@ -81,7 +81,7 @@ class MeshObstacle {
         
         self.bufferedPath = CGPath(__byStroking: path, transform: nil, lineWidth: buffer * 2, lineCap: CGLineCap.butt, lineJoin: CGLineJoin.miter, miterLimit: buffer)!
 
-        
+        ///self.debugVerticies(scene: scene)
     }
     
     // MARK: Hit Testing
@@ -126,6 +126,37 @@ class MeshObstacle {
         
         return ret
     }
+    
+    // MARK: Debug
+    
+    /// Drops a yellow circle on each vertex of the obstacle if Debug.MeshObstacles is enabled
+    func debugVerticies(scene:SKScene) {
+        if let debug = scene.childNode(withName: "PermanentDebugLayer") {
+            for i in 0 ..< self.obstacle.vertexCount {
+                let vertex = self.obstacle.vertex(at: i)
+                let point = CGPoint(vertex)
+                
+                let shapeTexture = SKSpriteNode(texture: SKTexture(imageNamed: "yellow_circle"))
+                shapeTexture.zPosition = 1001
+                shapeTexture.position = self.sprite.convert(point, to:scene)
+                shapeTexture.setScale(0.4)
+                shapeTexture.colorBlendFactor = 1
+                shapeTexture.color = SKColor.blue
+                debug.addChild(shapeTexture)
+            }
+            
+            let path = self.path 
+                let outline = SKShapeNode(path: path)
+                outline.zPosition = 1001
+                outline.lineWidth = 1
+                outline.position = self.sprite.convert(self.sprite.position, to:scene)
+                outline.fillColor = SKColor.purple
+                outline.alpha = 0.2
+                debug.addChild(outline)
+            
+        }
+    }
+
     
     
 }

@@ -76,10 +76,12 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
         //obstacles = SKNode.obstaclesFromNodePhysicsBodies(obstacleSpriteNodes)
         super.init(obstacles: obstacles, bufferRadius: bufferRadius)
 
-        self.removeNodesOutsideOfSceneBounds(scene)
+        ///self.removeNodesOutsideOfSceneBounds(scene)
         
-        self.removeNodesThatArentConnected()
+        ///self.removeNodesThatArentConnected()
         
+        self.debugOverlay(scene: scene)
+                
         /*self.meshes[MeshSize.Individual] = GKObstacleGraph(obstacles: obstacles, bufferRadius: MeshSize.Individual.rawValue)
         self.meshes[MeshSize.Small] = GKObstacleGraph(obstacles: obstacles, bufferRadius: MeshSize.Small.rawValue)
         self.meshes[MeshSize.Medium] = GKObstacleGraph(obstacles: obstacles, bufferRadius: MeshSize.Medium.rawValue)
@@ -246,4 +248,49 @@ class Navmesh : GKObstacleGraph<GKGraphNode2D> {
             }
         }
     }
+    
+    // MARK: Debug
+    
+    /// Will automatically turn on debugging information if Debug.Navigaiton.enabled is set to true.
+    func debugOverlay(scene:SKScene) {
+        if let debug = scene.childNode(withName: "PermanentDebugLayer") {
+            
+            debug.enumerateChildNodes(withName: "navmeshDebug") { node, stop in
+                node.removeFromParent()
+            }
+            
+            for node in self.nodes as! [GKGraphNode2D] {
+                
+                
+                let point = node.position
+                
+                let shapeTexture = SKSpriteNode(texture: SKTexture(imageNamed: "yellow_circle"))
+                shapeTexture.zPosition = 1001
+                shapeTexture.position = debug.convert(CGPoint(point), from:scene)
+                shapeTexture.setScale(0.4)
+                shapeTexture.name = "navmeshDebug"
+                debug.addChild(shapeTexture)
+                
+                for destination in node.connectedNodes as! [GKGraphNode2D] {
+                    let start = debug.convert(CGPoint(node.position), from: scene)
+                    let end = debug.convert(CGPoint(destination.position), from: scene)
+                    let points = [start, end]
+                    
+                    let shapeNode = SKShapeNode(points: UnsafeMutablePointer<CGPoint>(mutating: points), count: 2)
+                    shapeNode.strokeColor = SKColor(white: 1.0, alpha: 0.5)
+                    shapeNode.lineWidth = 5.0
+                    shapeNode.zPosition = 1000
+                    shapeNode.name = "navmeshDebug"
+                    debug.addChild(shapeNode)
+                }
+                
+                if node.connectedNodes.isEmpty {
+                    shapeTexture.color = SKColor.red
+                    shapeTexture.colorBlendFactor = 1
+                    shapeTexture.alpha = 1
+                }
+            }
+        }
+    }
+
 }

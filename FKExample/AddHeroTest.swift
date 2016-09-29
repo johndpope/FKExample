@@ -34,7 +34,6 @@ class AddHeroTest : Testable {
     }
     
     func setupTest(_ instructions:TestInstructions) {
-        self.scene?.configureNavmesh()
         self.scene?.createSquad(instructions.selectedFriendly!)
         self.scene?.createHero()
     }
