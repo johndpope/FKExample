@@ -23,7 +23,7 @@ class GameViewController: UIViewController {
             // NOTE: Uncommenting these causes a memory leak, so don't be alarmed.
             skView.showsFPS = true
             skView.showsNodeCount = true
-            skView.showsPhysics = true
+            ///skView.showsPhysics = true
             skView.showsDrawCount = true
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */

@@ -50,7 +50,7 @@ class ViewController: NSViewController {
                 self.sceneManager?.sceneDidFinish(nextScene: initialScene)
             }
             
-            ///skView.showsPhysics = true
+            skView.showsPhysics = false
             
         }
         

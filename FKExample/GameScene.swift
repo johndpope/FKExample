@@ -58,11 +58,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     let maximumUpdateDeltaTime: TimeInterval = 2.0 / 60.0
     
-    var navmesh : PKNavmesh?
-    
-    ///var navmesh : Navmesh?
+    var navigationAtlas : PKAtlas?
 
-    
     var squads = [FKSquadEntity]()
     
     var units = [FKUnitEntity]()
@@ -100,7 +97,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         let leader = self.createArmyLeader()
         //self.addAbilitiesToSquad(leader, filter:["Haste"])
         self.setupGUI(leader)
-        self.currentTest.setDebugFlags()
+        ///self.currentTest.setDebugFlags()
     }
     
     func setupNextTest(_ instructions : TestInstructions)  {
@@ -170,8 +167,12 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         self.enumerateChildNodes(withName: "World/obstacles/*") { node, stop in
             node.removeFromParent()
         }
-        self.navmesh = PKNavmesh(file:"TestLevel",scene:self, bgLayer:self.childNode(withName: "World")!, obstacleLayer:self.childNode(withName: "World/obstacles")!, bufferRadius:150, collider:FKPhysicsService.ColliderType.environment.rawValue)
-        ///self.navmesh = Navmesh(file:"TestLevel",scene:self, bufferRadius:50)
+        let bg = self.childNode(withName: "World")!
+        self.navigationAtlas = PKAtlas(file:"TestLevel",scene:self, bgLayer:bg, obstacleLayer:self.childNode(withName: "World/obstacles")!, collider:FKPhysicsService.ColliderType.environment.rawValue, mapSize:bg.calculateAccumulatedFrame().size)
+        self.navigationAtlas!.addMap(bufferRadius:33)
+        self.navigationAtlas!.addMap(bufferRadius:65)
+        self.navigationAtlas!.addMap(bufferRadius:129)
+        self.navigationAtlas!.addMap(bufferRadius:193)
     }
 
     
@@ -582,15 +583,13 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     // MARK: Pathfinding Protocol
     
     /// Positions should be in scene / global position (0,0) and NOT world layer
-    func getPathToPoint(_ start: CGPoint, end: CGPoint) -> (path: GKPath, nodes: [GKGraphNode2D])? {
-        return self.navmesh?.findPath(start, end: end, radius: 50, scene: self)
-        ///return self.navmesh?.findPathIngoringBuffer(start, end: end, radius: 50, scene: self)
+    func getPathToPoint(_ start: CGPoint, end: CGPoint, unitRadius: Float, pathRadius: Float = 0) -> (path: GKPath, nodes: [GKGraphNode2D])? {
+        return self.navigationAtlas?.findPath(start: start, end: end, unitRadius: unitRadius, pathRadius: pathRadius)
     }
     
     /// Desired should be a point in the World layer coordinate system
     func isPointValid(_ desired: float2) -> Bool {
-        let valid = self.navmesh!.pointIsValid(desired)
-        return valid
+        return self.navigationAtlas!.pointIsValid(desired)
     }
     
     
