@@ -339,7 +339,8 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                         name:abilityData.abilityName,
                         ability:ability,
                         actionBarPosition:abilityData.actionBarPosition,
-                        actionBarPriority:abilityData.actionBarPriority)
+                        actionBarPriority:abilityData.actionBarPriority,
+                        category:abilityData.category.rawValue)
                     squad.abilitiesComponent.abilities.append(activeAbility)
                 }
             }
@@ -360,10 +361,11 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
                 
                 let ability = Ability.factoryInit(abilityData.abilityName)
                 let activeAbility = FKAbilitiesComponent.ActiveAbility(
-                        name:abilityData.abilityName,
-                        ability:ability,
-                        actionBarPosition:abilityData.actionBarPosition,
-                        actionBarPriority:abilityData.actionBarPriority)
+                    name:abilityData.abilityName,
+                    ability:ability,
+                    actionBarPosition:abilityData.actionBarPosition,
+                    actionBarPriority:abilityData.actionBarPriority,
+                    category:abilityData.category.rawValue)
                 ret.append(activeAbility)
             }
         }

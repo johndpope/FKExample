@@ -15,7 +15,6 @@
 		E72AA7521D8C36AF00A1F777 /* DeckKitOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7471D8C36AF00A1F777 /* DeckKitOS.framework */; };
 		E72AA7541D8C36AF00A1F777 /* ParticleboardOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7491D8C36AF00A1F777 /* ParticleboardOS.framework */; };
 		E72AA7561D8C36AF00A1F777 /* SpeakerBoxOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74B1D8C36AF00A1F777 /* SpeakerBoxOS.framework */; };
-		E72AA7571D8C36AF00A1F777 /* StrongRoomOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74C1D8C36AF00A1F777 /* StrongRoomOS.framework */; };
 		E72AA7581D8C36AF00A1F777 /* SwitchBoardOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74D1D8C36AF00A1F777 /* SwitchBoardOS.framework */; };
 		E72AA75A1D8C36AF00A1F777 /* WavePoolOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74F1D8C36AF00A1F777 /* WavePoolOS.framework */; };
 		E72AA75B1D8C36C400A1F777 /* BarricAssetsOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7451D8C36AF00A1F777 /* BarricAssetsOS.framework */; };
@@ -26,7 +25,6 @@
 		E72AA7611D8C36C400A1F777 /* FormationKitOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7481D8C36AF00A1F777 /* FormationKitOS.framework */; };
 		E72AA7621D8C36C400A1F777 /* FormationKitOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7481D8C36AF00A1F777 /* FormationKitOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E72AA7641D8C36C400A1F777 /* ParticleboardOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA7491D8C36AF00A1F777 /* ParticleboardOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E72AA7651D8C36C400A1F777 /* PathKitOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74A1D8C36AF00A1F777 /* PathKitOS.framework */; };
 		E72AA7661D8C36C400A1F777 /* PathKitOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74A1D8C36AF00A1F777 /* PathKitOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E72AA7681D8C36C400A1F777 /* SpeakerBoxOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74B1D8C36AF00A1F777 /* SpeakerBoxOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E72AA7691D8C36C400A1F777 /* StrongRoomOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72AA74C1D8C36AF00A1F777 /* StrongRoomOS.framework */; };
@@ -77,7 +75,6 @@
 		E74871A11D81FE5B008D64D8 /* SwitchBoard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E748718D1D81FE41008D64D8 /* SwitchBoard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E74871A31D81FE5B008D64D8 /* WarGUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E748718E1D81FE41008D64D8 /* WarGUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E74871BB1D82EDB6008D64D8 /* StrongRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74871BA1D82EDB6008D64D8 /* StrongRoom.framework */; };
-		E74871BC1D82EDDB008D64D8 /* StrongRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74871BA1D82EDB6008D64D8 /* StrongRoom.framework */; };
 		E74871BD1D82EDDB008D64D8 /* StrongRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E74871BA1D82EDB6008D64D8 /* StrongRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E74871BE1D82EDEA008D64D8 /* BarricAssets.framework in Resources */ = {isa = PBXBuildFile; fileRef = E74871881D81FE41008D64D8 /* BarricAssets.framework */; };
 		E74CD1131C77C747002CFCEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74CD1121C77C747002CFCEC /* AppDelegate.swift */; };
@@ -289,9 +286,7 @@
 				E72AA7611D8C36C400A1F777 /* FormationKitOS.framework in Frameworks */,
 				E72AA7691D8C36C400A1F777 /* StrongRoomOS.framework in Frameworks */,
 				E72AA7521D8C36AF00A1F777 /* DeckKitOS.framework in Frameworks */,
-				E72AA7571D8C36AF00A1F777 /* StrongRoomOS.framework in Frameworks */,
 				E72AA75A1D8C36AF00A1F777 /* WavePoolOS.framework in Frameworks */,
-				E72AA7651D8C36C400A1F777 /* PathKitOS.framework in Frameworks */,
 				E72AA7581D8C36AF00A1F777 /* SwitchBoardOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,7 +312,6 @@
 				E74871961D81FE5B008D64D8 /* BarricAssets.framework in Frameworks */,
 				E74871911D81FE41008D64D8 /* DeckKit.framework in Frameworks */,
 				E74871BB1D82EDB6008D64D8 /* StrongRoom.framework in Frameworks */,
-				E74871BC1D82EDDB008D64D8 /* StrongRoom.framework in Frameworks */,
 				E74871901D81FE41008D64D8 /* CutsceneKit.framework in Frameworks */,
 				E74871951D81FE41008D64D8 /* WarGUI.framework in Frameworks */,
 				E74871941D81FE41008D64D8 /* SwitchBoard.framework in Frameworks */,
@@ -699,7 +693,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Phalanx Studios";
 				TargetAttributes = {
 					E72AA7131D8C361E00A1F777 = {
@@ -1123,8 +1117,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1175,8 +1171,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
