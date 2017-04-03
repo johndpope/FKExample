@@ -36,7 +36,16 @@ class MovementTest : Testable {
     
     func setupTest(_ instructions:TestInstructions) {
         self.scene?.createSquadFromInstructions(instructions)
-
+        self.addSecondSquad()
+    }
+    
+    func addSecondSquad() {
+        var instructions = TestInstructions(settings: combatTestSetting)
+        instructions.name = "MovementTest"
+        instructions.selectedFriendly = "Archer1"
+        instructions.selectedFriendlySize = 12
+        instructions.selectedFriendlyHero = nil
+        self.scene?.createSquadFromInstructions(instructions, position: CGPoint(x:-500, y:1000), heading: 1)
     }
     
     func tapped(_ location: CGPoint) {

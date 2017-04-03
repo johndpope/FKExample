@@ -116,6 +116,8 @@
 		E7F345121CA4E1BD00525966 /* ReformTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345111CA4E1BD00525966 /* ReformTest.swift */; };
 		E7F345141CA4E20900525966 /* AddHeroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F345131CA4E20900525966 /* AddHeroTest.swift */; };
 		E7F3451D1CA7852B00525966 /* InvalidMovePositionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */; };
+		E7FB29EE1E92805A003B6A40 /* Anivers_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E7FB29EC1E92805A003B6A40 /* Anivers_Regular.otf */; };
+		E7FB29EF1E92805B003B6A40 /* Wallington-Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = E7FB29ED1E92805A003B6A40 /* Wallington-Pro.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -269,6 +271,8 @@
 		E7F345111CA4E1BD00525966 /* ReformTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReformTest.swift; sourceTree = "<group>"; };
 		E7F345131CA4E20900525966 /* AddHeroTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHeroTest.swift; sourceTree = "<group>"; };
 		E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidMovePositionTest.swift; sourceTree = "<group>"; };
+		E7FB29EC1E92805A003B6A40 /* Anivers_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anivers_Regular.otf; sourceTree = "<group>"; };
+		E7FB29ED1E92805A003B6A40 /* Wallington-Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wallington-Pro.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +376,8 @@
 		E738BFCD1CE5F09E00A89C07 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E7FB29EC1E92805A003B6A40 /* Anivers_Regular.otf */,
+				E7FB29ED1E92805A003B6A40 /* Wallington-Pro.otf */,
 				E738BFCE1CE5F0A600A89C07 /* particle_Haste.sks */,
 				E738BFD01CE5F26B00A89C07 /* MyParticle.sks */,
 				E738BFD11CE5F26B00A89C07 /* spark.png */,
@@ -804,10 +810,12 @@
 				E74CD11E1C77C747002CFCEC /* Assets.xcassets in Resources */,
 				E7ACE8D61CEB8BD100AC0A58 /* Recruit 1.mp3 in Resources */,
 				E74CD11C1C77C747002CFCEC /* Main.storyboard in Resources */,
+				E7FB29EF1E92805B003B6A40 /* Wallington-Pro.otf in Resources */,
 				E7ACE8D21CEB8BD100AC0A58 /* Coins 1.mp3 in Resources */,
 				E7C4D3AD1C9CFFD900D1B7D8 /* TestLevel_obstacles.plist in Resources */,
 				E7ACE8D41CEB8BD100AC0A58 /* Coins 3.mp3 in Resources */,
 				E738BFD31CE5F26B00A89C07 /* spark.png in Resources */,
+				E7FB29EE1E92805A003B6A40 /* Anivers_Regular.otf in Resources */,
 				E75B93281CD8007600DDC324 /* TestSelect.sks in Resources */,
 				E7ACE8D31CEB8BD100AC0A58 /* Coins 2.mp3 in Resources */,
 			);

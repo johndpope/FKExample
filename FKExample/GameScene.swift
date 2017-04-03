@@ -100,6 +100,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         ///self.currentTest.setDebugFlags()
     }
     
+    
     func setupNextTest(_ instructions : TestInstructions)  {
         self.camera?.childNode(withName: "SelectTests")?.removeFromParent()
         let test = classMap[instructions.name!]!.classObj()
