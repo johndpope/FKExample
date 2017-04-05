@@ -115,6 +115,9 @@
 		E7F3451D1CA7852B00525966 /* InvalidMovePositionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */; };
 		E7FB29EE1E92805A003B6A40 /* Anivers_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E7FB29EC1E92805A003B6A40 /* Anivers_Regular.otf */; };
 		E7FB29EF1E92805B003B6A40 /* Wallington-Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = E7FB29ED1E92805A003B6A40 /* Wallington-Pro.otf */; };
+		E7FB29F91E948B90003B6A40 /* WarGUI.framework in Resources */ = {isa = PBXBuildFile; fileRef = E748718E1D81FE41008D64D8 /* WarGUI.framework */; };
+		E7FB29FA1E948B9C003B6A40 /* WarGUIOS.framework in Resources */ = {isa = PBXBuildFile; fileRef = E72AA74E1D8C36AF00A1F777 /* WarGUIOS.framework */; };
+		E7FB29FC1E948E13003B6A40 /* UnitOverview.sks in Resources */ = {isa = PBXBuildFile; fileRef = E7FB29FB1E948E13003B6A40 /* UnitOverview.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +273,7 @@
 		E7F3451C1CA7852B00525966 /* InvalidMovePositionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidMovePositionTest.swift; sourceTree = "<group>"; };
 		E7FB29EC1E92805A003B6A40 /* Anivers_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anivers_Regular.otf; sourceTree = "<group>"; };
 		E7FB29ED1E92805A003B6A40 /* Wallington-Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wallington-Pro.otf"; sourceTree = "<group>"; };
+		E7FB29FB1E948E13003B6A40 /* UnitOverview.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UnitOverview.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +435,7 @@
 		E74CD1061C77C747002CFCEC = {
 			isa = PBXGroup;
 			children = (
+				E7FB29FB1E948E13003B6A40 /* UnitOverview.sks */,
 				E74CD1111C77C747002CFCEC /* FKExample */,
 				E74871B91D82EBCE008D64D8 /* System */,
 				E72AA7151D8C361E00A1F777 /* FKExample macOS */,
@@ -759,6 +764,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7FB29FA1E948B9C003B6A40 /* WarGUIOS.framework in Resources */,
 				E72AA7861D8C3B0900A1F777 /* BarricAssets.framework in Resources */,
 				E72AA77F1D8C37B500A1F777 /* GameScene.sks in Resources */,
 				E72AA7811D8C37B500A1F777 /* Gameplay.xcassets in Resources */,
@@ -789,6 +795,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7FB29FC1E948E13003B6A40 /* UnitOverview.sks in Resources */,
+				E7FB29F91E948B90003B6A40 /* WarGUI.framework in Resources */,
 				E74871BE1D82EDEA008D64D8 /* BarricAssets.framework in Resources */,
 				E78F57C61D7DC453004C0BE9 /* Gameplay.xcassets in Resources */,
 				E74CD1151C77C747002CFCEC /* GameScene.sks in Resources */,

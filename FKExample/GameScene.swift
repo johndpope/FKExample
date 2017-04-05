@@ -17,6 +17,7 @@ import GameplayKit
     import StrongRoom
     import BarricAssets
     import PathKit
+    import DeckKit
 #elseif os(OSX)
     import FormationKitOS
     import SwitchBoardOS
@@ -25,6 +26,7 @@ import GameplayKit
     import StrongRoomOS
     import BarricAssetsOS
     import PathKitOS
+    import DeckKitOS
 #endif
 
 struct TestDefinition {
@@ -100,7 +102,6 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         ///self.currentTest.setDebugFlags()
     }
     
-    
     func setupNextTest(_ instructions : TestInstructions)  {
         self.camera?.childNode(withName: "SelectTests")?.removeFromParent()
         let test = classMap[instructions.name!]!.classObj()
@@ -149,6 +150,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
         self.camera!.addChild(ui)
         ui.initWithDefaults(self)
         self.ui = ui
+        ui.prepareUnitDescriptions()
         
     }
     
@@ -393,6 +395,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     func clickUp(location:CGPoint) {
         if !self.refreshButtonTapped(location) && !self.debugButtonTapped(location) && !self.testButtonTapped(location) {
             let realLocation = self.childNode(withName: "World")!.convert(location, from: self)
+            self.hideOpenCards()
             self.actionBar?.handleInput(realLocation)
             self.currentTest?.tapped(location)
         }
@@ -400,6 +403,20 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     
     func clickDown(location:CGPoint) {
         
+    }
+    
+    /// Look for cards on the scene and hide them. Return value is convenience so that delays can be put into place if there are open cards in process of being hidden
+    func hideOpenCards() -> Bool {
+        var ret = false
+        self.ui?.enumerateChildNodes(withName: "DKCard") { node, stop in
+            if let card = node as? DKCardNode {
+                if card.locked == false && card.dealt == true {
+                    ret = true
+                    card.slideOutOfView()
+                }
+            }
+        }
+        return ret
     }
     
     // MARK: iOS Input
@@ -543,7 +560,7 @@ class GameScene : SBGameScene, SKPhysicsContactDelegate, FKPathfindingProtocol, 
     }
     
     func heraldryLongPress(_ squad: FKSquadEntity) {
-        /// do nothing
+        self.ui?.unitDescription?.showSquadCard(squad: squad)
     }
     
     func heraldryTapStarted(_ squad: FKSquadEntity) {
